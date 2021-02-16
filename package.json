@@ -47,8 +47,12 @@
     "prettier": "prettier --write src"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "no-unused-expressions": 0
+    }
   },
+  "eslintIgnore": ["charting_library/*.js"],
   "jest": {
     "transformIgnorePatterns": [
       "^.+\\.cjs$"

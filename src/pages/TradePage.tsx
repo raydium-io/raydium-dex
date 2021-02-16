@@ -24,6 +24,7 @@ import {
 import CustomMarketDialog from '../components/CustomMarketDialog';
 import { notify } from '../utils/notifications';
 import { useHistory, useParams } from 'react-router-dom';
+import { TVChartContainer } from '../components/TradingView'
 
 const { Option, OptGroup } = Select;
 
@@ -334,13 +335,6 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
         flexWrap: 'nowrap',
       }}
     >
-      <Col flex="auto" style={{ height: '100%', display: 'flex' }}>
-        <UserInfoTable />
-      </Col>
-      <Col flex={'360px'} style={{ height: '100%' }}>
-        <Orderbook smallScreen={false} onPrice={onPrice} onSize={onSize} />
-        <TradesTable smallScreen={false} />
-      </Col>
       <Col
         flex="400px"
         style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -348,6 +342,17 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
         <TradeForm setChangeOrderRef={onChangeOrderRef} />
         <StandaloneBalancesDisplay />
       </Col>
+
+      <Col flex="auto" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <TVChartContainer />
+        <UserInfoTable />
+      </Col>
+
+      <Col flex={'360px'} style={{ height: '100%' }}>
+        <Orderbook smallScreen={false} onPrice={onPrice} onSize={onSize} />
+        <TradesTable smallScreen={false} />
+      </Col>
+      
     </Row>
   );
 };
