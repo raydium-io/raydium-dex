@@ -95,5 +95,5 @@ export const TVChartContainer = () => {
     });
   }, [market]);
 
-  return <div id={defaultProps.containerId} className="tradingview-chart" />;
+  return <div style={{ height: 540 }} id={defaultProps.containerId} className="tradingview-chart" />;
 };

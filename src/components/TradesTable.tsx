@@ -24,19 +24,26 @@ export default function PublicTrades({ smallScreen }) {
         smallScreen
           ? { flex: 1 }
           : {
-              marginTop: '10px',
+              // marginTop: '10px',
               minHeight: '270px',
               maxHeight: 'calc(100vh - 700px)',
             }
       }
     >
-      <Title>Recent Market trades</Title>
+      <Title
+        style={{
+          color: 'rgba(241, 241, 242, 0.75)',
+          fontSize: 14,
+          borderBottom: '1px solid #1C274F',
+          padding: '12px 0 12px 16px',
+        }}
+      >Recent Market trades</Title>
       <SizeTitle>
-        <Col span={8}>Price ({quoteCurrency}) </Col>
-        <Col span={8} style={{ textAlign: 'right' }}>
+        <Col span={8} style={{ textAlign: 'left', paddingRight: 20, color: 'rgba(241, 241, 242, 0.5)', fontSize: 12 }}>Price ({quoteCurrency}) </Col>
+        <Col span={8} style={{ textAlign: 'right', paddingRight: 20, color: 'rgba(241, 241, 242, 0.5)', fontSize: 12 }}>
           Size ({baseCurrency})
         </Col>
-        <Col span={8} style={{ textAlign: 'right' }}>
+        <Col span={8} style={{ textAlign: 'right', paddingRight: 20, color: 'rgba(241, 241, 242, 0.5)', fontSize: 12 }}>
           Time
         </Col>
       </SizeTitle>
@@ -57,6 +64,7 @@ export default function PublicTrades({ smallScreen }) {
                 span={8}
                 style={{
                   color: trade.side === 'buy' ? '#41C77A' : '#F23B69',
+                  fontSize: 12,
                 }}
               >
                 {market?.tickSize && !isNaN(trade.price)
@@ -65,14 +73,14 @@ export default function PublicTrades({ smallScreen }) {
                     )
                   : trade.price}
               </Col>
-              <Col span={8} style={{ textAlign: 'right' }}>
+              <Col span={8} style={{ textAlign: 'right', fontSize: 12, }}>
                 {market?.minOrderSize && !isNaN(trade.size)
                   ? Number(trade.size).toFixed(
                       getDecimalCount(market.minOrderSize),
                     )
                   : trade.size}
               </Col>
-              <Col span={8} style={{ textAlign: 'right', color: '#434a59' }}>
+              <Col span={8} style={{ textAlign: 'right', color: '#434a59', fontSize: 12, }}>
                 {trade.time && new Date(trade.time).toLocaleTimeString()}
               </Col>
             </Row>

@@ -13,12 +13,12 @@ const Title = styled.div`
 `;
 
 const SizeTitle = styled(Row)`
-  padding: 20px 0 14px;
+  padding: 16px 0 12px;
   color: #434a59;
 `;
 
 const MarkPriceTitle = styled(Row)`
-  padding: 20px 0 14px;
+  padding: 15px 0 12px;
   font-weight: 700;
 `;
 
@@ -107,31 +107,84 @@ export default function Orderbook({ smallScreen, depth = 7, onPrice, onSize }) {
 
   return (
     <FloatingElement
-      style={
-        smallScreen ? { flex: 1 } : { height: '500px', overflow: 'hidden' }
-      }
+      style={{
+        ...(smallScreen
+          ? { flex: 1 }
+          : { height: '500px', overflow: 'hidden' }),
+        height: 540,
+      }}
     >
-      <Title>Orderbook</Title>
+      <Title
+        style={{
+          borderTop: '1px solid #1C274F',
+          borderBottom: '1px solid #1C274F',
+          padding: '12px 0 12px 16px',
+          color: 'rgba(241, 241, 242, 0.75)',
+          fontSize: 14,
+        }}
+      >
+        Order book
+      </Title>
       <SizeTitle>
-        <Col span={12} style={{ textAlign: 'left' }}>
+        <Col
+          span={12}
+          style={{
+            textAlign: 'right',
+            color: 'rgba(241, 241, 242, 0.5)',
+            fontSize: 12,
+          }}
+        >
           Size ({baseCurrency})
         </Col>
-        <Col span={12} style={{ textAlign: 'right' }}>
+        <Col
+          span={12}
+          style={{
+            textAlign: 'right',
+            paddingRight: 20,
+            color: 'rgba(241, 241, 242, 0.5)',
+            fontSize: 12,
+          }}
+        >
           Price ({quoteCurrency})
         </Col>
       </SizeTitle>
-      {orderbookData?.asks.map(({ price, size, sizePercent }) => (
-        <OrderbookRow
-          key={price + ''}
-          price={price}
-          size={size}
-          side={'sell'}
-          sizePercent={sizePercent}
-          onPriceClick={() => onPrice(price)}
-          onSizeClick={() => onSize(size)}
-        />
-      ))}
+      <div style={{ paddingBottom: 16 }}>
+        {orderbookData?.asks.map(({ price, size, sizePercent }) => (
+          <OrderbookRow
+            key={price + ''}
+            price={price}
+            size={size}
+            side={'sell'}
+            sizePercent={sizePercent}
+            onPriceClick={() => onPrice(price)}
+            onSizeClick={() => onSize(size)}
+          />
+        ))}
+      </div>
       <MarkPriceComponent markPrice={markPrice} />
+      <SizeTitle>
+        <Col
+          span={12}
+          style={{
+            textAlign: 'right',
+            color: 'rgba(241, 241, 242, 0.5)',
+            fontSize: 12,
+          }}
+        >
+          Size ({baseCurrency})
+        </Col>
+        <Col
+          span={12}
+          style={{
+            textAlign: 'right',
+            paddingRight: 20,
+            color: 'rgba(241, 241, 242, 0.5)',
+            fontSize: 12,
+          }}
+        >
+          Price ({quoteCurrency})
+        </Col>
+      </SizeTitle>
       {orderbookData?.bids.map(({ price, size, sizePercent }) => (
         <OrderbookRow
           key={price + ''}
@@ -177,8 +230,12 @@ const OrderbookRow = React.memo(
         : price;
 
     return (
-      <Row ref={element} style={{ marginBottom: 1 }} onClick={onSizeClick}>
-        <Col span={12} style={{ textAlign: 'left' }}>
+      <Row
+        ref={element}
+        style={{ marginBottom: 3, fontSize: 12 }}
+        onClick={onSizeClick}
+      >
+        <Col span={12} style={{ textAlign: 'right' }}>
           {formattedSize}
         </Col>
         <Col span={12} style={{ textAlign: 'right' }}>
@@ -217,7 +274,14 @@ const MarkPriceComponent = React.memo(
       markPrice.toFixed(getDecimalCount(market.tickSize));
 
     return (
-      <MarkPriceTitle justify="center">
+      <MarkPriceTitle
+        justify="center"
+        style={{
+          borderTop: '1px solid #1C274F',
+          borderBottom: '1px solid #1C274F',
+          fontSize: 16,
+        }}
+      >
         <Col style={{ color: markPriceColor }}>
           {markPrice > previousMarkPrice && (
             <ArrowUpOutlined style={{ marginRight: 5 }} />

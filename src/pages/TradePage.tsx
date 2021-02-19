@@ -83,7 +83,7 @@ function TradePageInner() {
 
   const changeOrderRef = useRef<
     ({ size, price }: { size?: number; price?: number }) => void
-  >();
+    >();
 
   useEffect(() => {
     const handleResize = () => {
@@ -156,7 +156,7 @@ function TradePageInner() {
       <Wrapper>
         <Row
           align="middle"
-          style={{ paddingLeft: 5, paddingRight: 5 }}
+          style={{ paddingLeft: 5, paddingRight: 5, height: 64 }}
           gutter={16}
         >
           <Col>
@@ -209,12 +209,12 @@ function TradePageInner() {
 }
 
 function MarketSelector({
-  markets,
-  placeholder,
-  setHandleDeprecated,
-  customMarkets,
-  onDeleteCustomMarket,
-}) {
+                          markets,
+                          placeholder,
+                          setHandleDeprecated,
+                          customMarkets,
+                          onDeleteCustomMarket,
+                        }) {
   const { market, setMarketAddress } = useMarket();
 
   const onSetMarketAddress = (marketAddress) => {
@@ -236,7 +236,8 @@ function MarketSelector({
     <Select
       showSearch
       size={'large'}
-      style={{ width: 200 }}
+      bordered={false}
+      style={{ width: 360, border: 1 }}
       placeholder={placeholder || 'Select a market'}
       optionFilterProp="name"
       onSelect={onSetMarketAddress}
@@ -283,7 +284,7 @@ function MarketSelector({
             extractQuote(a.name) === 'USDT' && extractQuote(b.name) !== 'USDT'
               ? -1
               : extractQuote(a.name) !== 'USDT' &&
-                extractQuote(b.name) === 'USDT'
+              extractQuote(b.name) === 'USDT'
               ? 1
               : 0,
           )
@@ -336,7 +337,7 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
       }}
     >
       <Col
-        flex="400px"
+        flex="360px"
         style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
       >
         <TradeForm setChangeOrderRef={onChangeOrderRef} />
@@ -352,7 +353,7 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
         <Orderbook smallScreen={false} onPrice={onPrice} onSize={onSize} />
         <TradesTable smallScreen={false} />
       </Col>
-      
+
     </Row>
   );
 };
@@ -377,7 +378,7 @@ const RenderSmall = ({ onChangeOrderRef, onPrice, onSize }) => {
           <TradesTable smallScreen={true} />
         </Col>
         <Col
-          flex="400px"
+          flex="360px"
           style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
         >
           <TradeForm setChangeOrderRef={onChangeOrderRef} />

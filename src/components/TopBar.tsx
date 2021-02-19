@@ -140,9 +140,14 @@ export default function TopBar() {
         onClose={() => setAddEndpointVisible(false)}
       />
       <Wrapper>
+        {/*<Row>*/}
+        {/*  <Col span>*/}
+        {/**/}
+        {/*  </Col>*/}
+        {/*</Row>*/}
         <LogoWrapper onClick={() => history.push(tradePageUrl)}>
           <img src={logo} alt="" />
-          {'SERUM'}
+          {'R A Y D I U M'}
         </LogoWrapper>
         <Menu
           mode="horizontal"

@@ -1,5 +1,5 @@
-import { Button } from 'antd';
-import React from 'react';
+import { Button, Col, Row } from 'antd';
+import React, { useState } from 'react';
 import {
   useTokenAccounts,
   getSelectedTokenAccountForMint,
@@ -46,7 +46,14 @@ export default function BalancesTable({
     }
     onSettleSuccess && onSettleSuccess();
   }
-
+  const [rowItem, setRowItem] = useState(4);
+  if (showMarket) {
+    setRowItem(rowItem + 1);
+  }
+  if (hideWalletBalance) {
+    setRowItem(rowItem + 1);
+  }
+  // setRowItem(Math.floor(24 / rowItem));
   const columns = [
     showMarket
       ? {
@@ -93,11 +100,87 @@ export default function BalancesTable({
     },
   ].filter((x) => x);
   return (
-    <DataTable
-      emptyLabel="No balances"
-      dataSource={balances}
-      columns={columns}
-      pagination={false}
-    />
+    <>
+      <Row
+        style={{
+          fontSize: 14,
+          color: 'rgba(241, 241, 242, 0.5)',
+          paddingBottom: 16,
+        }}
+      >
+        {showMarket ? (
+          <Col span={24 / rowItem} style={{ textAlign: 'left' }}>
+            Market
+          </Col>
+        ) : null}
+        <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+          Coin
+        </Col>
+        {hideWalletBalance ? (
+          <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+            Wallet Balance
+          </Col>
+        ) : null}
+        <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+          Orders
+        </Col>
+        <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+          Unsettled
+        </Col>
+        <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+          action
+        </Col>
+      </Row>
+      {balances.map(
+        (
+          { marketName, coin, wallet, orders, unsettled, market, openOrders },
+          i,
+        ) => (
+          <Row
+            key={i}
+            style={{
+              fontSize: 14,
+              color: 'rgba(241, 241, 242, 1)',
+              paddingBottom: 16,
+            }}
+          >
+            {showMarket ? (
+              <Col span={24 / rowItem} style={{ textAlign: 'left' }}>
+                {marketName}
+              </Col>
+            ) : null}
+            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+              {coin}
+            </Col>
+            {hideWalletBalance ? (
+              <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+                {wallet}
+              </Col>
+            ) : null}
+            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+              {orders}
+            </Col>
+            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+              {unsettled}
+            </Col>
+            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+              <Button
+                ghost
+                style={{ marginRight: 12 }}
+                onClick={() => onSettleFunds(market, openOrders)}
+              >
+                Settle {marketName}
+              </Button>
+            </Col>
+          </Row>
+        ),
+      )}
+    </>
+    // <DataTable
+    //   emptyLabel="No balances"
+    //   dataSource={balances}
+    //   columns={columns}
+    //   pagination={false}
+    // />
   );
 }

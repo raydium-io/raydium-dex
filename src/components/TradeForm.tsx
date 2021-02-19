@@ -1,4 +1,4 @@
-import { Button, Input, Radio, Switch, Slider } from 'antd';
+import { Button, Input, InputNumber, Radio, Switch, Slider, Row, Col, Select } from 'antd';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
@@ -269,119 +269,175 @@ export default function TradeForm({
     }
   }
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     <FloatingElement
       style={{ display: 'flex', flexDirection: 'column', ...style }}
     >
       <div style={{ flex: 1 }}>
-        <Radio.Group
-          onChange={(e) => setSide(e.target.value)}
-          value={side}
-          buttonStyle="solid"
-          style={{
-            marginBottom: 8,
-            width: '100%',
-          }}
-        >
-          <Radio.Button
-            value="buy"
+        <Row>
+          <Col
+            span={12}
+            onClick={() => setSide('buy')}
             style={{
+              height: 42,
               width: '50%',
               textAlign: 'center',
-              background: side === 'buy' ? '#02bf76' : '',
-              borderColor: side === 'buy' ? '#02bf76' : '',
+              border: 'transparent',
+              borderBottom: side === 'buy' ? '2px solid #5AC4BE' : '2px solid #1C274F',
+              background: 'transparent',
+              fontSize: 14,
+              fontStyle: 'normal',
+              fontWeight: 600,
+              color: side === 'buy' ? '#F1F1F2' : 'rgba(241, 241, 242, 0.5)',
+              padding: '12px 0 0 0'
             }}
           >
             BUY
-          </Radio.Button>
-          <Radio.Button
-            value="sell"
+          </Col>
+          <Col
+            span={12}
+            onClick={() => setSide('sell')}
             style={{
+              height: 42,
               width: '50%',
               textAlign: 'center',
-              background: side === 'sell' ? '#F23B69' : '',
-              borderColor: side === 'sell' ? '#F23B69' : '',
+              border: 'transparent',
+              borderBottom: side === 'sell' ? '2px solid #5AC4BE' : '2px solid #1C274F',
+              background: 'transparent',
+              fontSize: 14,
+              fontStyle: 'normal',
+              fontWeight: 600,
+              color: side === 'sell' ? '#F1F1F2' : 'rgba(241, 241, 242, 0.5)',
+              padding: '12px 0 0 0'
             }}
           >
             SELL
-          </Radio.Button>
-        </Radio.Group>
-        <Input
-          style={{ textAlign: 'right', paddingBottom: 8 }}
-          addonBefore={<div style={{ width: '30px' }}>Price</div>}
-          suffix={
-            <span style={{ fontSize: 10, opacity: 0.5 }}>{quoteCurrency}</span>
-          }
-          value={price}
-          type="number"
-          step={market?.tickSize || 1}
-          onChange={(e) => setPrice(parseFloat(e.target.value))}
-        />
-        <Input.Group compact style={{ paddingBottom: 8 }}>
-          <Input
-            style={{ width: 'calc(50% + 30px)', textAlign: 'right' }}
-            addonBefore={<div style={{ width: '30px' }}>Size</div>}
-            suffix={
-              <span style={{ fontSize: 10, opacity: 0.5 }}>{baseCurrency}</span>
-            }
-            value={baseSize}
-            type="number"
-            step={market?.minOrderSize || 1}
-            onChange={(e) => onSetBaseSize(parseFloat(e.target.value))}
-          />
-          <Input
-            style={{ width: 'calc(50% - 30px)', textAlign: 'right' }}
-            suffix={
-              <span style={{ fontSize: 10, opacity: 0.5 }}>
-                {quoteCurrency}
-              </span>
-            }
-            value={quoteSize}
-            type="number"
-            step={market?.minOrderSize || 1}
-            onChange={(e) => onSetQuoteSize(parseFloat(e.target.value))}
-          />
-        </Input.Group>
-        <Slider
-          value={sizeFraction}
-          tipFormatter={(value) => `${value}%`}
-          marks={sliderMarks}
-          onChange={onSliderChange}
-        />
-        <div style={{ paddingTop: 18 }}>
-          {'POST '}
-          <Switch
-            checked={postOnly}
-            onChange={postOnChange}
-            style={{ marginRight: 40 }}
-          />
-          {'IOC '}
-          <Switch checked={ioc} onChange={iocOnChange} />
+          </Col>
+        </Row>
+        <div
+          style={{
+            padding: '24px 24px 15px',
+          }}
+        >
+          <Select
+            defaultValue="Limit Order"
+            bordered={false}
+            style={{
+              width: '100%',
+              height: 47,
+              left: 0,
+              top: 0,
+              background: '#1C274F',
+              borderRadius: 4,
+              paddingTop: 5,
+              fontSize: 14
+            }}
+          >
+            <Select.Option value="Limit Order">Limit Order</Select.Option>
+            <Select.Option value="Market Order">Market Order</Select.Option>
+          </Select>
+          <div style={{ marginTop: 25}}>
+            <div style={{ textAlign: 'right', paddingBottom: 8, fontSize: 12, }}>Limit price</div>
+            <Input
+              type="number"
+              bordered={false}
+              style={{ textAlign: 'right', paddingBottom: 8, height: 47, background: '#1C274F', borderRadius: 4, }}
+              suffix={
+                <span style={{ fontSize: 10, opacity: 0.5 }}>{quoteCurrency}</span>
+              }
+              value={price}
+              step={market?.tickSize || 1}
+              onChange={(e) => setPrice(parseFloat( e.target.value))}
+            />
+          </div>
+
+          <div style={{ marginTop: 25}}>
+            <div style={{ textAlign: 'right', paddingBottom: 8, fontSize: 12, }}>Amount</div>
+            <Input
+              type="number"
+              bordered={false}
+              style={{ textAlign: 'right', paddingBottom: 8, height: 47, background: '#1C274F', borderRadius: 4, }}
+              suffix={
+                <span style={{ fontSize: 10, opacity: 0.5 }}>{baseCurrency}</span>
+              }
+              value={baseSize}
+              step={market?.tickSize || 1}
+              onChange={(e) => onSetBaseSize(parseFloat( e.target.value))}
+            />
+          </div>
+
+          <div style={{ marginTop: 25}}>
+            <div style={{ textAlign: 'right', paddingBottom: 8, fontSize: 12, }}>Total</div>
+            <Input
+              type="number"
+              bordered={false}
+              style={{ textAlign: 'right', paddingBottom: 8, height: 47, background: '#1C274F', borderRadius: 4, }}
+              suffix={
+                <span style={{ fontSize: 10, opacity: 0.5 }}>{quoteCurrency}</span>
+              }
+              value={quoteSize}
+              step={market?.tickSize || 1}
+              onChange={(e) => onSetQuoteSize(parseFloat( e.target.value))}
+            />
+          </div>
+
+          <Row style={{ paddingTop: 8}}>
+            <Col span={12}>
+              <Slider
+                style={{ width: '80%' }}
+                value={sizeFraction}
+                tipFormatter={(value) => `${value}%`}
+                marks={sliderMarks}
+                onChange={onSliderChange}
+              />
+            </Col>
+            <Col span={6} style={{
+              paddingTop: 10,
+              paddingLeft: 10,
+            }}>
+              <Switch
+                size="small"
+                checked={postOnly}
+                style={{ width: 32}}
+                onChange={postOnChange}
+              />
+                <div style={{ display: 'inline-block', fontSize: 10, color: '#BEBEBE', paddingLeft: 4 }}>POST</div>
+            </Col>
+            <Col span={6} style={{
+              paddingTop: 10,
+              paddingLeft: 10,
+            }}>
+              <Switch
+                size="small"
+                checked={ioc}
+                style={{ width: 32}}
+                onChange={iocOnChange}
+              />
+              <div style={{ display: 'inline-block', fontSize: 10, color: '#BEBEBE', paddingLeft: 4 }}>IOC</div>
+            </Col>
+          </Row>
+
+          <BuyButton
+            disabled={!price || !baseSize}
+            onClick={onSubmit}
+            block
+            type="primary"
+            size="large"
+            loading={submitting}
+            style={{
+              marginTop: 20,
+              height: 41,
+              background: 'rgba(90, 196, 190, 0.1)',
+              border: '1px solid #5AC4BE',
+              borderRadius: 4,
+            }}
+          >
+            LIMIT {side.toUpperCase()} {baseCurrency}
+          </BuyButton>
         </div>
       </div>
-      {side === 'buy' ? (
-        <BuyButton
-          disabled={!price || !baseSize}
-          onClick={onSubmit}
-          block
-          type="primary"
-          size="large"
-          loading={submitting}
-        >
-          Buy {baseCurrency}
-        </BuyButton>
-      ) : (
-        <SellButton
-          disabled={!price || !baseSize}
-          onClick={onSubmit}
-          block
-          type="primary"
-          size="large"
-          loading={submitting}
-        >
-          Sell {baseCurrency}
-        </SellButton>
-      )}
     </FloatingElement>
   );
 }

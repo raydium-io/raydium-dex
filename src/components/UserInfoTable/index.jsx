@@ -1,7 +1,7 @@
 import BalancesTable from './BalancesTable';
 import OpenOrderTable from './OpenOrderTable';
-import React from 'react';
-import { Tabs, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Tabs, Typography, Col, Row } from 'antd';
 import FillsTable from './FillsTable';
 import FloatingElement from '../layout/FloatingElement';
 import FeesTable from './FeesTable';
@@ -12,34 +12,113 @@ const { TabPane } = Tabs;
 
 export default function Index() {
   const { market } = useMarket();
+  const [activeKeyStr, setActiveKeyStr] = useState('orders');
   return (
-    <FloatingElement style={{ flex: 1, paddingTop: 20 }}>
-      <Typography>
-        <Paragraph style={{ color: 'rgba(255,255,255,0.5)' }}>
-          Make sure to go to Balances and click Settle to send out your funds.
-        </Paragraph>
-        <Paragraph style={{ color: 'rgba(255,255,255,0.5)' }}>
-          To fund your wallet, <a href="https://www.sollet.io">sollet.io</a>.
-          You can get SOL from FTX, Binance, BitMax, and others. You can get
-          other tokens from FTX.{' '}
-        </Paragraph>
-      </Typography>
-      <Tabs defaultActiveKey="orders">
-        <TabPane tab="Open Orders" key="orders">
-          <OpenOrdersTab />
-        </TabPane>
-        <TabPane tab="Recent Trade History" key="fills">
-          <FillsTable />
-        </TabPane>
-        <TabPane tab="Balances" key="balances">
-          <BalancesTab />
-        </TabPane>
+    <FloatingElement style={{ flex: 1, paddingTop: 4 }}>
+      <Row>
+        <Col
+          span={24 / (market && market.supportsSrmFeeDiscounts ? 4 : 3)}
+          onClick={() => setActiveKeyStr('orders')}
+          style={{
+            height: 42,
+            width: '50%',
+            textAlign: 'center',
+            border: 'transparent',
+            borderBottom: activeKeyStr === 'orders' ? '2px solid #5AC4BE' : '',
+            background: 'transparent',
+            fontSize: 14,
+            fontStyle: 'normal',
+            fontWeight: 600,
+            color:
+              activeKeyStr === 'orders'
+                ? '#F1F1F2'
+                : 'rgba(241, 241, 242, 0.5)',
+            padding: '12px 0 12px',
+          }}
+        >
+          Open Orders
+        </Col>
+        <Col
+          span={24 / (market && market.supportsSrmFeeDiscounts ? 4 : 3)}
+          onClick={() => setActiveKeyStr('fills')}
+          style={{
+            height: 42,
+            width: '50%',
+            textAlign: 'center',
+            border: 'transparent',
+            borderBottom: activeKeyStr === 'fills' ? '2px solid #5AC4BE' : '',
+            background: 'transparent',
+            fontSize: 14,
+            fontStyle: 'normal',
+            fontWeight: 600,
+            color:
+              activeKeyStr === 'fills' ? '#F1F1F2' : 'rgba(241, 241, 242, 0.5)',
+            padding: '12px 0 12px',
+          }}
+        >
+          Recent Trade History
+        </Col>
+        <Col
+          span={24 / (market && market.supportsSrmFeeDiscounts ? 4 : 3)}
+          onClick={() => setActiveKeyStr('balances')}
+          style={{
+            height: 42,
+            width: '50%',
+            textAlign: 'center',
+            border: 'transparent',
+            borderBottom:
+              activeKeyStr === 'balances' ? '2px solid #5AC4BE' : '',
+            background: 'transparent',
+            fontSize: 14,
+            fontStyle: 'normal',
+            fontWeight: 600,
+            color:
+              activeKeyStr === 'balances'
+                ? '#F1F1F2'
+                : 'rgba(241, 241, 242, 0.5)',
+            padding: '12px 0 12px',
+          }}
+        >
+          Balances
+        </Col>
         {market && market.supportsSrmFeeDiscounts ? (
-          <TabPane tab="Fee discounts" key="fees">
-            <FeesTable />
-          </TabPane>
+          <Col
+            span={24 / (market && market.supportsSrmFeeDiscounts ? 4 : 3)}
+            onClick={() => setActiveKeyStr('fees')}
+            style={{
+              height: 42,
+              width: '50%',
+              textAlign: 'center',
+              border: 'transparent',
+              borderBottom: activeKeyStr === 'fees' ? '2px solid #5AC4BE' : '',
+              background: 'transparent',
+              fontSize: 14,
+              fontStyle: 'normal',
+              fontWeight: 600,
+              color:
+                activeKeyStr === 'fees'
+                  ? '#F1F1F2'
+                  : 'rgba(241, 241, 242, 0.5)',
+              padding: '12px 0 12px',
+            }}
+          >
+            Fee discounts
+          </Col>
         ) : null}
-      </Tabs>
+      </Row>
+      <div
+        style={{
+          border: '1px solid #1C274F',
+          height: 570,
+          borderBottom: '',
+          padding: 16,
+        }}
+      >
+        {activeKeyStr && activeKeyStr === 'orders' ? <OpenOrdersTab /> : null}
+        {activeKeyStr && activeKeyStr === 'fills' ? <FillsTable /> : null}
+        {activeKeyStr && activeKeyStr === 'balances' ? <BalancesTab /> : null}
+        {activeKeyStr && activeKeyStr === 'fees' ? <FeesTable /> : null}
+      </div>
     </FloatingElement>
   );
 }
