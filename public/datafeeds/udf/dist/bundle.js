@@ -274,19 +274,18 @@
         i = i.toUpperCase();
         for (var e = 0, t = c._symbolsList; e < t.length; e++)
           !(function (e) {
-            var t,
-              r = c._symbolsInfo[e];
-            void 0 !== r &&
-              ((0 < a.length && r.type !== a) ||
-                (n && 0 < n.length && r.exchange !== n) ||
-                ((t = r.name.toUpperCase().indexOf(i)),
-                (e = r.description.toUpperCase().indexOf(i)),
-                (o || 0 <= t || 0 <= e) &&
-                  (s.some(function (e) {
-                    return e.symbolInfo === r;
-                  }) ||
-                    ((e = 0 <= t ? t : 8e3 + e),
-                    s.push({ symbolInfo: r, weight: e })))));
+            var t = c._symbolsInfo[e];
+            if (void 0 === t) return;
+            if (0 < a.length && t.type !== a) return;
+            if (n && 0 < n.length && t.exchange !== n) return;
+            var r = t.name.toUpperCase().indexOf(i),
+              e = t.description.toUpperCase().indexOf(i);
+            (o || 0 <= r || 0 <= e) &&
+              (s.some(function (e) {
+                return e.symbolInfo === t;
+              }) ||
+                ((e = 0 <= r ? r : 8e3 + e),
+                s.push({ symbolInfo: t, weight: e })));
           })(t[e]);
         var r = s
           .sort(function (e, t) {
@@ -614,7 +613,7 @@
   function y(e, t, r, s) {
     var o = this;
     void 0 === s && (s = 1e4),
-      (this._configuration = g()),
+      (this._configuration = v()),
       (this._symbolsStorage = null),
       (this._datafeedURL = e),
       (this._requester = r),
@@ -624,11 +623,11 @@
       (this._quotesPulseProvider = new u(this._quotesProvider)),
       (this._configurationReadyPromise = this._requestConfiguration().then(
         function (e) {
-          null === e && (e = g()), o._setupWithConfiguration(e);
+          null === e && (e = v()), o._setupWithConfiguration(e);
         },
       ));
   }
-  function g() {
+  function v() {
     return {
       supports_search: !1,
       supports_group_request: !0,
@@ -637,7 +636,7 @@
       supports_timescale_marks: !1,
     };
   }
-  var v =
+  var g =
     ((P.prototype.getQuotes = function (e) {
       var s = this;
       return new Promise(function (t, r) {
@@ -699,7 +698,7 @@
   function k(e, t) {
     void 0 === t && (t = 1e4);
     var r = new q(),
-      s = new v(e, r);
+      s = new g(e, r);
     return D.call(this, e, s, r, t) || this;
   }
   (e.UDFCompatibleDatafeed = C),

@@ -76,7 +76,7 @@
       favorites: { intervals: [], chartTypes: [] },
     };
   function r() {
-    return 'CL v17.026 (internal id d9e56cee @ 2021-01-29T15:18:58.890Z)';
+    return 'CL v17.024 (internal id cbd3ae28 @ 2020-11-11T12:45:30.675Z)';
   }
   var s = (function () {
     function t(t) {
@@ -368,7 +368,7 @@
         var e =
           (this._options.library_path || '') +
           (encodeURIComponent(this._options.locale) +
-            '-tv-chart.d9e56cee.html#symbol=') +
+            '-tv-chart.cbd3ae28.html#symbol=') +
           encodeURIComponent(this._options.symbol || '') +
           '&interval=' +
           encodeURIComponent(this._options.interval) +

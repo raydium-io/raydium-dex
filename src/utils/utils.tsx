@@ -28,7 +28,9 @@ export function floorToDecimal(
   value: number,
   decimals: number | undefined | null,
 ) {
-  return decimals ? Math.floor(value * 10 ** decimals) / 10 ** decimals : Math.floor(value);
+  return decimals
+    ? Math.floor(value * 10 ** decimals) / 10 ** decimals
+    : Math.floor(value);
 }
 
 export function roundToDecimal(
@@ -39,10 +41,18 @@ export function roundToDecimal(
 }
 
 export function getDecimalCount(value): number {
-  if (!isNaN(value) && Math.floor(value) !== value && value.toString().includes('.'))
+  if (
+    !isNaN(value) &&
+    Math.floor(value) !== value &&
+    value.toString().includes('.')
+  )
     return value.toString().split('.')[1].length || 0;
-  if (!isNaN(value) && Math.floor(value) !== value && value.toString().includes('e'))
-    return parseInt(value.toString().split(('e-'))[1] || "0");
+  if (
+    !isNaN(value) &&
+    Math.floor(value) !== value &&
+    value.toString().includes('e')
+  )
+    return parseInt(value.toString().split('e-')[1] || '0');
   return 0;
 }
 
@@ -151,4 +161,25 @@ export function isEqual(obj1, obj2, keys) {
     }
   }
   return true;
+}
+
+export function flatten(obj, { prefix = '', restrictTo }) {
+  let restrict = restrictTo;
+  if (restrict) {
+    restrict = restrict.filter((k) => obj.hasOwnProperty(k));
+  }
+  const result = {};
+  (function recurse(obj, current, keys) {
+    (keys || Object.keys(obj)).forEach((key) => {
+      const value = obj[key];
+      const newKey = current ? current + '.' + key : key; // joined key with dot
+      if (value && typeof value === 'object') {
+        // @ts-ignore
+        recurse(value, newKey); // nested object
+      } else {
+        result[newKey] = value;
+      }
+    });
+  })(obj, prefix, restrict);
+  return result;
 }

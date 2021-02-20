@@ -36,23 +36,21 @@
             l.modalDialog.find('._tv-dialog').css('width', s);
             var c = e.customButtonCaption ? e.customButtonCaption : $.t('OK');
             return (
-              l.modalDialog
-                .find('._tv-dialog-content')
-                .html(
-                  a.render(
-                    '<div class="main"><div class="{{captionClassName}} {{classSuffix}}">{{text}}' +
-                      n +
-                      '</div>{{^removeOkButton}}<div class="buttons"><input type="button" class="_tv-button ok" value="' +
-                      c +
-                      '"/></div>{{/removeOkButton}}</div>',
-                    {
-                      captionClassName: r,
-                      classSuffix: e.classSuffix || '',
-                      text: o,
-                      removeOkButton: e && e.removeOkButton,
-                    },
-                  ),
+              l.modalDialog.find('._tv-dialog-content').html(
+                a.render(
+                  '<div class="main"><div class="{{captionClassName}} {{classSuffix}}">{{text}}' +
+                    n +
+                    '</div>{{^removeOkButton}}<div class="buttons"><input type="button" class="_tv-button ok" value="' +
+                    c +
+                    '"/></div>{{/removeOkButton}}</div>',
+                  {
+                    captionClassName: r,
+                    classSuffix: e.classSuffix || '',
+                    text: o,
+                    removeOkButton: e && e.removeOkButton,
+                  },
                 ),
+              ),
               l.modalDialog.find('._tv-button.ok').on('click', function () {
                 l.destroy(), e.onOkButtonClick && e.onOkButtonClick();
               }),

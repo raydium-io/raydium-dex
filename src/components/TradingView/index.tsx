@@ -4,19 +4,20 @@ import {
   widget,
   ChartingLibraryWidgetOptions,
   IChartingLibraryWidget,
-  ResolutionString,
-} from '../../charting_library'; // Make sure to follow step 1 of the README
+} from '../../charting_library';
 import { useMarket } from '../../utils/markets';
-import { BONFIDA_DATA_FEED } from '../../utils/bonfidaConnector';
-import { findTVMarketFromAddress } from '../../utils/tradingview';
-import SaveLoadAdapter from './saveLoadAdapter'
+import * as saveLoadAdapter from './saveLoadAdapter';
+import { flatten } from '../../utils/utils';
 
-// This is a basic example of how to create a TV widget
-// You can add more feature such as storing charts in localStorage
+import { findTVMarketFromAddress } from '../../utils/tradingview';
+import { useTvDataFeed } from '../../utils/Datafeed';
 
 export interface ChartContainerProps {
   symbol: ChartingLibraryWidgetOptions['symbol'];
   interval: ChartingLibraryWidgetOptions['interval'];
+  auto_save_delay: ChartingLibraryWidgetOptions['auto_save_delay'];
+
+  // BEWARE: no trailing slash is expected in feed URL
   datafeedUrl: string;
   libraryPath: ChartingLibraryWidgetOptions['library_path'];
   chartsStorageUrl: ChartingLibraryWidgetOptions['charts_storage_url'];
@@ -33,15 +34,14 @@ export interface ChartContainerProps {
 export interface ChartContainerState {}
 
 export const TVChartContainer = () => {
-  // @ts-ignore
+  let datafeed = useTvDataFeed();
   const defaultProps: ChartContainerProps = {
     symbol: 'BTC/USDC',
-    interval: '60' as ResolutionString,
     // @ts-ignore
+    interval: '60',
     auto_save_delay: 5,
     theme: 'Dark',
     containerId: 'tv_chart_container',
-    datafeedUrl: BONFIDA_DATA_FEED,
     libraryPath: '/charting_library/',
     chartsStorageUrl: 'https://saveload.tradingview.com',
     chartsStorageApiVersion: '1.1',
@@ -55,20 +55,28 @@ export const TVChartContainer = () => {
   const tvWidgetRef = React.useRef<IChartingLibraryWidget | null>(null);
   const { market } = useMarket();
 
+  const chartProperties = JSON.parse(
+    localStorage.getItem('chartproperties') || '{}',
+  );
+
   React.useEffect(() => {
+    const savedProperties = flatten(chartProperties, {
+      restrictTo: ['scalesProperties', 'paneProperties', 'tradingProperties'],
+    });
+
     const widgetOptions: ChartingLibraryWidgetOptions = {
       symbol: findTVMarketFromAddress(
         market?.address.toBase58() || '',
       ) as string,
       // BEWARE: no trailing slash is expected in feed URL
       // tslint:disable-next-line:no-any
-      datafeed: new (window as any).Datafeeds.UDFCompatibleDatafeed(
-        defaultProps.datafeedUrl,
-      ),
+      // @ts-ignore
+      datafeed: datafeed,
       interval: defaultProps.interval as ChartingLibraryWidgetOptions['interval'],
       container_id: defaultProps.containerId as ChartingLibraryWidgetOptions['container_id'],
       library_path: defaultProps.libraryPath as string,
       auto_save_delay: 5,
+
       locale: 'en',
       disabled_features: ['use_localstorage_for_settings'],
       enabled_features: ['study_templates'],
@@ -78,54 +86,59 @@ export const TVChartContainer = () => {
       fullscreen: defaultProps.fullscreen,
       autosize: defaultProps.autosize,
       studies_overrides: defaultProps.studiesOverrides,
-      theme: 'Dark',
+      theme: defaultProps.theme === 'Dark' ? 'Dark' : 'Light',
+      overrides: {
+        ...savedProperties,
+        'mainSeriesProperties.candleStyle.upColor': '#41C77A',
+        'mainSeriesProperties.candleStyle.downColor': '#F23B69',
+        // 'mainSeriesProperties.candleStyle.borderColor': '#378658',
+        'mainSeriesProperties.candleStyle.borderUpColor': '#41C77A',
+        'mainSeriesProperties.candleStyle.borderDownColor': '#F23B69',
+        'mainSeriesProperties.candleStyle.wickUpColor': '#41C77A',
+        'mainSeriesProperties.candleStyle.wickDownColor': '#F23B69',
+      },
       // @ts-ignore
-      save_load_adapter: SaveLoadAdapter,
+      save_load_adapter: saveLoadAdapter,
       settings_adapter: {
         initialSettings: {
           'trading.orderPanelSettingsBroker': JSON.stringify({
-              showRelativePriceControl: false,
-              showCurrencyRiskInQty: false,
-              showPercentRiskInQty: false,
-              showBracketsInCurrency: false,
-              showBracketsInPercent: false,
+            showRelativePriceControl: false,
+            showCurrencyRiskInQty: false,
+            showPercentRiskInQty: false,
+            showBracketsInCurrency: false,
+            showBracketsInPercent: false,
           }),
-          'trading.chart.proterty': localStorage.getItem('trading.chart.proterty') || JSON.stringify({
-              hideFloatingPanel: 1
-          }),
-          'chart.favoriteDrawings': localStorage.getItem('chart.favoriteDrawings') || JSON.stringify([]),
-          'chart.favoriteDrawingsPosition': localStorage.getItem('chart.favoriteDrawingsPosition', ) || JSON.stringify({}),
+          // "proterty"
+          'trading.chart.proterty':
+            localStorage.getItem('trading.chart.proterty') ||
+            JSON.stringify({
+              hideFloatingPanel: 1,
+            }),
+          'chart.favoriteDrawings':
+            localStorage.getItem('chart.favoriteDrawings') ||
+            JSON.stringify([]),
+          'chart.favoriteDrawingsPosition':
+            localStorage.getItem('chart.favoriteDrawingsPosition') ||
+            JSON.stringify({}),
         },
-        setValue: function(e, t) {
-            localStorage.setItem(e, t);
+        setValue: (key, value) => {
+          localStorage.setItem(key, value);
         },
-        removeValue: function(e) {
-            localStorage.removeItem(e);
+        removeValue: (key) => {
+          localStorage.removeItem(key);
         },
       },
     };
 
     const tvWidget = new widget(widgetOptions);
-    tvWidgetRef.current = tvWidget;
 
     tvWidget.onChartReady(() => {
-      tvWidget.headerReady().then(() => {
-        const button = tvWidget.createButton();
-        button.setAttribute('title', 'Click to show a notification popup');
-        button.classList.add('apply-common-tooltip');
-        button.addEventListener('click', () =>
-          tvWidget.showNoticeDialog({
-            title: 'Notification',
-            body: 'TradingView Charting Library API works correctly',
-            callback: () => {
-              console.log('It works!!');
-            },
-          }),
-        );
-        button.innerHTML = 'Check API';
-      });
+      tvWidgetRef.current = tvWidget;
+      tvWidget
+        // @ts-ignore
+        .subscribe('onAutoSaveNeeded', () => tvWidget.saveChartToServer());
     });
-  }, [market]);
+  }, [market, tvWidgetRef.current]);
 
-  return <div style={{ height: 540 }} id={defaultProps.containerId} className="tradingview-chart" />;
+  return <div id={defaultProps.containerId} className={'TVChartContainer'} />;
 };
