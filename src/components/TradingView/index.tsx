@@ -140,5 +140,5 @@ export const TVChartContainer = () => {
     });
   }, [market, tvWidgetRef.current]);
 
-  return <div id={defaultProps.containerId} className={'TVChartContainer'} />;
+  return <div style={{ height: 540 }} id={defaultProps.containerId} className={'TVChartContainer'} />;
 };
