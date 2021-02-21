@@ -210,52 +210,52 @@ export default function TopBar() {
                   POOLS
                 </a>
               </div>
-              <div
-                style={{
-                  height: 50,
-                  width: 100,
-                  textAlign: 'center',
-                  border: 'transparent',
-                  background: 'transparent',
-                  fontSize: 14,
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  color: 'rgb(173,175,184)',
-                  display: 'inline-block',
-                }}
-              >
-                <a
-                  href={EXTERNAL_LINKS['/staking']}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color : 'rgb(173,175,184)',}}
-                >
-                  STAKING
-                </a>
-              </div>
-              <div
-                style={{
-                  height: 50,
-                  width: 100,
-                  textAlign: 'center',
-                  border: 'transparent',
-                  background: 'transparent',
-                  fontSize: 14,
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  color: 'rgb(173,175,184)',
-                  display: 'inline-block',
-                }}
-              >
-                <a
-                  href={EXTERNAL_LINKS['/farms']}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color : 'rgb(173,175,184)',}}
-                >
-                  FARMS
-                </a>
-              </div>
+              {/*<div*/}
+              {/*  style={{*/}
+              {/*    height: 50,*/}
+              {/*    width: 100,*/}
+              {/*    textAlign: 'center',*/}
+              {/*    border: 'transparent',*/}
+              {/*    background: 'transparent',*/}
+              {/*    fontSize: 14,*/}
+              {/*    fontStyle: 'normal',*/}
+              {/*    fontWeight: 600,*/}
+              {/*    color: 'rgb(173,175,184)',*/}
+              {/*    display: 'inline-block',*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  <a*/}
+              {/*    href={EXTERNAL_LINKS['/staking']}*/}
+              {/*    target="_blank"*/}
+              {/*    rel="noopener noreferrer"*/}
+              {/*    style={{ color : 'rgb(173,175,184)',}}*/}
+              {/*  >*/}
+              {/*    STAKING*/}
+              {/*  </a>*/}
+              {/*</div>*/}
+              {/*<div*/}
+              {/*  style={{*/}
+              {/*    height: 50,*/}
+              {/*    width: 100,*/}
+              {/*    textAlign: 'center',*/}
+              {/*    border: 'transparent',*/}
+              {/*    background: 'transparent',*/}
+              {/*    fontSize: 14,*/}
+              {/*    fontStyle: 'normal',*/}
+              {/*    fontWeight: 600,*/}
+              {/*    color: 'rgb(173,175,184)',*/}
+              {/*    display: 'inline-block',*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  <a*/}
+              {/*    href={EXTERNAL_LINKS['/farms']}*/}
+              {/*    target="_blank"*/}
+              {/*    rel="noopener noreferrer"*/}
+              {/*    style={{ color : 'rgb(173,175,184)',}}*/}
+              {/*  >*/}
+              {/*    FARMS*/}
+              {/*  </a>*/}
+              {/*</div>*/}
 
             {/*<Menu*/}
             {/*  mode="horizontal"*/}
