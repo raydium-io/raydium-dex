@@ -25,7 +25,6 @@ import CustomMarketDialog from '../components/CustomMarketDialog';
 import { notify } from '../utils/notifications';
 import { useHistory, useParams } from 'react-router-dom';
 import { TVChartContainer } from '../components/TradingView'
-import {PublicKey} from '@solana/web3.js'
 
 const { Option, OptGroup } = Select;
 
@@ -79,7 +78,7 @@ function TradePageInner() {
   });
 
   useEffect(() => {
-    document.title = marketName ? `${marketName} — Serum` : 'Serum';
+    document.title = marketName ? `${marketName} — Raydium` : 'Raydium';
   }, [marketName]);
 
   const changeOrderRef = useRef<
@@ -146,14 +145,7 @@ function TradePageInner() {
     const newCustomMarkets = customMarkets.filter((m) => m.address !== address);
     setCustomMarkets(newCustomMarkets);
   };
-  const [newMarKets, setNewMarkets] = useState(
-    [
-      {name: 'RAY/USDT', deprecated: false, address: new PublicKey('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX')},
-      {name: 'RAY/USDC', deprecated: false, address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U')},
-      {name: 'RAY/SRM', deprecated: false, address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU')},
-      ...markets
-    ]
-  );
+  const [newMarKets, setNewMarkets] = useState(markets);
 
   return (
     <>

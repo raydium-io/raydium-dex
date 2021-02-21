@@ -36,7 +36,7 @@ export interface ChartContainerState {}
 export const TVChartContainer = () => {
   let datafeed = useTvDataFeed();
   const defaultProps: ChartContainerProps = {
-    symbol: 'BTC/USDC',
+    symbol: 'RAY/USDT',
     // @ts-ignore
     interval: '60',
     auto_save_delay: 5,
@@ -53,7 +53,7 @@ export const TVChartContainer = () => {
   };
 
   const tvWidgetRef = React.useRef<IChartingLibraryWidget | null>(null);
-  const { market } = useMarket();
+  const { marketName } = useMarket();
 
   const chartProperties = JSON.parse(
     localStorage.getItem('chartproperties') || '{}',
@@ -65,9 +65,7 @@ export const TVChartContainer = () => {
     });
 
     const widgetOptions: ChartingLibraryWidgetOptions = {
-      symbol: findTVMarketFromAddress(
-        market?.address.toBase58() || '',
-      ) as string,
+      symbol: marketName as string,
       // BEWARE: no trailing slash is expected in feed URL
       // tslint:disable-next-line:no-any
       // @ts-ignore
@@ -138,7 +136,7 @@ export const TVChartContainer = () => {
         // @ts-ignore
         .subscribe('onAutoSaveNeeded', () => tvWidget.saveChartToServer());
     });
-  }, [market, tvWidgetRef.current]);
+  }, [marketName, tvWidgetRef.current]);
 
   return <div style={{ height: 540 }} id={defaultProps.containerId} className={'TVChartContainer'} />;
 };

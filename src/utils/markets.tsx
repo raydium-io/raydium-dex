@@ -46,9 +46,16 @@ import { sleep } from './utils';
 // Used in debugging, should be false in production
 const _IGNORE_DEPRECATED = false;
 
+const _MARKETS = [
+  {name: 'RAY/USDT', deprecated: false, address: new PublicKey('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
+  {name: 'RAY/USDC', deprecated: false, address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
+  {name: 'RAY/SRM', deprecated: false, address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
+  ...MARKETS
+]
+
 export const USE_MARKETS: MarketInfo[] = _IGNORE_DEPRECATED
-  ? MARKETS.map((m) => ({ ...m, deprecated: false }))
-  : MARKETS;
+  ? _MARKETS.map((m) => ({ ...m, deprecated: false }))
+  : _MARKETS;
 
 export function useMarketsList() {
   return USE_MARKETS.filter(({ deprecated }) => !deprecated);
@@ -178,7 +185,7 @@ const _SLOW_REFRESH_INTERVAL = 5 * 1000;
 const _FAST_REFRESH_INTERVAL = 1000;
 
 export const DEFAULT_MARKET = USE_MARKETS.find(
-  ({ name, deprecated }) => name === 'SRM/USDT' && !deprecated,
+  ({ name, deprecated }) => name === 'RAY/USDT' && !deprecated,
 );
 
 export function getMarketDetails(
@@ -230,18 +237,24 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
   const marketInfo =
     address && marketInfos.find((market) => market.address.equals(address));
 
+  const [market, setMarket] = useState<Market | null>();
+
+  const [marketName, setMarketName] = useState('RAY/USDT');
+
   // Replace existing market with a non-deprecated one on first load
   useEffect(() => {
-    if (marketInfo && marketInfo.deprecated) {
-      console.log('Switching markets from deprecated', marketInfo);
-      if (DEFAULT_MARKET) {
-        setMarketAddress(DEFAULT_MARKET.address.toBase58());
+    if (marketInfo) {
+      if (marketInfo.deprecated) {
+        console.log('Switching markets from deprecated', marketInfo);
+        if (DEFAULT_MARKET) {
+          // setMarketAddress(DEFAULT_MARKET.address.toBase58());
+          setMarketAddress('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX');
+        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [market, setMarket] = useState<Market | null>();
   useEffect(() => {
     if (
       market &&
@@ -252,6 +265,7 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
       return;
     }
     setMarket(null);
+
     if (!marketInfo || !marketInfo.address) {
       notify({
         message: 'Error loading market',
@@ -259,6 +273,8 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
         type: 'error',
       });
       return;
+    } else {
+      setMarketName(marketInfo.name);
     }
     Market.load(connection, marketInfo.address, {}, marketInfo.programId)
       .then(setMarket)
@@ -280,6 +296,7 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
         setMarketAddress,
         customMarkets,
         setCustomMarkets,
+        marketName,
       }}
     >
       {children}
