@@ -51,7 +51,7 @@ const _MARKETS = [
   {name: 'RAY/USDC', deprecated: false, address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
   {name: 'RAY/SRM', deprecated: false, address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
   ...MARKETS
-]
+];
 
 export const USE_MARKETS: MarketInfo[] = _IGNORE_DEPRECATED
   ? _MARKETS.map((m) => ({ ...m, deprecated: false }))
@@ -199,19 +199,15 @@ export function getMarketDetails(
   const marketInfo = marketInfos.find((otherMarket) =>
     otherMarket.address.equals(market.address),
   );
+  TOKEN_MINTS.push({address: new PublicKey('4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'), name: 'RAY'});
   const baseCurrency =
-    (market?.baseMintAddress &&
-      TOKEN_MINTS.find((token) => token.address.equals(market.baseMintAddress))
-        ?.name) ||
-    (marketInfo?.baseLabel && `${marketInfo?.baseLabel}*`) ||
-    'UNKNOWN';
+    (market?.baseMintAddress && TOKEN_MINTS.find((token) => token.address.equals(market.baseMintAddress))?.name) || (marketInfo?.baseLabel && `${marketInfo?.baseLabel}*`) || 'UNKNOWN';
   const quoteCurrency =
     (market?.quoteMintAddress &&
       TOKEN_MINTS.find((token) => token.address.equals(market.quoteMintAddress))
         ?.name) ||
     (marketInfo?.quoteLabel && `${marketInfo?.quoteLabel}*`) ||
     'UNKNOWN';
-
   return {
     ...marketInfo,
     marketName: marketInfo?.name,

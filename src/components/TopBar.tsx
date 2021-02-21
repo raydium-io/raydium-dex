@@ -3,7 +3,7 @@ import {
   PlusCircleOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
-import { Button, Col, Menu, Popover, Row, Select, } from 'antd';
+import { Button, Col, Menu, Popover, Row, Select, Dropdown } from 'antd';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
@@ -140,7 +140,7 @@ export default function TopBar() {
         onClose={() => setAddEndpointVisible(false)}
       />
       <Wrapper style={{ background: '#0F1429'}}>
-        <Row wrap={false} style={{ paddingTop: 25 }}>
+        <Row wrap={false} style={{ paddingTop: 25, height: 70 }}>
           <Col flex="none">
             <LogoWrapper onClick={() => history.push(tradePageUrl)}>
               <img src={logo} alt="" style={{ width: 145, height: 40}} />
@@ -256,238 +256,47 @@ export default function TopBar() {
                   FARMS
                 </a>
               </div>
-
-            {/*<Menu*/}
-            {/*  mode="horizontal"*/}
-            {/*  onClick={handleClick}*/}
-            {/*  selectedKeys={[location.pathname]}*/}
-            {/*  style={{*/}
-            {/*    borderBottom: 'none',*/}
-            {/*    backgroundColor: 'transparent',*/}
-            {/*    textAlign: 'center',*/}
-            {/*    color: '#F1F1F2',*/}
-
-            {/*  }}*/}
-            {/*>*/}
-            {/*  <Menu.Item key={tradePageUrl} style={{ width: 100}}>*/}
-            {/*    TRADEING*/}
-            {/*  </Menu.Item>*/}
-            {/*  <Menu.Item key="/swap">*/}
-            {/*    <a*/}
-            {/*      href={EXTERNAL_LINKS['/swap']}*/}
-            {/*      target="_blank"*/}
-            {/*      rel="noopener noreferrer"*/}
-            {/*    >*/}
-            {/*      SWAP*/}
-            {/*    </a>*/}
-            {/*  </Menu.Item>*/}
-            {/*  <Menu.Item key="/pools">*/}
-            {/*    <a*/}
-            {/*      href={EXTERNAL_LINKS['/pools']}*/}
-            {/*      target="_blank"*/}
-            {/*      rel="noopener noreferrer"*/}
-            {/*    >*/}
-            {/*      POOLS*/}
-            {/*    </a>*/}
-            {/*  </Menu.Item>*/}
-            {/*  <Menu.Item key="/staking">*/}
-            {/*    <a*/}
-            {/*      href={EXTERNAL_LINKS['/staking']}*/}
-            {/*      target="_blank"*/}
-            {/*      rel="noopener noreferrer"*/}
-            {/*    >*/}
-            {/*      STAKING*/}
-            {/*    </a>*/}
-            {/*  </Menu.Item>*/}
-            {/*  <Menu.Item key="/farms">*/}
-            {/*    <a*/}
-            {/*      href={EXTERNAL_LINKS['/farms']}*/}
-            {/*      target="_blank"*/}
-            {/*      rel="noopener noreferrer"*/}
-            {/*    >*/}
-            {/*      FARMS*/}
-            {/*    </a>*/}
-            {/*  </Menu.Item>*/}
-
-              {/*{!searchFocussed && (*/}
-              {/*  <Menu.Item key="/swap" style={{ margin: '0 10px' }}>*/}
-              {/*    <a*/}
-              {/*      href={EXTERNAL_LINKS['/swap']}*/}
-              {/*      target="_blank"*/}
-              {/*      rel="noopener noreferrer"*/}
-              {/*    >*/}
-              {/*      SWAP*/}
-              {/*    </a>*/}
-              {/*  </Menu.Item>*/}
-              {/*)}*/}
-              {/*{connected && (!searchFocussed || location.pathname === '/balances') && (*/}
-              {/*  <Menu.Item key="/balances" style={{ margin: '0 10px', width: 100 }}>*/}
-              {/*    BALANCES*/}
-              {/*  </Menu.Item>*/}
-              {/*)}*/}
-              {/*{connected && (!searchFocussed || location.pathname === '/orders') && (*/}
-              {/*  <Menu.Item key="/orders" style={{ margin: '0 10px', width: 100 }}>*/}
-              {/*    ORDERS*/}
-              {/*  </Menu.Item>*/}
-              {/*)}*/}
-              {/*{connected && (!searchFocussed || location.pathname === '/convert') && (*/}
-              {/*  <Menu.Item key="/convert" style={{ margin: '0 10px', width: 100 }}>*/}
-              {/*    CONVERT*/}
-              {/*  </Menu.Item>*/}
-              {/*)}*/}
-              {/*{(!searchFocussed || location.pathname === '/list-new-market') && (*/}
-              {/*  <Menu.Item key="/list-new-market" style={{ margin: '0 10px', width: 100 }}>*/}
-              {/*    ADD MARKET*/}
-              {/*  </Menu.Item>*/}
-              {/*)}*/}
-              {/*{!searchFocussed && (*/}
-              {/*  <Menu.SubMenu*/}
-              {/*    title="LEARN"*/}
-              {/*    onTitleClick={() =>*/}
-              {/*      window.open(EXTERNAL_LINKS['/learn'], '_blank')*/}
-              {/*    }*/}
-              {/*    style={{ margin: '0 0px 0 10px' }}*/}
-              {/*  >*/}
-              {/*    <Menu.Item key="/add-market">*/}
-              {/*      <a*/}
-              {/*        href={EXTERNAL_LINKS['/add-market']}*/}
-              {/*        target="_blank"*/}
-              {/*        rel="noopener noreferrer"*/}
-              {/*      >*/}
-              {/*        Adding a market*/}
-              {/*      </a>*/}
-              {/*    </Menu.Item>*/}
-              {/*    <Menu.Item key="/wallet-support">*/}
-              {/*      <a*/}
-              {/*        href={EXTERNAL_LINKS['/wallet-support']}*/}
-              {/*        target="_blank"*/}
-              {/*        rel="noopener noreferrer"*/}
-              {/*      >*/}
-              {/*        Supported wallets*/}
-              {/*      </a>*/}
-              {/*    </Menu.Item>*/}
-              {/*    <Menu.Item key="/dex-list">*/}
-              {/*      <a*/}
-              {/*        href={EXTERNAL_LINKS['/dex-list']}*/}
-              {/*        target="_blank"*/}
-              {/*        rel="noopener noreferrer"*/}
-              {/*      >*/}
-              {/*        DEX list*/}
-              {/*      </a>*/}
-              {/*    </Menu.Item>*/}
-              {/*    <Menu.Item key="/developer-resources">*/}
-              {/*      <a*/}
-              {/*        href={EXTERNAL_LINKS['/developer-resources']}*/}
-              {/*        target="_blank"*/}
-              {/*        rel="noopener noreferrer"*/}
-              {/*      >*/}
-              {/*        Developer resources*/}
-              {/*      </a>*/}
-              {/*    </Menu.Item>*/}
-              {/*    <Menu.Item key="/explorer">*/}
-              {/*      <a*/}
-              {/*        href={EXTERNAL_LINKS['/explorer']}*/}
-              {/*        target="_blank"*/}
-              {/*        rel="noopener noreferrer"*/}
-              {/*      >*/}
-              {/*        Solana block explorer*/}
-              {/*      </a>*/}
-              {/*    </Menu.Item>*/}
-              {/*    <Menu.Item key="/srm-faq">*/}
-              {/*      <a*/}
-              {/*        href={EXTERNAL_LINKS['/srm-faq']}*/}
-              {/*        target="_blank"*/}
-              {/*        rel="noopener noreferrer"*/}
-              {/*      >*/}
-              {/*        SRM FAQ*/}
-              {/*      </a>*/}
-              {/*    </Menu.Item>*/}
-              {/*  </Menu.SubMenu>*/}
-              {/*)}*/}
-            {/*</Menu>*/}
           </Col>
-          <Col flex="none">
+          <Col flex="none" style={{ paddingRight: 20}}>
             <WalletConnect />
           </Col>
-          <Col flex="none">
-            {/*<div*/}
-            {/*  style={{*/}
-            {/*    display: 'flex',*/}
-            {/*    alignItems: 'center',*/}
-            {/*    paddingRight: 5,*/}
-            {/*  }}*/}
-            {/*>*/}
-            {/*  <AppSearch*/}
-            {/*    onFocus={() => setSearchFocussed(true)}*/}
-            {/*    onBlur={() => setSearchFocussed(false)}*/}
-            {/*    focussed={searchFocussed}*/}
-            {/*    width={searchFocussed ? '350px' : '35px'}*/}
-            {/*  />*/}
-            {/*</div>*/}
-            <div style={{ display: 'inline-block'}}>
-              <Row
-                align="middle"
-                style={{ paddingLeft: 5, paddingRight: 5 }}
-                gutter={16}
-              >
-                {/*<Col>*/}
-                {/*  <PlusCircleOutlined*/}
-                {/*    style={{ color: '#2abdd2' }}*/}
-                {/*    onClick={() => setAddEndpointVisible(true)}*/}
-                {/*  />*/}
-                {/*</Col>*/}
-                {/*<Col>*/}
-                {/*  <Popover*/}
-                {/*    content={endpoint}*/}
-                {/*    placement="bottomRight"*/}
-                {/*    title="URL"*/}
-                {/*    trigger="hover"*/}
-                {/*  >*/}
-                {/*    <InfoCircleOutlined style={{ color: '#2abdd2' }} />*/}
-                {/*  </Popover>*/}
-                {/*</Col>*/}
-                <Col>
-                  <Select
-                    onSelect={setEndpoint}
-                    value={endpoint}
-                    style={{ marginRight: 8, width: '150px' }}
-                  >
-                    {availableEndpoints.map(({ name, endpoint }) => (
-                      <Select.Option value={endpoint} key={endpoint}>
-                        {name}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Col>
-              </Row>
-            </div>
-            {connected && (
-              <div>
-                <Popover
-                  content={<Settings autoApprove={wallet?.autoApprove} />}
-                  placement="bottomRight"
-                  title="Settings"
-                  trigger="click"
-                >
-                  <Button style={{ marginRight: 8 }}>
-                    <SettingOutlined />
-                    Settings
-                  </Button>
-                </Popover>
-              </div>
-            )}
-            <div style={{ display: 'inline-block'}}>
-              <Select onSelect={setProvider} value={providerUrl}>
-                {WALLET_PROVIDERS.map(({ name, url }) => (
-                  <Select.Option value={url} key={url}>
-                    {name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </div>
-            {/*<div>*/}
-            {/*  <WalletConnect />*/}
-            {/*</div>*/}
+          <Col flex="none"
+               style={{
+                 padding: 20,
+                 paddingTop: 5
+               }}>
+            {/*<SettingOutlined style={{ fontSize: 30, color: 'white', }} onClick={() => { console.log('click')}}/>*/}
+
+            <Dropdown
+              overlay={
+                <Menu>
+                  <Menu.Item>
+                    <Select
+                      onSelect={setEndpoint}
+                      value={endpoint}
+                      style={{ marginRight: 8, width: '150px' }}
+                    >
+                      {availableEndpoints.map(({ name, endpoint }) => (
+                        <Select.Option value={endpoint} key={endpoint}>
+                          {name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Select onSelect={setProvider} value={providerUrl}>
+                      {WALLET_PROVIDERS.map(({ name, url }) => (
+                        <Select.Option value={url} key={url}>
+                          {name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </Menu.Item>
+                </Menu>
+              }
+              placement="bottomRight">
+              <SettingOutlined style={{ fontSize: 30, color: 'white', }}/>
+            </Dropdown>
           </Col>
         </Row>
       </Wrapper>

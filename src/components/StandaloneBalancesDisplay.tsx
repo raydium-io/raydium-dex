@@ -127,7 +127,6 @@ export default function StandaloneBalancesDisplay() {
       market?.quoteMintAddress.toBase58(),
     ],
   ];
-
   return (
     <FloatingElement style={{ flex: 1, paddingTop: 10 }}>
       <div
@@ -161,7 +160,6 @@ export default function StandaloneBalancesDisplay() {
         {formattedBalances.map(
           ([currency, balances, baseOrQuote, mint], index) => (
             <React.Fragment key={index}>
-
               <Row style={{
                 marginTop: 16,
                 fontSize: 12,
