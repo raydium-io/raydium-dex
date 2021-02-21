@@ -25,6 +25,7 @@ import CustomMarketDialog from '../components/CustomMarketDialog';
 import { notify } from '../utils/notifications';
 import { useHistory, useParams } from 'react-router-dom';
 import { TVChartContainer } from '../components/TradingView'
+import {PublicKey} from '@solana/web3.js'
 
 const { Option, OptGroup } = Select;
 
@@ -145,6 +146,14 @@ function TradePageInner() {
     const newCustomMarkets = customMarkets.filter((m) => m.address !== address);
     setCustomMarkets(newCustomMarkets);
   };
+  const [newMarKets, setNewMarkets] = useState(
+    [
+      {name: 'RAY/USDT', deprecated: false, address: new PublicKey('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX')},
+      {name: 'RAY/USDC', deprecated: false, address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U')},
+      {name: 'RAY/SRM', deprecated: false, address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU')},
+      ...markets
+    ]
+  );
 
   return (
     <>
@@ -161,7 +170,7 @@ function TradePageInner() {
         >
           <Col>
             <MarketSelector
-              markets={markets}
+              markets={newMarKets}
               setHandleDeprecated={setHandleDeprecated}
               placeholder={'Select market'}
               customMarkets={customMarkets}
@@ -280,21 +289,21 @@ function MarketSelector({
       )}
       <OptGroup label="Markets">
         {markets
-          .sort((a, b) =>
-            extractQuote(a.name) === 'USDT' && extractQuote(b.name) !== 'USDT'
-              ? -1
-              : extractQuote(a.name) !== 'USDT' &&
-              extractQuote(b.name) === 'USDT'
-              ? 1
-              : 0,
-          )
-          .sort((a, b) =>
-            extractBase(a.name) < extractBase(b.name)
-              ? -1
-              : extractBase(a.name) > extractBase(b.name)
-              ? 1
-              : 0,
-          )
+          // .sort((a, b) =>
+          //   extractQuote(a.name) === 'USDT' && extractQuote(b.name) !== 'USDT'
+          //     ? -1
+          //     : extractQuote(a.name) !== 'USDT' &&
+          //     extractQuote(b.name) === 'USDT'
+          //     ? 1
+          //     : 0,
+          // )
+          // .sort((a, b) =>
+          //   extractBase(a.name) < extractBase(b.name)
+          //     ? -1
+          //     : extractBase(a.name) > extractBase(b.name)
+          //     ? 1
+          //     : 0,
+          // )
           .map(({ address, name, deprecated }, i) => (
             <Option
               value={address.toBase58()}

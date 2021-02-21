@@ -131,50 +131,52 @@ export default function BalancesTable({
           action
         </Col>
       </Row>
-      {balances.map(
-        (
-          { marketName, coin, wallet, orders, unsettled, market, openOrders },
-          i,
-        ) => (
-          <Row
-            key={i}
-            style={{
-              fontSize: 14,
-              color: 'rgba(241, 241, 242, 1)',
-              paddingBottom: 16,
-            }}
-          >
-            {showMarket ? (
-              <Col span={24 / rowItem} style={{ textAlign: 'left' }}>
-                {marketName}
-              </Col>
-            ) : null}
-            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
-              {coin}
-            </Col>
-            {hideWalletBalance ? (
+      <div style={{ height: 350, overflowX: 'hidden' }}>
+        {balances.map(
+          (
+            { marketName, coin, wallet, orders, unsettled, market, openOrders },
+            i,
+          ) => (
+            <Row
+              key={i}
+              style={{
+                fontSize: 14,
+                color: 'rgba(241, 241, 242, 1)',
+                paddingBottom: 16,
+              }}
+            >
+              {showMarket ? (
+                <Col span={24 / rowItem} style={{ textAlign: 'left' }}>
+                  {marketName}
+                </Col>
+              ) : null}
               <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
-                {wallet}
+                {coin}
               </Col>
-            ) : null}
-            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
-              {orders}
-            </Col>
-            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
-              {unsettled}
-            </Col>
-            <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
-              <Button
-                ghost
-                style={{ marginRight: 12 }}
-                onClick={() => onSettleFunds(market, openOrders)}
-              >
-                Settle {marketName}
-              </Button>
-            </Col>
-          </Row>
-        ),
-      )}
+              {hideWalletBalance ? (
+                <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+                  {wallet}
+                </Col>
+              ) : null}
+              <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+                {orders}
+              </Col>
+              <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+                {unsettled}
+              </Col>
+              <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
+                <Button
+                  ghost
+                  style={{ marginRight: 12 }}
+                  onClick={() => onSettleFunds(market, openOrders)}
+                >
+                  Settle {marketName}
+                </Button>
+              </Col>
+            </Row>
+          ),
+        )}
+      </div>
     </>
     // <DataTable
     //   emptyLabel="No balances"

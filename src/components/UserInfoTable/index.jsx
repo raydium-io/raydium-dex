@@ -109,7 +109,7 @@ export default function Index() {
       <div
         style={{
           border: '1px solid #1C274F',
-          height: 570,
+          height: 400,
           borderBottom: '',
           padding: 16,
         }}

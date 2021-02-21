@@ -143,22 +143,24 @@ export default function OpenOrderTable({
           <Col span={5} style={{ textAlign: 'right' }}>Pirce</Col>
           <Col span={4} style={{ textAlign: 'right' }}> </Col>
         </Row>
-        {dataSource.map(({marketName, side, size, price, orderId }, i) => (
-          <Row key={i} style={{ fontSize: 14, color: 'rgba(241, 241, 242, 1)', paddingBottom: 16 }}>
-            <Col span={5} style={{ textAlign: 'left' }}>{marketName}</Col>
-            <Col span={5} style={{ textAlign: 'right', color: 'rgba(90, 196, 190, 1)' }}>{side}</Col>
-            <Col span={5} style={{ textAlign: 'right', color: 'rgba(90, 196, 190, 1)' }}>{size}</Col>
-            <Col span={5} style={{ textAlign: 'right' }}>{price}</Col>
-            <Col span={4} style={{ textAlign: 'right' }}>
-              <CancelButton
-                onClick={() => cancel(dataSource[i])}
-                loading={cancelId + '' === orderId + ''}
-              >
-                Cancel
-              </CancelButton>
-            </Col>
-          </Row>
-        ))}
+        <div style={{ height: 350, overflowX: 'hidden' }}>
+          {dataSource.map(({marketName, side, size, price, orderId }, i) => (
+            <Row key={i} style={{ fontSize: 14, color: 'rgba(241, 241, 242, 1)', paddingBottom: 16 }}>
+              <Col span={5} style={{ textAlign: 'left' }}>{marketName}</Col>
+              <Col span={5} style={{ textAlign: 'right', color: 'rgba(90, 196, 190, 1)' }}>{side}</Col>
+              <Col span={5} style={{ textAlign: 'right', color: 'rgba(90, 196, 190, 1)' }}>{size}</Col>
+              <Col span={5} style={{ textAlign: 'right' }}>{price}</Col>
+              <Col span={4} style={{ textAlign: 'right' }}>
+                <CancelButton
+                  onClick={() => cancel(dataSource[i])}
+                  loading={cancelId + '' === orderId + ''}
+                >
+                  Cancel
+                </CancelButton>
+              </Col>
+            </Row>
+          ))}
+        </div>
         {/*<DataTable*/}
         {/*  emptyLabel="No open orders"*/}
         {/*  dataSource={dataSource}*/}

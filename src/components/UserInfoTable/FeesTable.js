@@ -100,46 +100,48 @@ export default function FeesTable() {
               Mint
             </Col>
           </Row>
-          {dataSource.map(({ mint, balance, pubkey, feeTier }, index) => (
-            <Row
-              key={index}
-              style={{
-                fontSize: 14,
-                color: 'rgba(241, 241, 242, 1)',
-                paddingBottom: 16,
-              }}
-            >
-              <Col span={4} style={{ textAlign: 'left' }}>
-                <Typography>{feeTier}</Typography>
-                {index === 0 ? (
-                  <div style={{ marginLeft: 10 }}>
-                    <Tag color={'#41C77A'} style={{ fontWeight: 700 }}>
-                      Selected
-                    </Tag>
-                  </div>
-                ) : null}
-              </Col>
-              <Col span={4} style={{ textAlign: 'left' }}>
-                {percentFormat.format(getFeeRates(feeTier).taker)}
-              </Col>
-              <Col span={4} style={{ textAlign: 'left' }}>
-                {percentFormat.format(getFeeRates(feeTier).maker)}
-              </Col>
-              <Col span={4} style={{ textAlign: 'left' }}>
-                {pubkey.toBase58()}
-              </Col>
-              <Col span={4} style={{ textAlign: 'left' }}>
-                {balance}
-              </Col>
-              <Col span={4} style={{ textAlign: 'left' }}>
-                {mint.equals(TokenInstructions.SRM_MINT)
-                  ? 'SRM'
-                  : mint.equals(TokenInstructions.MSRM_MINT)
-                  ? 'MSRM'
-                  : 'UNKNOWN'}
-              </Col>
-            </Row>
-          ))}
+          <div style={{ height: 350, overflowX: 'hidden' }}>
+            {dataSource.map(({ mint, balance, pubkey, feeTier }, index) => (
+              <Row
+                key={index}
+                style={{
+                  fontSize: 14,
+                  color: 'rgba(241, 241, 242, 1)',
+                  paddingBottom: 16,
+                }}
+              >
+                <Col span={4} style={{ textAlign: 'left' }}>
+                  <Typography>{feeTier}</Typography>
+                  {index === 0 ? (
+                    <div style={{ marginLeft: 10 }}>
+                      <Tag color={'#41C77A'} style={{ fontWeight: 700 }}>
+                        Selected
+                      </Tag>
+                    </div>
+                  ) : null}
+                </Col>
+                <Col span={4} style={{ textAlign: 'left' }}>
+                  {percentFormat.format(getFeeRates(feeTier).taker)}
+                </Col>
+                <Col span={4} style={{ textAlign: 'left' }}>
+                  {percentFormat.format(getFeeRates(feeTier).maker)}
+                </Col>
+                <Col span={4} style={{ textAlign: 'left' }}>
+                  {pubkey.toBase58()}
+                </Col>
+                <Col span={4} style={{ textAlign: 'left' }}>
+                  {balance}
+                </Col>
+                <Col span={4} style={{ textAlign: 'left' }}>
+                  {mint.equals(TokenInstructions.SRM_MINT)
+                    ? 'SRM'
+                    : mint.equals(TokenInstructions.MSRM_MINT)
+                    ? 'MSRM'
+                    : 'UNKNOWN'}
+                </Col>
+              </Row>
+            ))}
+          </div>
           {/*<DataTable*/}
           {/*  dataSource={dataSource}*/}
           {/*  columns={columns}*/}

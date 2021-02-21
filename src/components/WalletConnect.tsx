@@ -14,10 +14,10 @@ export default function WalletConnect() {
         type="text"
         size="large"
         onClick={connected ? wallet.disconnect : wallet.connect}
-        style={{ color: '#2abdd2' }}
+        style={{ color: '#FFF', width: 160, background: 'RGB(26,43,67)', height: 50, borderRadius: 4 }}
       >
-        <UserOutlined />
-        {!connected ? 'Connect wallet' : 'Disconnect'}
+        {/*<UserOutlined />*/}
+        {!connected ? 'CONNECT WALLET' : 'Disconnect'}
       </Button>
       {connected && (
         <Popover

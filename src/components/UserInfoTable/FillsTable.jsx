@@ -85,43 +85,51 @@ export default function FillsTable() {
               {quoteCurrency ? `Fees (${quoteCurrency})` : 'Fees'}
             </Col>
           </Row>
-          {dataSource.map(
-            ({ marketName, side, size, price, liquidity, feeCost }, i) => (
-              <Row
-                key={i}
-                style={{
-                  fontSize: 14,
-                  color: 'rgba(241, 241, 242, 1)',
-                  paddingBottom: 16,
-                }}
-              >
-                <Col span={4} style={{ textAlign: 'left' }}>
-                  {marketName}
-                </Col>
-                <Col
-                  span={4}
-                  style={{ textAlign: 'right', color: 'rgba(90, 196, 190, 1)' }}
+          <div style={{ height: 350, overflowX: 'hidden' }}>
+            {dataSource.map(
+              ({ marketName, side, size, price, liquidity, feeCost }, i) => (
+                <Row
+                  key={i}
+                  style={{
+                    fontSize: 14,
+                    color: 'rgba(241, 241, 242, 1)',
+                    paddingBottom: 16,
+                  }}
                 >
-                  {side}
-                </Col>
-                <Col
-                  span={4}
-                  style={{ textAlign: 'right', color: 'rgba(90, 196, 190, 1)' }}
-                >
-                  {size}
-                </Col>
-                <Col span={4} style={{ textAlign: 'right' }}>
-                  {price}
-                </Col>
-                <Col span={4} style={{ textAlign: 'right' }}>
-                  {liquidity}
-                </Col>
-                <Col span={4} style={{ textAlign: 'right' }}>
-                  {feeCost}
-                </Col>
-              </Row>
-            ),
-          )}
+                  <Col span={4} style={{ textAlign: 'left' }}>
+                    {marketName}
+                  </Col>
+                  <Col
+                    span={4}
+                    style={{
+                      textAlign: 'right',
+                      color: 'rgba(90, 196, 190, 1)',
+                    }}
+                  >
+                    {side}
+                  </Col>
+                  <Col
+                    span={4}
+                    style={{
+                      textAlign: 'right',
+                      color: 'rgba(90, 196, 190, 1)',
+                    }}
+                  >
+                    {size}
+                  </Col>
+                  <Col span={4} style={{ textAlign: 'right' }}>
+                    {price}
+                  </Col>
+                  <Col span={4} style={{ textAlign: 'right' }}>
+                    {liquidity}
+                  </Col>
+                  <Col span={4} style={{ textAlign: 'right' }}>
+                    {feeCost}
+                  </Col>
+                </Row>
+              ),
+            )}
+          </div>
           {/*<DataTable*/}
           {/*  dataSource={dataSource}*/}
           {/*  columns={columns}*/}
