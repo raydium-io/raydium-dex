@@ -21,13 +21,15 @@ export default function PublicTrades({ smallScreen }) {
   return (
     <FloatingElement
       style={
-        smallScreen
-          ? { flex: 1 }
-          : {
+        {
+          ...(smallScreen
+            ? { flex: 1 }
+            : {
               // marginTop: '10px',
               minHeight: '400px',
               maxHeight: 'calc(100vh - 700px)',
-            }
+            }),
+        }
       }
     >
       <Title
@@ -50,7 +52,7 @@ export default function PublicTrades({ smallScreen }) {
       {!!trades && loaded && (
         <div
           style={{
-            marginRight: '-20px',
+            marginRight: '-10px',
             paddingRight: '5px',
             overflowY: 'scroll',
             // maxHeight: smallScreen
