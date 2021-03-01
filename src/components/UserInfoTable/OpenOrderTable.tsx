@@ -140,7 +140,7 @@ export default function OpenOrderTable({
           <Col span={5} style={{ textAlign: 'left' }}>Market</Col>
           <Col span={5} style={{ textAlign: 'right' }}>Side</Col>
           <Col span={5} style={{ textAlign: 'right' }}>Size</Col>
-          <Col span={5} style={{ textAlign: 'right' }}>Pirce</Col>
+          <Col span={5} style={{ textAlign: 'right' }}>Price</Col>
           <Col span={4} style={{ textAlign: 'right' }}> </Col>
         </Row>
         <div style={{ height: 350, overflowX: 'hidden' }}>
