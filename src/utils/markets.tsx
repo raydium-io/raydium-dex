@@ -297,7 +297,7 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
         console.log('Switching markets from deprecated', marketInfo);
         if (DEFAULT_MARKET) {
           // setMarketAddress(DEFAULT_MARKET.address.toBase58());
-          setMarketAddress('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX');
+          setMarketAddress('C4z32zw9WKaGPhNuU54ohzrV4CE1Uau3cFx6T8RLjxYC');
         }
       }
     }
