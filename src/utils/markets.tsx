@@ -1,32 +1,4 @@
 import {
-  decodeEventQueue,
-  Market,
-  MARKETS,
-  OpenOrders,
-  Orderbook,
-  TOKEN_MINTS,
-  TokenInstructions,
-} from '@project-serum/serum';
-import { PublicKey } from '@solana/web3.js';
-import React, { useContext, useEffect, useState } from 'react';
-import {
-  divideBnToNumber,
-  floorToDecimal,
-  getTokenMultiplierFromDecimals,
-  useLocalStorageState,
-} from './utils';
-import { refreshCache, useAsyncData } from './fetch-loop';
-import { useAccountData, useAccountInfo, useConnection } from './connection';
-import { useWallet } from './wallet';
-import tuple from 'immutable-tuple';
-import { notify } from './notifications';
-import BN from 'bn.js';
-import {
-  getTokenAccountInfo,
-  parseTokenAccountData,
-  useMintInfos,
-} from './tokens';
-import {
   Balances,
   CustomMarketInfo,
   DeprecatedOpenOrdersBalances,
@@ -38,19 +10,93 @@ import {
   TokenAccount,
   Trade,
 } from './types';
-import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
-import { Order } from '@project-serum/serum/lib/market';
+import {
+  MARKETS,
+  Market,
+  OpenOrders,
+  Orderbook,
+  TOKEN_MINTS,
+  TokenInstructions,
+  decodeEventQueue,
+} from '@project-serum/serum';
+import React, { useContext, useEffect, useState } from 'react';
+import {
+  divideBnToNumber,
+  floorToDecimal,
+  getTokenMultiplierFromDecimals,
+  useLocalStorageState,
+} from './utils';
+import {
+  getTokenAccountInfo,
+  parseTokenAccountData,
+  useMintInfos,
+} from './tokens';
+import { refreshCache, useAsyncData } from './fetch-loop';
+import { useAccountData, useAccountInfo, useConnection } from './connection';
+
+import BN from 'bn.js';
 import BonfidaApi from './bonfidaConnector';
+import { Order } from '@project-serum/serum/lib/market';
+import { PublicKey } from '@solana/web3.js';
+import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
+import { notify } from './notifications';
 import { sleep } from './utils';
+import tuple from 'immutable-tuple';
+import { useWallet } from './wallet';
 
 // Used in debugging, should be false in production
 const _IGNORE_DEPRECATED = false;
 
 const _MARKETS = [
-  {name: 'RAY/USDT', deprecated: false, address: new PublicKey('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
-  {name: 'RAY/USDC', deprecated: false, address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
-  {name: 'RAY/SRM', deprecated: false, address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU'), programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o')},
-  ...MARKETS
+  {
+    name: 'RAY/USDT',
+    deprecated: false,
+    address: new PublicKey('C4z32zw9WKaGPhNuU54ohzrV4CE1Uau3cFx6T8RLjxYC'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'RAY/USDC',
+    deprecated: false,
+    address: new PublicKey('2xiv8A5xrJ7RnGdxXB42uFEkYHJjszEhaJyKKt4WaLep'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'RAY/SRM',
+    deprecated: false,
+    address: new PublicKey('Cm4MmknScg7qbKqytb1mM92xgDxv3TNXos4tKbBqTDy7'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'RAY/SOL',
+    deprecated: false,
+    address: new PublicKey('C6tp2RVZnxBPFbnAsfTjis8BN9tycESAT4SgDQgbbrsA'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'RAY/ETH',
+    deprecated: false,
+    address: new PublicKey('6jx6aoNFbmorwyncVP5V5ESKfuFc9oUYebob1iF6tgN4'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'RAY/USDT-V2',
+    deprecated: true,
+    address: new PublicKey('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX'),
+    programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
+  },
+  {
+    name: 'RAY/USDC-V2',
+    deprecated: true,
+    address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U'),
+    programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
+  },
+  {
+    name: 'RAY/SRM-V2',
+    deprecated: true,
+    address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU'),
+    programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
+  },
+  ...MARKETS,
 ];
 
 export const USE_MARKETS: MarketInfo[] = _IGNORE_DEPRECATED
@@ -199,9 +245,16 @@ export function getMarketDetails(
   const marketInfo = marketInfos.find((otherMarket) =>
     otherMarket.address.equals(market.address),
   );
-  TOKEN_MINTS.push({address: new PublicKey('4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'), name: 'RAY'});
+  TOKEN_MINTS.push({
+    address: new PublicKey('4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'),
+    name: 'RAY',
+  });
   const baseCurrency =
-    (market?.baseMintAddress && TOKEN_MINTS.find((token) => token.address.equals(market.baseMintAddress))?.name) || (marketInfo?.baseLabel && `${marketInfo?.baseLabel}*`) || 'UNKNOWN';
+    (market?.baseMintAddress &&
+      TOKEN_MINTS.find((token) => token.address.equals(market.baseMintAddress))
+        ?.name) ||
+    (marketInfo?.baseLabel && `${marketInfo?.baseLabel}*`) ||
+    'UNKNOWN';
   const quoteCurrency =
     (market?.quoteMintAddress &&
       TOKEN_MINTS.find((token) => token.address.equals(market.quoteMintAddress))
