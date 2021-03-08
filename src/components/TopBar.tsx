@@ -44,10 +44,12 @@ const EXTERNAL_LINKS = {
   '/developer-resources': 'https://serum-academy.com/en/developer-resources/',
   '/explorer': 'https://explorer.solana.com',
   '/srm-faq': 'https://projectserum.com/srm-faq',
-  '/swap': 'https://raydium.io/#/swap',
-  '/pools': 'https://raydium.io/#/pool',
-  '/stake': 'https://raydium.io/#/single_stake',
-  '/farms': 'https://raydium.io/#/farm',
+  '/swap': 'https://raydium.io/swap',
+  '/liquidity': 'https://raydium.io/liquidity',
+  '/farms': 'https://raydium.io/farms',
+  '/staking': 'https://raydium.io/staking',
+  '/migrate': 'https://raydium.io/migrate',
+  '/info': 'https://raydium.io/info',
 };
 
 export default function TopBar() {
@@ -184,7 +186,7 @@ export default function TopBar() {
                   rel="noopener noreferrer"
                   style={{ color : 'rgb(173,175,184)',}}
                 >
-                  SWAP
+                  Swap
                 </a>
               </div>
               <div
@@ -202,12 +204,12 @@ export default function TopBar() {
                 }}
               >
                 <a
-                  href={EXTERNAL_LINKS['/pools']}
+                  href={EXTERNAL_LINKS['/liquidity']}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color : 'rgb(173,175,184)',}}
                 >
-                  POOLS
+                  Liquidity
                 </a>
               </div>
               <div
@@ -230,7 +232,7 @@ export default function TopBar() {
                   rel="noopener noreferrer"
                   style={{ color : 'rgb(173,175,184)',}}
                 >
-                  FARMS
+                  Farms
                 </a>
               </div>
             <div
@@ -248,12 +250,58 @@ export default function TopBar() {
               }}
             >
               <a
-                href={EXTERNAL_LINKS['/stake']}
+                href={EXTERNAL_LINKS['/staking']}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color : 'rgb(173,175,184)',}}
               >
-                STAKE
+                Staking
+              </a>
+            </div>
+            <div
+              style={{
+                height: 50,
+                width: 100,
+                textAlign: 'center',
+                border: 'transparent',
+                background: 'transparent',
+                fontSize: 14,
+                fontStyle: 'normal',
+                fontWeight: 600,
+                color: 'rgb(173,175,184)',
+                display: 'inline-block',
+              }}
+            >
+              <a
+                href={EXTERNAL_LINKS['/migrate']}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color : 'rgb(173,175,184)',}}
+              >
+                Migrate
+              </a>
+            </div>
+            <div
+              style={{
+                height: 50,
+                width: 100,
+                textAlign: 'center',
+                border: 'transparent',
+                background: 'transparent',
+                fontSize: 14,
+                fontStyle: 'normal',
+                fontWeight: 600,
+                color: 'rgb(173,175,184)',
+                display: 'inline-block',
+              }}
+            >
+              <a
+                href={EXTERNAL_LINKS['/info']}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color : 'rgb(173,175,184)',}}
+              >
+                Info
               </a>
             </div>
           </Col>

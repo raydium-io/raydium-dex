@@ -80,19 +80,19 @@ const _MARKETS = [
   },
   {
     name: 'RAY/USDT-V2',
-    deprecated: true,
+    deprecated: false,
     address: new PublicKey('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX'),
     programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
   },
   {
     name: 'RAY/USDC-V2',
-    deprecated: true,
+    deprecated: false,
     address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U'),
     programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
   },
   {
     name: 'RAY/SRM-V2',
-    deprecated: true,
+    deprecated: false,
     address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU'),
     programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
   },
