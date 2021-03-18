@@ -1,28 +1,31 @@
-import { Button, Input, InputNumber, Radio, Switch, Slider, Row, Col, Select } from 'antd';
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { Button, Col, Input, InputNumber, Radio, Row, Select, Slider, Switch } from 'antd';
+import React, { useEffect, useState } from 'react';
 import {
-  useSelectedBaseCurrencyBalances,
-  useSelectedQuoteCurrencyBalances,
-  useMarket,
-  useMarkPrice,
-  useSelectedOpenOrdersAccount,
-  useSelectedBaseCurrencyAccount,
-  useSelectedQuoteCurrencyAccount, useFeeDiscountKeys, useLocallyStoredFeeDiscountKey,
-} from '../utils/markets';
-import { useWallet } from '../utils/wallet';
-import { notify } from '../utils/notifications';
-import {
+  floorToDecimal,
   getDecimalCount,
   roundToDecimal,
-  floorToDecimal,
 } from '../utils/utils';
-import { useSendConnection } from '../utils/connection';
-import FloatingElement from './layout/FloatingElement';
 import { getUnixTs, placeOrder } from '../utils/send';
+import {
+  useFeeDiscountKeys,
+  useLocallyStoredFeeDiscountKey,
+  useMarkPrice,
+  useMarket,
+  useSelectedBaseCurrencyAccount,
+  useSelectedBaseCurrencyBalances,
+  useSelectedOpenOrdersAccount,
+  useSelectedQuoteCurrencyAccount,
+  useSelectedQuoteCurrencyBalances,
+} from '../utils/markets';
+
+import FloatingElement from './layout/FloatingElement';
 import { SwitchChangeEventHandler } from 'antd/es/switch';
+import { notify } from '../utils/notifications';
 import { refreshCache } from '../utils/fetch-loop';
+import styled from 'styled-components';
 import tuple from 'immutable-tuple';
+import { useSendConnection } from '../utils/connection';
+import { useWallet } from '../utils/wallet';
 
 const SellButton = styled(Button)`
   margin: 20px 0px 0px 0px;
@@ -336,7 +339,7 @@ export default function TradeForm({
             }}
           >
             <Select.Option value="Limit Order">Limit Order</Select.Option>
-            <Select.Option value="Market Order">Market Order</Select.Option>
+            {/* <Select.Option value="Market Order">Market Order</Select.Option> */}
           </Select>
           <div style={{ marginTop: 25}}>
             <div style={{ textAlign: 'right', paddingBottom: 8, fontSize: 12, }}>Limit price</div>
