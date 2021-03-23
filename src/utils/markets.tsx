@@ -49,7 +49,7 @@ const _IGNORE_DEPRECATED = false;
 
 const _MARKETS = [
   {
-    name: 'RAY/USDT',
+    name: 'RAY/WUSDT',
     deprecated: false,
     address: new PublicKey('C4z32zw9WKaGPhNuU54ohzrV4CE1Uau3cFx6T8RLjxYC'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
@@ -80,32 +80,56 @@ const _MARKETS = [
   },
   {
     name: 'RAY/USDT-V2',
-    deprecated: false,
+    deprecated: true,
     address: new PublicKey('HZyhLoyAnfQ72irTdqPdWo2oFL9zzXaBmAqN72iF3sdX'),
     programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
   },
   {
     name: 'RAY/USDC-V2',
-    deprecated: false,
+    deprecated: true,
     address: new PublicKey('Bgz8EEMBjejAGSn6FdtKJkSGtvg4cuJUuRwaCBp28S3U'),
     programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
   },
   {
     name: 'RAY/SRM-V2',
-    deprecated: false,
+    deprecated: true,
     address: new PublicKey('HSGuveQDXtvYR432xjpKPgHfzWQxnb3T8FNuAAvaBbsU'),
     programId: new PublicKey('EUqojwWA2rd19FZrzeBncJsm38Jm1hEhE3zsmX3bRc2o'),
   },
   {
-    name: 'OXY/USDT',
-    deprecated: false,
+    name: 'OXY/WUSDT',
+    deprecated: true,
     address: new PublicKey('HdBhZrnrxpje39ggXnTb6WuTWVvj5YKcSHwYGQCRsVj'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
     name: 'OXY/USDC',
-    deprecated: false,
+    deprecated: true,
     address: new PublicKey('GZ3WBFsqntmERPwumFEYgrX2B7J7G11MzNZAy7Hje27X'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'FIDA/RAY',
+    deprecated: false,
+    address: new PublicKey('9wH4Krv8Vim3op3JAu5NGZQdGxU8HLGAHZh3K77CemxC'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'OXY/RAY',
+    deprecated: false,
+    address: new PublicKey('HcVjkXmvA1815Es3pSiibsRaFw8r9Gy7BhyzZX83Zhjx'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'MAPS/RAY',
+    deprecated: false,
+    address: new PublicKey('7Q4hee42y8ZGguqKmwLhpFNqVTjeVNNBqhx8nt32VF85'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'KIN/RAY',
+    deprecated: false,
+    address: new PublicKey('Fcxy8qYgs8MZqiLx2pijjay6LHsSUqXW47pwMGysa3i9'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   ...MARKETS,

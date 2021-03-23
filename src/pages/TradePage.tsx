@@ -1,30 +1,32 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Col, Popover, Row, Select, Typography } from 'antd';
-import styled from 'styled-components';
-import Orderbook from '../components/Orderbook';
-import UserInfoTable from '../components/UserInfoTable';
-import StandaloneBalancesDisplay from '../components/StandaloneBalancesDisplay';
-import {
-  getMarketInfos,
-  getTradePageUrl,
-  MarketProvider,
-  useMarket,
-  useMarketsList,
-  useUnmigratedDeprecatedMarkets,
-} from '../utils/markets';
-import TradeForm from '../components/TradeForm';
-import TradesTable from '../components/TradesTable';
-import LinkAddress from '../components/LinkAddress';
-import DeprecatedMarketsInstructions from '../components/DeprecatedMarketsInstructions';
 import {
   DeleteOutlined,
   InfoCircleOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons';
-import CustomMarketDialog from '../components/CustomMarketDialog';
-import { notify } from '../utils/notifications';
+import {
+  MarketProvider,
+  getMarketInfos,
+  getTradePageUrl,
+  useMarket,
+  useMarketsList,
+  useUnmigratedDeprecatedMarkets,
+} from '../utils/markets';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+
+import CustomMarketDialog from '../components/CustomMarketDialog';
+import DeprecatedMarketsInstructions from '../components/DeprecatedMarketsInstructions';
+import LinkAddress from '../components/LinkAddress';
+import { MarketInfo } from '../utils/types';
+import Orderbook from '../components/Orderbook';
+import StandaloneBalancesDisplay from '../components/StandaloneBalancesDisplay';
 import { TVChartContainer } from '../components/TradingView'
+import TradeForm from '../components/TradeForm';
+import TradesTable from '../components/TradesTable';
+import UserInfoTable from '../components/UserInfoTable';
+import { notify } from '../utils/notifications';
+import styled from 'styled-components';
 
 const { Option, OptGroup } = Select;
 
@@ -233,6 +235,18 @@ function MarketSelector({
     )
     ?.address?.toBase58();
 
+  const uniqueArray = (arr) => {
+    let addList: string[] = [];
+    let reList: MarketInfo[] = [];
+    for (let index = 0; index < arr.length; index += 1) {
+      if (addList.indexOf(arr[index].address.toBase58()) === -1) {
+        reList.push(arr[index]);
+        addList.push(arr[index].address.toBase58());
+      }
+    }
+    return reList
+  };
+
   return (
     <Select
       showSearch
@@ -280,7 +294,7 @@ function MarketSelector({
         </OptGroup>
       )}
       <OptGroup label="Markets">
-        {markets
+        {uniqueArray(markets)
           // .sort((a, b) =>
           //   extractQuote(a.name) === 'USDT' && extractQuote(b.name) !== 'USDT'
           //     ? -1
@@ -299,7 +313,7 @@ function MarketSelector({
           .map(({ address, name, deprecated }, i) => (
             <Option
               value={address.toBase58()}
-              key={address}
+              key={address.toBase58()}
               name={name}
               style={{
                 padding: '10px',

@@ -1,15 +1,17 @@
-import * as React from 'react';
 import './index.css';
+
+import * as React from 'react';
+import * as saveLoadAdapter from './saveLoadAdapter';
+
 import {
-  widget,
   ChartingLibraryWidgetOptions,
   IChartingLibraryWidget,
+  widget,
 } from '../../charting_library';
-import { useMarket } from '../../utils/markets';
-import * as saveLoadAdapter from './saveLoadAdapter';
-import { flatten } from '../../utils/utils';
 
 import { findTVMarketFromAddress } from '../../utils/tradingview';
+import { flatten } from '../../utils/utils';
+import { useMarket } from '../../utils/markets';
 import { useTvDataFeed } from '../../utils/Datafeed';
 
 export interface ChartContainerProps {
