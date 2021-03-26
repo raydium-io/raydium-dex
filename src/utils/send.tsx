@@ -1,6 +1,3 @@
-import { notify } from './notifications';
-import { getDecimalCount, sleep } from './utils';
-import { getSelectedTokenAccountForMint } from './markets';
 import {
   Account,
   AccountInfo,
@@ -13,7 +10,6 @@ import {
   Transaction,
   TransactionSignature,
 } from '@solana/web3.js';
-import BN from 'bn.js';
 import {
   DexInstructions,
   Market,
@@ -21,11 +17,17 @@ import {
   TOKEN_MINTS,
   TokenInstructions,
 } from '@project-serum/serum';
-import Wallet from '@project-serum/sol-wallet-adapter';
 import { SelectedTokenAccounts, TokenAccount } from './types';
-import { Order } from '@project-serum/serum/lib/market';
+import { getDecimalCount, sleep } from './utils';
+
+import BN from 'bn.js';
 import { Buffer } from 'buffer';
+import { Order } from '@project-serum/serum/lib/market';
+import Wallet from '@project-serum/sol-wallet-adapter';
 import assert from 'assert';
+import { getSelectedTokenAccountForMint } from './markets';
+import { getTokenByMintAddress } from './tokens'
+import { notify } from './notifications';
 import { struct } from 'superstruct';
 
 export async function createTokenAccountTransaction({
@@ -116,28 +118,14 @@ export async function settleFunds({
     createAccountTransaction = result?.transaction;
     createAccountSigner = result?.signer;
   }
-  let referrerQuoteWallet: PublicKey | null = null;
+  let referrerQuoteWallet: PublicKey | null = null
   if (market.supportsReferralFees) {
-    const usdt = TOKEN_MINTS.find(({ name }) => name === 'USDT');
-    const usdc = TOKEN_MINTS.find(({ name }) => name === 'USDC');
-    if (
-      process.env.REACT_APP_USDT_REFERRAL_FEES_ADDRESS &&
-      usdt &&
-      market.quoteMintAddress.equals(usdt.address)
-    ) {
-      referrerQuoteWallet = new PublicKey(
-        process.env.REACT_APP_USDT_REFERRAL_FEES_ADDRESS,
-      );
-    } else if (
-      process.env.REACT_APP_USDC_REFERRAL_FEES_ADDRESS &&
-      usdc &&
-      market.quoteMintAddress.equals(usdc.address)
-    ) {
-      referrerQuoteWallet = new PublicKey(
-        process.env.REACT_APP_USDC_REFERRAL_FEES_ADDRESS,
-      );
+    const quoteToken = getTokenByMintAddress(market.quoteMintAddress.toBase58())
+    if (quoteToken?.referrer) {
+      referrerQuoteWallet = new PublicKey(quoteToken?.referrer)
     }
   }
+
   const {
     transaction: settleFundsTransaction,
     signers: settleFundsSigners,
