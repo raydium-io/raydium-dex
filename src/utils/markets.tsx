@@ -132,6 +132,12 @@ const _MARKETS = [
     address: new PublicKey('Fcxy8qYgs8MZqiLx2pijjay6LHsSUqXW47pwMGysa3i9'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'COPE/USDC',
+    deprecated: false,
+    address: new PublicKey('7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   ...MARKETS,
 ];
 
