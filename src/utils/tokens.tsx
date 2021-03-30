@@ -514,5 +514,12 @@ export const TOKENS: Tokens = {
     mintAddress: '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R',
     decimals: 6,
     referrer: 'EzKxGKPF9wF5uKDzCMQnkHmqaBhHiS22372pCLvxfmtQ'
+  },
+  COPE: {
+    symbol: 'COPE',
+    name: 'COPE',
+    mintAddress: '3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE',
+    decimals: 0,
+    referrer: '8DTehuES4tfnd2SrqcjN52XofxWXGjiLZRgM12U9pB6f'
   }
 }

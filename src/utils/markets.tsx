@@ -287,10 +287,17 @@ export function getMarketDetails(
   const marketInfo = marketInfos.find((otherMarket) =>
     otherMarket.address.equals(market.address),
   );
+
+  // add new token here
+  // TOKEN_MINTS.push({
+  //   address: new PublicKey('4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'),
+  //   name: 'RAY',
+  // });
   TOKEN_MINTS.push({
-    address: new PublicKey('4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'),
-    name: 'RAY',
+    address: new PublicKey('3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE'),
+    name: 'COPE',
   });
+
   const baseCurrency =
     (market?.baseMintAddress &&
       TOKEN_MINTS.find((token) => token.address.equals(market.baseMintAddress))
