@@ -138,8 +138,116 @@ const _MARKETS = [
     address: new PublicKey('7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
-  ...MARKETS,
+   {
+    name: 'SOL/USDT',
+    deprecated: false,
+    address: new PublicKey('HWHvQhFmJB3NUcu1aihKmrKegfVxBEHzwVX6yZCKEsi1'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'YFI/USDT',
+    deprecated: false,
+    address: new PublicKey('3Xg9Q4VtZhD4bVYJbTfgGWFV5zjE3U7ztSHa938zizte'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'SRM/USDT',
+    deprecated: false,
+    address: new PublicKey('AtNnsY1AyRERWJ8xCskfz38YdvruWVJQUVXgScC1iPb'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'FTT/USDT',
+    deprecated: false,
+    address: new PublicKey('Hr3wzG8mZXNHV7TuL6YqtgfVUesCqMxGYCEyP3otywZE'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'BTC/USDT',
+    deprecated: false,
+    address: new PublicKey('C1EuT9VokAKLiW7i2ASnZUvxDoKuKkCpDDeNxAptuNe4'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'SUSHI/USDT',
+    deprecated: false,
+    address: new PublicKey('6DgQRTpJTnAYBSShngAVZZDq7j9ogRN1GfSQ3cq9tubW'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'TOMO/USDT',
+    deprecated: false,
+    address: new PublicKey('GnKPri4thaGipzTbp8hhSGSrHgG4F8MFiZVrbRn16iG2'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'LINK/USDT',
+    deprecated: false,
+    address: new PublicKey('3yEZ9ZpXSQapmKjLAGKZEzUNA1rcupJtsDp5mPBWmGZR'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'ETH/USDT',
+    deprecated: false,
+    address: new PublicKey('7dLVkUfBVfCGkFhSXDCq1ukM9usathSgS716t643iFGF'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'YFI/SRM',
+    deprecated: false,
+    address: new PublicKey('6xC1ia74NbGZdBkySTw93wdxN4Sh2VfULtXh1utPaJDJ'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'FTT/SRM',
+    deprecated: false,
+    address: new PublicKey('CDvQqnMrt9rmjAxGGE6GTPUdzLpEhgNuNZ1tWAvPsF3W'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'BTC/SRM',
+    deprecated: false,
+    address: new PublicKey('HfsedaWauvDaLPm6rwgMc6D5QRmhr8siqGtS6tf2wthU'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'SUSHI/SRM',
+    deprecated: false,
+    address: new PublicKey('FGYAizUhNEC9GBmj3UyxdiRWmGjR3TfzMq2dznwYnjtH'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'TOMO/SRM',
+    deprecated: false,
+    address: new PublicKey('7jBrpiq3w2ywzzb54K9SoosZKy7nhuSQK9XrsgSMogFH'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'LINK/SRM',
+    deprecated: false,
+    address: new PublicKey('FafaYTnhDbLAFsr5qkD2ZwapRxaPrEn99z59UG4zqRmZ'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'ETH/SRM',
+    deprecated: false,
+    address: new PublicKey('3Dpu2kXk87mF9Ls9caWCHqyBiv9gK3PwQkSvnrHZDrmi'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'SRM/SOL',
+    deprecated: false,
+    address: new PublicKey('jyei9Fpj2GtHLDDGgcuhDacxYLLiSyxU4TY7KxB2xai'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  // ...MARKETS,
 ];
+
+MARKETS.map(item => {
+  if (item.address.toBase58() !== '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') {
+    _MARKETS.push(item)
+  }
+})
 
 export const USE_MARKETS: MarketInfo[] = _IGNORE_DEPRECATED
   ? _MARKETS.map((m) => ({ ...m, deprecated: false }))
