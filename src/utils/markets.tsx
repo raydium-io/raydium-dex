@@ -240,6 +240,12 @@ const _MARKETS = [
     address: new PublicKey('jyei9Fpj2GtHLDDGgcuhDacxYLLiSyxU4TY7KxB2xai'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'STEP/USDC',
+    deprecated: false,
+    address: new PublicKey('97qCB4cAVSTthvJu3eNoEx6AY6DLuRDtCoPm5Tdyg77S'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -404,6 +410,10 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE'),
     name: 'COPE',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT'),
+    name: 'STEP',
   });
 
   const baseCurrency =

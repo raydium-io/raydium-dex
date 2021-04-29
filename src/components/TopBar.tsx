@@ -50,6 +50,8 @@ const EXTERNAL_LINKS = {
   '/staking': 'https://raydium.io/staking',
   '/migrate': 'https://raydium.io/migrate',
   '/info': 'https://raydium.io/info',
+  '/fusion': 'https://raydium.io/fusion/',
+  '/acceleRaytor': 'https://raydium.io/acceleraytor/',
 };
 
 export default function TopBar() {
@@ -144,8 +146,8 @@ export default function TopBar() {
       <Wrapper style={{ background: '#0F1429'}}>
         <Row wrap={false} style={{ paddingTop: 25, height: 70 }}>
           <Col flex="none">
-            <LogoWrapper onClick={() => history.push(tradePageUrl)}>
-              <img src={logo} alt="" style={{ width: 145, height: 40}} />
+            <LogoWrapper onClick={() => history.push(tradePageUrl)} style={{ paddingLeft: 40}}>
+              <img src={logo} alt="" style={{ width: 145, height: 40 }} />
             </LogoWrapper>
           </Col>
           <Col flex="auto" style={{ textAlign: 'center'}}>
@@ -235,6 +237,29 @@ export default function TopBar() {
                   Farms
                 </a>
               </div>
+              <div
+                style={{
+                  height: 50,
+                  width: 100,
+                  textAlign: 'center',
+                  border: 'transparent',
+                  background: 'transparent',
+                  fontSize: 14,
+                  fontStyle: 'normal',
+                  fontWeight: 600,
+                  color: 'rgb(173,175,184)',
+                  display: 'inline-block',
+                }}
+              >
+                <a
+                  href={EXTERNAL_LINKS['/fusion']}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color : 'rgb(173,175,184)',}}
+                >
+                  Fusion
+                </a>
+              </div>
             <div
               style={{
                 height: 50,
@@ -256,6 +281,29 @@ export default function TopBar() {
                 style={{ color : 'rgb(173,175,184)',}}
               >
                 Staking
+              </a>
+            </div>
+            <div
+              style={{
+                height: 50,
+                width: 100,
+                textAlign: 'center',
+                border: 'transparent',
+                background: 'transparent',
+                fontSize: 14,
+                fontStyle: 'normal',
+                fontWeight: 600,
+                color: 'rgb(173,175,184)',
+                display: 'inline-block',
+              }}
+            >
+              <a
+                href={EXTERNAL_LINKS['/acceleRaytor']}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color : 'rgb(173,175,184)',}}
+              >
+                AcceleRaytor
               </a>
             </div>
             <div

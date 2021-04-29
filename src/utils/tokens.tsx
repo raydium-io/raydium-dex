@@ -521,5 +521,12 @@ export const TOKENS: Tokens = {
     mintAddress: '3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE',
     decimals: 0,
     referrer: '8DTehuES4tfnd2SrqcjN52XofxWXGjiLZRgM12U9pB6f'
+  },
+  STEP: {
+    symbol: 'STEP',
+    name: 'STEP',
+    mintAddress: 'StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT',
+    decimals: 9,
+    referrer: 'EFQVX1S6dFroDDhJDAnMTX4fCfjt4fJXHdk1eEtJ2uRY'
   }
 }
