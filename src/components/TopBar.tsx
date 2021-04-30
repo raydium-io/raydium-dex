@@ -356,44 +356,6 @@ export default function TopBar() {
           <Col flex="none" style={{ paddingRight: 20}}>
             <WalletConnect />
           </Col>
-          <Col flex="none"
-               style={{
-                 padding: 20,
-                 paddingTop: 5
-               }}>
-            {/*<SettingOutlined style={{ fontSize: 30, color: 'white', }} onClick={() => { console.log('click')}}/>*/}
-
-            <Dropdown
-              overlay={
-                <Menu>
-                  <Menu.Item>
-                    <Select
-                      onSelect={setEndpoint}
-                      value={endpoint}
-                      style={{ marginRight: 8, width: '150px' }}
-                    >
-                      {availableEndpoints.map(({ name, endpoint }) => (
-                        <Select.Option value={endpoint} key={endpoint}>
-                          {name}
-                        </Select.Option>
-                      ))}
-                    </Select>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Select onSelect={setProvider} value={providerUrl}>
-                      {WALLET_PROVIDERS.map(({ name, url }) => (
-                        <Select.Option value={url} key={url}>
-                          {name}
-                        </Select.Option>
-                      ))}
-                    </Select>
-                  </Menu.Item>
-                </Menu>
-              }
-              placement="bottomRight">
-              <SettingOutlined style={{ fontSize: 30, color: 'white', }}/>
-            </Dropdown>
-          </Col>
         </Row>
       </Wrapper>
     </>

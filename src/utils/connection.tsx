@@ -5,10 +5,38 @@ import { setCache, useAsyncData } from './fetch-loop';
 import tuple from 'immutable-tuple';
 import { ConnectionContextValues, EndpointInfo } from './types';
 
+
+export const endpoints = [
+  { url: 'https://raydium.rpcpool.com', weight: 50 },
+  { url: 'https://api.mainnet-beta.solana.com', weight: 25 },
+  { url: 'https://solana-api.projectserum.com', weight: 25 }
+]
+
+export function getRandomEndpoint() {
+  let pointer = 0
+  const random = Math.random() * 100
+  let api = endpoints[0].url
+
+  for (const endpoint of endpoints) {
+    if (random > pointer + endpoint.weight) {
+      pointer += pointer + endpoint.weight
+    } else if (random >= pointer && random < pointer + endpoint.weight) {
+      api = endpoint.url
+      break
+    } else {
+      api = endpoint.url
+      break
+    }
+  }
+
+  return api
+}
+
 export const ENDPOINTS: EndpointInfo[] = [
   {
     name: 'mainnet-beta',
-    endpoint: 'https://solana-api.projectserum.com',
+    // endpoint: 'https://solana-api.projectserum.com',
+    endpoint: getRandomEndpoint(),
     custom: false,
   },
   { name: 'localnet', endpoint: 'http://127.0.0.1:8899', custom: false },

@@ -27,6 +27,8 @@ import TradesTable from '../components/TradesTable';
 import UserInfoTable from '../components/UserInfoTable';
 import { notify } from '../utils/notifications';
 import styled from 'styled-components';
+import { nanoid } from 'nanoid';
+
 
 const { Option, OptGroup } = Select;
 

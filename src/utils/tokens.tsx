@@ -8,6 +8,7 @@ import { TOKEN_MINTS } from '@project-serum/serum';
 import { TokenAccount } from './types';
 import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
 import bs58 from 'bs58';
+// @ts-ignore
 import { cloneDeep } from 'lodash-es'
 import { getMultipleSolanaAccounts } from './send';
 import tuple from 'immutable-tuple';

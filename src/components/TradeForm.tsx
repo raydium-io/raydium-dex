@@ -1,12 +1,6 @@
 import { Button, Col, Input, InputNumber, Radio, Row, Select, Slider, Switch } from 'antd';
 import React, { useEffect, useState } from 'react';
 import {
-  floorToDecimal,
-  getDecimalCount,
-  roundToDecimal,
-} from '../utils/utils';
-import { getUnixTs, placeOrder } from '../utils/send';
-import {
   useFeeDiscountKeys,
   useLocallyStoredFeeDiscountKey,
   useMarkPrice,
@@ -26,6 +20,9 @@ import styled from 'styled-components';
 import tuple from 'immutable-tuple';
 import { useSendConnection } from '../utils/connection';
 import { useWallet } from '../utils/wallet';
+import {floorToDecimal, getDecimalCount, roundToDecimal, useLocalStorageState,} from '../utils/utils';
+import {getUnixTs, placeOrder, settleFunds} from '../utils/send';
+import {useInterval} from "../utils/useInterval";
 
 const SellButton = styled(Button)`
   margin: 20px 0px 0px 0px;
@@ -76,6 +73,10 @@ export default function TradeForm({
   const [price, setPrice] = useState<number | undefined>(undefined);
   const [submitting, setSubmitting] = useState(false);
   const [sizeFraction, setSizeFraction] = useState(0);
+  const [autoSettleEnabled] = useLocalStorageState(
+    'autoSettleEnabled',
+    true,
+  );
 
   const availableQuote =
     openOrdersAccount && market
@@ -130,7 +131,35 @@ export default function TradeForm({
     warmUpCache();
     const id = setInterval(warmUpCache, 30_000);
     return () => clearInterval(id);
-  }, [market, sendConnection, wallet, wallet.publicKey]);
+  }, [market, sendConnection, wallet, wallet?.publicKey]);
+
+  
+  useInterval(() => {
+    const autoSettle = async () => {
+      if (!wallet || !market || !openOrdersAccount || !baseCurrencyAccount || !quoteCurrencyAccount) {
+        return;
+      }
+      try {
+        // settle funds into selected token wallets
+        await settleFunds({
+          market,
+          openOrders: openOrdersAccount,
+          connection: sendConnection,
+          wallet,
+          baseCurrencyAccount,
+          quoteCurrencyAccount
+        });
+      } catch (e) {
+        console.log('Error auto settling funds: ' + e.message);
+      }
+    };
+    (
+      connected &&
+      wallet?.autoApprove &&
+      autoSettleEnabled &&
+      autoSettle()
+    );
+  }, 10000);
 
   const onSetBaseSize = (baseSize: number | undefined) => {
     setBaseSize(baseSize);
@@ -245,6 +274,7 @@ export default function TradeForm({
 
     setSubmitting(true);
     try {
+      if (wallet) {
       await placeOrder({
         side,
         price,
@@ -260,6 +290,9 @@ export default function TradeForm({
       refreshCache(tuple('getTokenAccounts', wallet, connected));
       setPrice(undefined);
       onSetBaseSize(undefined);
+    } else {
+      throw Error('Error placing order')
+    }
     } catch (e) {
       console.warn(e);
       notify({
@@ -272,7 +305,6 @@ export default function TradeForm({
     }
   }
 
-  // @ts-ignore
   // @ts-ignore
   return (
     <FloatingElement

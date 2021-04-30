@@ -43,12 +43,16 @@ export default function OpenOrderTable({
   async function cancel(order) {
     setCancelId(order?.orderId);
     try {
+      if (wallet) {
       await cancelOrder({
         order,
         market: order.market,
         connection,
         wallet,
       });
+    } else {
+      throw Error('Error cancelling order')
+    }
     } catch (e) {
       notify({
         message: 'Error cancelling order',

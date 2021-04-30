@@ -20,6 +20,7 @@ import {
   decodeEventQueue,
 } from '@project-serum/serum';
 import React, { useContext, useEffect, useState } from 'react';
+import {getCache, setCache} from './fetch-loop';
 import {
   divideBnToNumber,
   floorToDecimal,
@@ -37,7 +38,7 @@ import { useAccountData, useAccountInfo, useConnection } from './connection';
 import BN from 'bn.js';
 import BonfidaApi from './bonfidaConnector';
 import { Order } from '@project-serum/serum/lib/market';
-import { PublicKey } from '@solana/web3.js';
+import { PublicKey , Connection} from '@solana/web3.js';
 import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
 import { notify } from './notifications';
 import { sleep } from './utils';
@@ -133,66 +134,6 @@ const _MARKETS = [
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
-    name: 'COPE/USDC',
-    deprecated: false,
-    address: new PublicKey('7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-   {
-    name: 'SOL/USDT',
-    deprecated: false,
-    address: new PublicKey('HWHvQhFmJB3NUcu1aihKmrKegfVxBEHzwVX6yZCKEsi1'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'YFI/USDT',
-    deprecated: false,
-    address: new PublicKey('3Xg9Q4VtZhD4bVYJbTfgGWFV5zjE3U7ztSHa938zizte'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'SRM/USDT',
-    deprecated: false,
-    address: new PublicKey('AtNnsY1AyRERWJ8xCskfz38YdvruWVJQUVXgScC1iPb'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'FTT/USDT',
-    deprecated: false,
-    address: new PublicKey('Hr3wzG8mZXNHV7TuL6YqtgfVUesCqMxGYCEyP3otywZE'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'BTC/USDT',
-    deprecated: false,
-    address: new PublicKey('C1EuT9VokAKLiW7i2ASnZUvxDoKuKkCpDDeNxAptuNe4'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'SUSHI/USDT',
-    deprecated: false,
-    address: new PublicKey('6DgQRTpJTnAYBSShngAVZZDq7j9ogRN1GfSQ3cq9tubW'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'TOMO/USDT',
-    deprecated: false,
-    address: new PublicKey('GnKPri4thaGipzTbp8hhSGSrHgG4F8MFiZVrbRn16iG2'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'LINK/USDT',
-    deprecated: false,
-    address: new PublicKey('3yEZ9ZpXSQapmKjLAGKZEzUNA1rcupJtsDp5mPBWmGZR'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'ETH/USDT',
-    deprecated: false,
-    address: new PublicKey('7dLVkUfBVfCGkFhSXDCq1ukM9usathSgS716t643iFGF'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
     name: 'YFI/SRM',
     deprecated: false,
     address: new PublicKey('6xC1ia74NbGZdBkySTw93wdxN4Sh2VfULtXh1utPaJDJ'),
@@ -235,15 +176,15 @@ const _MARKETS = [
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
-    name: 'SRM/SOL',
-    deprecated: false,
-    address: new PublicKey('jyei9Fpj2GtHLDDGgcuhDacxYLLiSyxU4TY7KxB2xai'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
     name: 'STEP/USDC',
     deprecated: false,
     address: new PublicKey('97qCB4cAVSTthvJu3eNoEx6AY6DLuRDtCoPm5Tdyg77S'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'MEDIA/USDC',
+    deprecated: false,
+    address: new PublicKey('FfiqqvJcVL7oCCu8WQUMHLUC2dnHQPAPjTdSzsERFWjb'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   // ...MARKETS,
@@ -414,6 +355,10 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT'),
     name: 'STEP',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('ETAtLmCmsoiEEKfNrHKJ2kYy3MoABhU6NQvpSfij5tDs'),
+    name: 'MEDIA',
   });
 
   const baseCurrency =
@@ -656,7 +601,7 @@ export function useOpenOrdersAccounts(fast = false) {
   const { connected, wallet } = useWallet();
   const connection = useConnection();
   async function getOpenOrdersAccounts() {
-    if (!connected) {
+    if (!connected || !wallet) {
       return null;
     }
     if (!market) {
@@ -667,11 +612,39 @@ export function useOpenOrdersAccounts(fast = false) {
       wallet.publicKey,
     );
   }
-  return useAsyncData(
+  return useAsyncData<OpenOrders[] | null>(
     getOpenOrdersAccounts,
     tuple('getOpenOrdersAccounts', wallet, market, connected),
     { refreshInterval: fast ? _FAST_REFRESH_INTERVAL : _SLOW_REFRESH_INTERVAL },
   );
+}
+
+// todo: refresh cache after some time?
+export async function getCachedMarket(connection: Connection, address: PublicKey, programId: PublicKey) {
+  let market;
+  const cacheKey = tuple('getCachedMarket', 'market', address.toString(), connection);
+  if (!getCache(cacheKey)) {
+    market = await Market.load(connection, address, {}, programId)
+    setCache(cacheKey, market)
+  } else {
+    market = getCache(cacheKey);
+  }
+  return market;
+}
+
+export async function getCachedOpenOrderAccounts(connection: Connection, market: Market, owner: PublicKey) {
+  let accounts;
+  const cacheKey = tuple('getCachedOpenOrderAccounts', market.address.toString(), owner.toString(), connection);
+  if (!getCache(cacheKey)) {
+    accounts = await market.findOpenOrdersAccountsForOwner(
+      connection,
+      owner,
+    );
+    setCache(cacheKey, accounts);
+  } else {
+    accounts = getCache(cacheKey);
+  }
+  return accounts;
 }
 
 export function useSelectedOpenOrdersAccount(fast = false) {
@@ -689,7 +662,7 @@ export function useTokenAccounts(): [
   const { connected, wallet } = useWallet();
   const connection = useConnection();
   async function getTokenAccounts() {
-    if (!connected) {
+    if (!connected || !wallet) {
       return null;
     }
     return await getTokenAccountInfo(connection, wallet.publicKey);
@@ -836,7 +809,7 @@ export function useFeeDiscountKeys(): [
   const connection = useConnection();
   const { setStoredFeeDiscountKey } = useLocallyStoredFeeDiscountKey();
   let getFeeDiscountKeys = async () => {
-    if (!connected) {
+    if (!connected || !wallet) {
       return null;
     }
     if (!market) {
@@ -898,7 +871,7 @@ export function useFillsForAllMarkets(limit = 100) {
       }
       const openOrdersAccounts = await market.findOpenOrdersAccountsForOwner(
         connection,
-        wallet.publicKey,
+        wallet?.publicKey,
       );
       const openOrdersAccount = openOrdersAccounts && openOrdersAccounts[0];
       if (!openOrdersAccount) {
@@ -943,7 +916,7 @@ export function useAllOpenOrdersAccounts() {
   ].map((stringProgramId) => new PublicKey(stringProgramId));
 
   const getAllOpenOrdersAccounts = async () => {
-    if (!connected) {
+    if (!connected || !wallet) {
       return [];
     }
     return (
@@ -1052,7 +1025,7 @@ export const useAllOpenOrders = (): {
   };
 
   useEffect(() => {
-    if (connected) {
+    if (connected && wallet) {
       const getAllOpenOrders = async () => {
         setLoaded(false);
         const _openOrders: { orders: Order[]; marketAddress: string }[] = [];
@@ -1085,7 +1058,7 @@ export const useAllOpenOrders = (): {
       };
       getAllOpenOrders();
     }
-  }, [connected, wallet, refresh]);
+  }, [connection, connected, wallet, refresh]);
   return {
     openOrders: openOrders,
     loaded: loaded,
@@ -1275,7 +1248,7 @@ export function useGetOpenOrdersForDeprecatedMarkets(): {
       .map((market) => market.address.toBase58());
 
   async function getOpenOrdersForDeprecatedMarkets() {
-    if (!connected) {
+    if (!connected || !wallet) {
       return null;
     }
     if (!marketsList) {
@@ -1474,4 +1447,9 @@ export function getExpectedFillPrice(
     formattedPrice = totalAvgPrice;
   }
   return formattedPrice;
+}
+
+export function useCurrentlyAutoSettling(): [boolean, (currentlyAutoSettling: boolean) => void] {
+  const [currentlyAutoSettling, setCurrentlyAutosettling] = useState<boolean>(false);
+  return [currentlyAutoSettling, setCurrentlyAutosettling];
 }
