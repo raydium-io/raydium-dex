@@ -128,7 +128,7 @@ export default function BalancesTable({
           Unsettled
         </Col>
         <Col span={24 / rowItem} style={{ textAlign: 'right' }}>
-          action
+          Action
         </Col>
       </Row>
       <div style={{ height: 350, overflowX: 'hidden' }}>

@@ -102,7 +102,7 @@ export default function Index() {
               padding: '12px 0 12px',
             }}
           >
-            Fee discounts
+            Fee Discounts
           </Col>
         ) : null}
       </Row>

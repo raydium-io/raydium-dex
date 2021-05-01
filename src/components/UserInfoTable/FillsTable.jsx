@@ -76,7 +76,7 @@ export default function FillsTable() {
               Size
             </Col>
             <Col span={4} style={{ textAlign: 'right' }}>
-              Pirce
+              Price
             </Col>
             <Col span={4} style={{ textAlign: 'right' }}>
               Liquidity
