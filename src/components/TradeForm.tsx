@@ -136,7 +136,8 @@ export default function TradeForm({
   
   useInterval(() => {
     const autoSettle = async () => {
-      if (!wallet || !market || !openOrdersAccount || !baseCurrencyAccount || !quoteCurrencyAccount) {
+      if (!wallet || !market || !openOrdersAccount || !baseCurrencyAccount || !quoteCurrencyAccount || 
+        openOrdersAccount?.baseTokenFree.toNumber() <= 0 || openOrdersAccount.quoteTokenFree.toNumber() <= 0) {
         return;
       }
       try {
