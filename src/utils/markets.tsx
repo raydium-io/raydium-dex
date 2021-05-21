@@ -193,12 +193,28 @@ const _MARKETS = [
     address: new PublicKey('4Sg1g8U2ZuGnGYxAhc6MmX9MX7yZbrrraPkCQ9MdCPtF'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'COPE/USDC',
+    deprecated: false,
+    address: new PublicKey('6fc7v3PmjZG9Lk2XTot6BywGyYLkBQuzuFKd4FpCsPxk'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
 MARKETS.map(item => {
   if (item.address.toBase58() !== '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') {
-    _MARKETS.push(item)
+    if (item.address.toBase58() === '7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2') {
+      _MARKETS.push( {
+        address: item.address,
+        name: 'xCOPE/USDC',
+        programId: item.programId,
+        deprecated: item.deprecated,
+    })
+    } else {
+      _MARKETS.push(item)
+    }
+    
   }
 })
 
@@ -354,8 +370,13 @@ export function getMarketDetails(
   //   address: new PublicKey('4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'),
   //   name: 'RAY',
   // });
+  for(let indexItem = 0 ;indexItem < TOKEN_MINTS.length; indexItem += 1) {
+    if (TOKEN_MINTS[indexItem].address.toString() === '3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE') {
+      TOKEN_MINTS[indexItem].name = 'xCOPE'
+    }
+  }
   TOKEN_MINTS.push({
-    address: new PublicKey('3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE'),
+    address: new PublicKey('8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh'),
     name: 'COPE',
   });
   TOKEN_MINTS.push({
