@@ -6,7 +6,7 @@ import { GlobalStyle } from './global_style';
 import { Spin } from 'antd';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Routes } from './routes';
-import { PreferencesProvider } from './utils/preferences';
+// import { PreferencesProvider } from './utils/preferences';
 
 export default function App() {
   return (
@@ -15,11 +15,9 @@ export default function App() {
       <ErrorBoundary>
         <ConnectionProvider>
           <WalletProvider>
-            <PreferencesProvider>
-              <Suspense fallback={() => <Spin size="large" />}>
-                <Routes />
-              </Suspense>
-            </PreferencesProvider>
+            <Suspense fallback={() => <Spin size="large" />}>
+              <Routes />
+            </Suspense>
           </WalletProvider>
         </ConnectionProvider>
       </ErrorBoundary>
