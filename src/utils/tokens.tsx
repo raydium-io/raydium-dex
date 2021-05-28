@@ -514,7 +514,7 @@ export const TOKENS: Tokens = {
     name: 'Raydium',
     mintAddress: '4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R',
     decimals: 6,
-    referrer: 'EzKxGKPF9wF5uKDzCMQnkHmqaBhHiS22372pCLvxfmtQ'
+    referrer: '33XpMmMQRf6tSPpmYyzpwU4uXpZHkFwCZsusD9dMYkjy'
   },
   xCOPE: {
     symbol: 'xCOPE',
@@ -523,6 +523,13 @@ export const TOKENS: Tokens = {
     decimals: 0,
     referrer: '8DTehuES4tfnd2SrqcjN52XofxWXGjiLZRgM12U9pB6f'
   },
+  COPE: {
+    symbol: 'COPE',
+    name: 'COPE',
+    mintAddress: '8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh',
+    decimals: 6,
+    referrer: 'G7UYwWhkmgeL57SUKFF45K663V9TdXZw6Ho6ZLQ7p4p'
+  },
   STEP: {
     symbol: 'STEP',
     name: 'STEP',
@@ -530,18 +537,25 @@ export const TOKENS: Tokens = {
     decimals: 9,
     referrer: 'EFQVX1S6dFroDDhJDAnMTX4fCfjt4fJXHdk1eEtJ2uRY'
   },
+  MEDIA: {
+    symbol: 'MEDIA',
+    name: 'MEDIA',
+    mintAddress: 'ETAtLmCmsoiEEKfNrHKJ2kYy3MoABhU6NQvpSfij5tDs',
+    decimals: 6,
+    referrer: 'AYnaG3AidNWFzjq9U3BJSsQ9DShE8g7FszriBDtRFvsx'
+  },
+  ROPE: {
+    symbol: 'ROPE',
+    name: 'ROPE',
+    mintAddress: '8PMHT4swUMtBzgHnh5U564N5sjPSiUz2cjEQzFnnP1Fo',
+    decimals: 9,
+    referrer: '5sGVVniBSPLTwRHDETShovq7STRH2rJwbvdvvH3NcVTF'
+  },
   MER: {
     symbol: 'MER',
-    name: 'MER',
+    name: 'Mercurial',
     mintAddress: 'MERt85fc5boKw3BW1eYdxonEuJNvXbiMbs6hvheau5K',
-    decimals: 9,
+    decimals: 6,
     referrer: '36F4ryvqaNW2yKQsAry4ZHCZ3j7tz3gtEz7NEwv7pSRu'
-  },
-  CPOE: {
-    symbol: 'CPOE',
-    name: 'CPOE',
-    mintAddress: '8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh',
-    decimals: 9,
-    referrer: 'G7UYwWhkmgeL57SUKFF45K663V9TdXZw6Ho6ZLQ7p4p'
   }
 }
