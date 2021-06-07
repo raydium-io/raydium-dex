@@ -557,5 +557,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'MERt85fc5boKw3BW1eYdxonEuJNvXbiMbs6hvheau5K',
     decimals: 6,
     referrer: '36F4ryvqaNW2yKQsAry4ZHCZ3j7tz3gtEz7NEwv7pSRu'
+  },
+  TULIP: {
+    symbol: 'TULIP',
+    name: 'TULIP',
+    mintAddress: 'TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs',
+    decimals: 6,
+    referrer: 'Bcw1TvX8jUj6CtY2a7GU2THeYVAudvmT8yzRypVMVsSH'
   }
 }
