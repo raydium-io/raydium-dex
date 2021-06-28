@@ -211,6 +211,12 @@ const _MARKETS = [
     address: new PublicKey('8GufnKq7YnXKhnB3WNhgy5PzU9uvHbaaRrZWQK6ixPxW'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'WOO/USDC',
+    deprecated: false,
+    address: new PublicKey('2Ux1EYeWsxywPKouRCNiALCZ1y3m563Tc4hq1kQganiq'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -410,6 +416,10 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs'),
     name: 'TULIP',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('E5rk3nmgLUuKUiS94gg4bpWwWwyjCMtddsAXkTFLtHEy'),
+    name: 'WOO',
   });
 
   const baseCurrency =

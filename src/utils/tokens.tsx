@@ -564,5 +564,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs',
     decimals: 6,
     referrer: 'Bcw1TvX8jUj6CtY2a7GU2THeYVAudvmT8yzRypVMVsSH'
+  },
+  WOO: {
+    symbol: 'WOO',
+    name: 'WOO',
+    mintAddress: 'E5rk3nmgLUuKUiS94gg4bpWwWwyjCMtddsAXkTFLtHEy',
+    decimals: 6,
+    referrer: '7UbeAZxpza5zN3QawQ5KsUo88zXvohUncYB9Zk5QCiim'
   }
 }
