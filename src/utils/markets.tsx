@@ -217,6 +217,12 @@ const _MARKETS = [
     address: new PublicKey('2Ux1EYeWsxywPKouRCNiALCZ1y3m563Tc4hq1kQganiq'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SNY/USDC',
+    deprecated: false,
+    address: new PublicKey('DPfj2jYwPaezkCmUNm5SSYfkrkz8WFqwGLcxDDUsN3gA'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -420,6 +426,10 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('E5rk3nmgLUuKUiS94gg4bpWwWwyjCMtddsAXkTFLtHEy'),
     name: 'WOO',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y'),
+    name: 'SNY',
   });
 
   const baseCurrency =

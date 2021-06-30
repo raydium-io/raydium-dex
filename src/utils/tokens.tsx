@@ -571,5 +571,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'E5rk3nmgLUuKUiS94gg4bpWwWwyjCMtddsAXkTFLtHEy',
     decimals: 6,
     referrer: '7UbeAZxpza5zN3QawQ5KsUo88zXvohUncYB9Zk5QCiim'
+  },
+  SNY: {
+    symbol: 'SNY',
+    name: 'SNY',
+    mintAddress: '4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y',
+    decimals: 6,
+    referrer: 'G7gyaTNn2hgjF67SWs4Ee9PEaFU2xadhtXL8HmkJ2cNL'
   }
 }
