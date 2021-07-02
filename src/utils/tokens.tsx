@@ -578,5 +578,12 @@ export const TOKENS: Tokens = {
     mintAddress: '4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y',
     decimals: 6,
     referrer: 'G7gyaTNn2hgjF67SWs4Ee9PEaFU2xadhtXL8HmkJ2cNL'
+  },
+  BOP: {
+    symbol: 'BOP',
+    name: 'BOP',
+    mintAddress: 'BLwTnYKqf7u4qjgZrrsKeNs2EzWkMLqVCu6j8iHyrNA3',
+    decimals: 6,
+    referrer: 'FWxBZmNsvNckx8DnaL2NuyMtiQmT1x529WwV4e1UWiGk'
   }
 }

@@ -223,6 +223,12 @@ const _MARKETS = [
     address: new PublicKey('DPfj2jYwPaezkCmUNm5SSYfkrkz8WFqwGLcxDDUsN3gA'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'BOP/RAY',
+    deprecated: false,
+    address: new PublicKey('6Fcw8aEs7oP7YeuMrM2JgAQUotYxa4WHKHWdLLXssA3R'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -430,6 +436,10 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y'),
     name: 'SNY',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('BLwTnYKqf7u4qjgZrrsKeNs2EzWkMLqVCu6j8iHyrNA3'),
+    name: 'BOP',
   });
 
   const baseCurrency =
