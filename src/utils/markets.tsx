@@ -229,6 +229,12 @@ const _MARKETS = [
     address: new PublicKey('6Fcw8aEs7oP7YeuMrM2JgAQUotYxa4WHKHWdLLXssA3R'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SLRS/USDC',
+    deprecated: false,
+    address: new PublicKey('2Gx3UfV831BAh8uQv1FKSPKS9yajfeeD8GJ4ZNb2o2YP'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -440,6 +446,10 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('BLwTnYKqf7u4qjgZrrsKeNs2EzWkMLqVCu6j8iHyrNA3'),
     name: 'BOP',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('SLRSSpSLUTP7okbCUBYStWCo1vUgyt775faPqz8HUMr'),
+    name: 'SLRS',
   });
 
   const baseCurrency =

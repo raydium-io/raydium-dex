@@ -585,5 +585,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'BLwTnYKqf7u4qjgZrrsKeNs2EzWkMLqVCu6j8iHyrNA3',
     decimals: 6,
     referrer: 'FWxBZmNsvNckx8DnaL2NuyMtiQmT1x529WwV4e1UWiGk'
+  },
+  SLRS: {
+    symbol: 'SLRS',
+    name: 'SLRS',
+    mintAddress: 'SLRSSpSLUTP7okbCUBYStWCo1vUgyt775faPqz8HUMr',
+    decimals: 6,
+    referrer: 'AmqeHgTdm6kBzy5ewZFKuMAfbynZmhve1GQxbJzQFLbP'
   }
 }
