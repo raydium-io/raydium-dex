@@ -583,7 +583,7 @@ export const TOKENS: Tokens = {
     symbol: 'BOP',
     name: 'BOP',
     mintAddress: 'BLwTnYKqf7u4qjgZrrsKeNs2EzWkMLqVCu6j8iHyrNA3',
-    decimals: 6,
+    decimals: 8,
     referrer: 'FWxBZmNsvNckx8DnaL2NuyMtiQmT1x529WwV4e1UWiGk'
   },
   SLRS: {
@@ -592,5 +592,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'SLRSSpSLUTP7okbCUBYStWCo1vUgyt775faPqz8HUMr',
     decimals: 6,
     referrer: 'AmqeHgTdm6kBzy5ewZFKuMAfbynZmhve1GQxbJzQFLbP'
+  },
+  SAMO: {
+    symbol: 'SAMO',
+    name: 'SAMO',
+    mintAddress: '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU',
+    decimals: 9,
+    referrer: 'FnMDNFL9t8EpbADSU3hLWBtx7SuwRBB6NM84U3PzSkUu'
   }
 }

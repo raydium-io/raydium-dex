@@ -235,6 +235,12 @@ const _MARKETS = [
     address: new PublicKey('2Gx3UfV831BAh8uQv1FKSPKS9yajfeeD8GJ4ZNb2o2YP'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SAMO/RAY',
+    deprecated: false,
+    address: new PublicKey('AAfgwhNU5LMjHojes1SFmENNjihQBDKdDDT1jog4NV8w'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -449,6 +455,10 @@ export function getMarketDetails(
   });
   TOKEN_MINTS.push({
     address: new PublicKey('SLRSSpSLUTP7okbCUBYStWCo1vUgyt775faPqz8HUMr'),
+    name: 'SLRS',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU'),
     name: 'SLRS',
   });
 
