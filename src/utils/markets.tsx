@@ -459,7 +459,7 @@ export function getMarketDetails(
   });
   TOKEN_MINTS.push({
     address: new PublicKey('7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU'),
-    name: 'SLRS',
+    name: 'SAMO',
   });
 
   const baseCurrency =
