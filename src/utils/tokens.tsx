@@ -599,5 +599,19 @@ export const TOKENS: Tokens = {
     mintAddress: '7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU',
     decimals: 9,
     referrer: 'FnMDNFL9t8EpbADSU3hLWBtx7SuwRBB6NM84U3PzSkUu'
+  },
+  renBTC: {
+    symbol: 'renBTC',
+    name: 'renBTC',
+    mintAddress: 'CDJWUqTcYTVAKXAVXoQZFes5JUFc7owSeq7eMQcDSbo5',
+    decimals: 8,
+    referrer: '7rr64uygy3o5RKVeNv12JGDUFMXVdr2YHvA3NTxzbZT6'
+  },
+  renDOGE: {
+    symbol: 'renDOGE',
+    name: 'renDOGE',
+    mintAddress: 'ArUkYE2XDKzqy77PRRGjo4wREWwqk6RXTfM9NeqzPvjU',
+    decimals: 8,
+    referrer: 'J5g7uvJRGnpRyLnRQjFs1MqMkiTVgjxVJCXocu4B4BcZ'
   }
 }

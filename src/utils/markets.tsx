@@ -241,6 +241,18 @@ const _MARKETS = [
     address: new PublicKey('AAfgwhNU5LMjHojes1SFmENNjihQBDKdDDT1jog4NV8w'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'renBTC-USDC',
+    deprecated: false,
+    address: new PublicKey('74Ciu5yRzhe8TFTHvQuEVbFZJrbnCMRoohBK33NNiPtv'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'renDOGE-USDC',
+    deprecated: false,
+    address: new PublicKey('5FpKCWYXgHWZ9CdDMHjwxAfqxJLdw2PRXuAmtECkzADk'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -460,6 +472,14 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU'),
     name: 'SAMO',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('CDJWUqTcYTVAKXAVXoQZFes5JUFc7owSeq7eMQcDSbo5'),
+    name: 'renBTC',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('ArUkYE2XDKzqy77PRRGjo4wREWwqk6RXTfM9NeqzPvjU'),
+    name: 'renDOGE',
   });
 
   const baseCurrency =
