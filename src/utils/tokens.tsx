@@ -613,5 +613,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'ArUkYE2XDKzqy77PRRGjo4wREWwqk6RXTfM9NeqzPvjU',
     decimals: 8,
     referrer: 'J5g7uvJRGnpRyLnRQjFs1MqMkiTVgjxVJCXocu4B4BcZ'
+  },
+  LIKE: {
+    symbol: 'LIKE',
+    name: 'LIKE',
+    mintAddress: '3bRTivrVsitbmCTGtqwp7hxXPsybkjn4XLNtPsHqa3zR',
+    decimals: 8,
+    referrer: '2rnVeVGfM88XqyNyBzGWEb7JViYKqncFzjWq5h1ujS9A'
   }
 }
