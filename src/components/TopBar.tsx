@@ -50,7 +50,6 @@ const EXTERNAL_LINKS = {
   '/staking': 'https://raydium.io/staking',
   '/migrate': 'https://raydium.io/migrate',
   '/info': 'https://raydium.io/info',
-  '/fusion': 'https://raydium.io/fusion/',
   '/acceleRaytor': 'https://raydium.io/acceleraytor/',
   '/pools': 'https://raydium.io/pools/',
 };
@@ -259,29 +258,6 @@ export default function TopBar() {
                   style={{ color : 'rgb(173,175,184)',}}
                 >
                   Farms
-                </a>
-              </div>
-              <div
-                style={{
-                  height: 50,
-                  width: 100,
-                  textAlign: 'center',
-                  border: 'transparent',
-                  background: 'transparent',
-                  fontSize: 14,
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  color: 'rgb(173,175,184)',
-                  display: 'inline-block',
-                }}
-              >
-                <a
-                  href={EXTERNAL_LINKS['/fusion']}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color : 'rgb(173,175,184)',}}
-                >
-                  Fusion
                 </a>
               </div>
             <div
