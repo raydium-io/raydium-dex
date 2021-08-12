@@ -259,6 +259,42 @@ const _MARKETS = [
     address: new PublicKey('3WptgZZu34aiDrLMUiPntTYZGNZ72yT1yxHYxSdbTArX'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'DXL/USDC',
+    deprecated: false,
+    address: new PublicKey('DYfigimKWc5VhavR4moPBibx9sMcWYVSjVdWvPztBPTa'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'mSOL/USDC',
+    deprecated: false,
+    address: new PublicKey('6oGsL2puUgySccKzn9XA9afqF217LfxP5ocq4B3LWsjy'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'mSOL/SOL',
+    deprecated: false,
+    address: new PublicKey('5cLrMai1DsLRYc1Nio9qMTicsWtvzjzZfJPXyAoF4t1Z'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'MER/PAI',
+    deprecated: false,
+    address: new PublicKey('FtxAV7xEo6DLtTszffjZrqXknAE4wpTSfN6fBHW4iZpE'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'PORT/USDC',
+    deprecated: false,
+    address: new PublicKey('8x8jf7ikJwgP9UthadtiGFgfFuyyyYPHL3obJAuxFWko'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'MNGO/USDC',
+    deprecated: false,
+    address: new PublicKey('3d4rzwpy9iGdCZvgxcu7B1YocYffVLsQXPXkBZKt2zLc'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -490,6 +526,26 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('3bRTivrVsitbmCTGtqwp7hxXPsybkjn4XLNtPsHqa3zR'),
     name: 'LIKE',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('GsNzxJfFn6zQdJGeYsupJWzUAm57Ba7335mfhWvFiE9Z'),
+    name: 'DXL',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So'),
+    name: 'mSOL',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS'),
+    name: 'PAI',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('PoRTjZMPXb9T7dyU7tpLEZRQj7e6ssfAE62j2oQuc6y'),
+    name: 'PORT',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac'),
+    name: 'MNGO',
   });
 
   const baseCurrency =

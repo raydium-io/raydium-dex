@@ -620,5 +620,40 @@ export const TOKENS: Tokens = {
     mintAddress: '3bRTivrVsitbmCTGtqwp7hxXPsybkjn4XLNtPsHqa3zR',
     decimals: 8,
     referrer: '2rnVeVGfM88XqyNyBzGWEb7JViYKqncFzjWq5h1ujS9A'
+  },
+  DXL: {
+    symbol: 'DXL',
+    name: 'DXL',
+    mintAddress: 'GsNzxJfFn6zQdJGeYsupJWzUAm57Ba7335mfhWvFiE9Z',
+    decimals: 6,
+    referrer: 'HF7mhT9YgD5CULAFDYQmhnUMi1FnNbKeBFCy9SZDh2XE',
+  },
+  mSOL: {
+      symbol: 'mSOL',
+      name: 'Marinade staked SOL (mSOL)',
+      mintAddress: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So',
+      decimals: 9,
+      referrer: '7h5bckf8P29RdviNoKjDyH3Ky3uwdrBiPgYuSCD4asV5',
+  },
+  PAI: {
+      symbol: 'PAI',
+      name: 'PAI (Parrot)',
+      mintAddress: 'Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS',
+      decimals: 6,
+      referrer: '54X98LAxRR2j1KMBBXkbYyUaAWi1iKW9G1Y4TnTJVY2e',
+  },
+  PORT: {
+      symbol: 'PORT',
+      name: 'PORT',
+      mintAddress: 'PoRTjZMPXb9T7dyU7tpLEZRQj7e6ssfAE62j2oQuc6y',
+      decimals: 6,
+      referrer: '5Ve8q9fb7R2DhdqGV4o1RVy7xxo4D6ifQfbxGiASdxEH',
+  },
+  MNGO: {
+      symbol: 'MNGO',
+      name: 'MNGO',
+      mintAddress: 'MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac',
+      decimals: 6,
+      referrer: 'CijuvE6qDpxZ5WqdEQEe7mS11fXEKiiHc7RR8wRiGzjY',
   }
 }
