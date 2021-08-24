@@ -1,4 +1,4 @@
-import { Button, Col, Input, InputNumber, Radio, Row, Select, Slider, Switch } from 'antd';
+import { Button, Col, Input, Row, Select, Slider, Switch } from 'antd';
 import React, { useEffect, useState } from 'react';
 import {
   useFeeDiscountKeys,
@@ -23,12 +23,6 @@ import { useWallet } from '../utils/wallet';
 import {floorToDecimal, getDecimalCount, roundToDecimal, useLocalStorageState,} from '../utils/utils';
 import {getUnixTs, placeOrder, settleFunds} from '../utils/send';
 import {useInterval} from "../utils/useInterval";
-
-const SellButton = styled(Button)`
-  margin: 20px 0px 0px 0px;
-  background: #f23b69;
-  border-color: #f23b69;
-`;
 
 const BuyButton = styled(Button)`
   margin: 20px 0px 0px 0px;
@@ -104,6 +98,7 @@ export default function TradeForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [price, baseSize]);
 
+  const walletPubkey =  wallet?.publicKey
   useEffect(() => {
     const warmUpCache = async () => {
       try {
@@ -131,7 +126,7 @@ export default function TradeForm({
     warmUpCache();
     const id = setInterval(warmUpCache, 30_000);
     return () => clearInterval(id);
-  }, [market, sendConnection, wallet, wallet?.publicKey]);
+  }, [market, sendConnection, wallet, walletPubkey]);
 
   
   useInterval(() => {

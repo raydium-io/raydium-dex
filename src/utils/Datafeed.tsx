@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { sleep } from './utils';
 
 const URL = 'https://serum-api.bonfida.com/tv/';
@@ -266,12 +266,6 @@ const makeDataFeed = () => {
           console.warn(e);
           await sleep(10000);
           continue;
-        }
-
-        if (!stopped) {
-          console.log('!stopped', candle);
-
-          onRealtimeCallback(candle);
         }
       }
     },

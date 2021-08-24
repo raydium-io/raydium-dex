@@ -1,7 +1,5 @@
 import React from 'react';
-import { Button, Popover } from 'antd';
 import { Dropdown, Menu } from 'antd';
-import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
 import { useWallet } from '../utils/wallet';
 import LinkAddress from './LinkAddress';
 

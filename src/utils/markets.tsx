@@ -7,8 +7,7 @@ import {
   MarketInfo,
   OrderWithMarketAndMarketName,
   SelectedTokenAccounts,
-  TokenAccount,
-  Trade,
+  TokenAccount
 } from './types';
 import {
   MARKETS,
@@ -16,8 +15,7 @@ import {
   OpenOrders,
   Orderbook,
   TOKEN_MINTS,
-  TokenInstructions,
-  decodeEventQueue,
+  TokenInstructions
 } from '@project-serum/serum';
 import React, { useContext, useEffect, useState } from 'react';
 import {getCache, setCache} from './fetch-loop';
@@ -346,7 +344,7 @@ const _MARKETS = [
   // ...MARKETS,
 ];
 
-MARKETS.map(item => {
+MARKETS.forEach(item => {
   if (item.address.toBase58() !== '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') {
     if (item.address.toBase58() === '7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2') {
       _MARKETS.push( {
@@ -358,7 +356,6 @@ MARKETS.map(item => {
     } else {
       _MARKETS.push(item)
     }
-    
   }
 })
 

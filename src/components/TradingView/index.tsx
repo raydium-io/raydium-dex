@@ -9,7 +9,6 @@ import {
   widget,
 } from '../../charting_library';
 
-import { findTVMarketFromAddress } from '../../utils/tradingview';
 import { flatten } from '../../utils/utils';
 import { useMarket } from '../../utils/markets';
 import { useTvDataFeed } from '../../utils/Datafeed';
@@ -138,7 +137,7 @@ export const TVChartContainer = () => {
         // @ts-ignore
         .subscribe('onAutoSaveNeeded', () => tvWidget.saveChartToServer());
     });
-  }, [marketName, tvWidgetRef.current]);
+  }, [chartProperties, datafeed, defaultProps.autosize, defaultProps.clientId, defaultProps.containerId, defaultProps.fullscreen, defaultProps.interval, defaultProps.libraryPath, defaultProps.studiesOverrides, defaultProps.theme, defaultProps.userId, marketName]);
 
   return <div style={{ height: 540 }} id={defaultProps.containerId} className={'TVChartContainer'} />;
 };

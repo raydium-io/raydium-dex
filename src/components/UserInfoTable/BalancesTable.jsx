@@ -4,7 +4,6 @@ import {
   useTokenAccounts,
   getSelectedTokenAccountForMint,
 } from '../../utils/markets';
-import DataTable from '../layout/DataTable';
 import { useSendConnection } from '../../utils/connection';
 import { useWallet } from '../../utils/wallet';
 import { settleFunds } from '../../utils/send';
@@ -54,51 +53,6 @@ export default function BalancesTable({
     setRowItem(rowItem + 1);
   }
   // setRowItem(Math.floor(24 / rowItem));
-  const columns = [
-    showMarket
-      ? {
-          title: 'Market',
-          dataIndex: 'marketName',
-          key: 'marketName',
-        }
-      : null,
-    {
-      title: 'Coin',
-      dataIndex: 'coin',
-      key: 'coin',
-    },
-    hideWalletBalance
-      ? null
-      : {
-          title: 'Wallet Balance',
-          dataIndex: 'wallet',
-          key: 'wallet',
-        },
-    {
-      title: 'Orders',
-      dataIndex: 'orders',
-      key: 'orders',
-    },
-    {
-      title: 'Unsettled',
-      dataIndex: 'unsettled',
-      key: 'unsettled',
-    },
-    {
-      key: 'action',
-      render: ({ market, openOrders, marketName }) => (
-        <div style={{ textAlign: 'right' }}>
-          <Button
-            ghost
-            style={{ marginRight: 12 }}
-            onClick={() => onSettleFunds(market, openOrders)}
-          >
-            Settle {marketName}
-          </Button>
-        </div>
-      ),
-    },
-  ].filter((x) => x);
   return (
     <>
       <Row

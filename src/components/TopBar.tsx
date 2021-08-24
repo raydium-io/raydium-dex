@@ -1,22 +1,14 @@
-import {
-  InfoCircleOutlined,
-  PlusCircleOutlined,
-  SettingOutlined,
-} from '@ant-design/icons';
-import { Button, Col, Menu, Popover, Row, Select, Dropdown } from 'antd';
-import React, { useCallback, useEffect, useState } from 'react';
+import { Col, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import styled from 'styled-components';
-import { useWallet, WALLET_PROVIDERS } from '../utils/wallet';
 import { ENDPOINTS, useConnectionConfig } from '../utils/connection';
-import Settings from './Settings';
 import CustomClusterEndpointDialog from './CustomClusterEndpointDialog';
 import { EndpointInfo } from '../utils/types';
 import { notify } from '../utils/notifications';
 import { Connection } from '@solana/web3.js';
 import WalletConnect from './WalletConnect';
-import AppSearch from './AppSearch';
 import { getTradePageUrl } from '../utils/markets';
 
 const Wrapper = styled.div`
@@ -55,9 +47,7 @@ const EXTERNAL_LINKS = {
 };
 
 export default function TopBar() {
-  const { connected, wallet, providerUrl, setProvider } = useWallet();
   const {
-    endpoint,
     endpointInfo,
     setEndpoint,
     availableEndpoints,
@@ -67,16 +57,6 @@ export default function TopBar() {
   const [testingConnection, setTestingConnection] = useState(false);
   const location = useLocation();
   const history = useHistory();
-  const [searchFocussed, setSearchFocussed] = useState(false);
-
-  const handleClick = useCallback(
-    (e) => {
-      if (!(e.key in EXTERNAL_LINKS)) {
-        history.push(e.key);
-      }
-    },
-    [history],
-  );
 
   const onAddCustomEndpoint = (info: EndpointInfo) => {
     const existingEndpoint = availableEndpoints.some(

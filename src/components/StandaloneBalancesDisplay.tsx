@@ -1,4 +1,4 @@
-import { Button, Col, Divider, Popover, Row } from 'antd';
+import { Button, Col, Row } from 'antd';
 import React, { useState } from 'react';
 import FloatingElement from './layout/FloatingElement';
 import styled from 'styled-components';
@@ -12,23 +12,15 @@ import {
 } from '../utils/markets';
 import DepositDialog from './DepositDialog';
 import { useWallet } from '../utils/wallet';
-import Link from './Link';
 import { settleFunds } from '../utils/send';
 import { useSendConnection } from '../utils/connection';
 import { notify } from '../utils/notifications';
 import { Balances } from '../utils/types';
 import StandaloneTokenAccountsSelect from './StandaloneTokenAccountSelect';
-import LinkAddress from './LinkAddress';
-import { InfoCircleOutlined } from '@ant-design/icons';
 import logo1 from '../assets/logo1.svg';
 
 const RowBox = styled(Row)`
   padding-bottom: 20px;
-`;
-
-const Tip = styled.p`
-  font-size: 12px;
-  padding-top: 6px;
 `;
 
 const ActionButton = styled(Button)`
@@ -46,7 +38,7 @@ export default function StandaloneBalancesDisplay() {
   const balances = useBalances();
   const openOrdersAccount = useSelectedOpenOrdersAccount(true);
   const connection = useSendConnection();
-  const { providerUrl, providerName, wallet, connected } = useWallet();
+  const { wallet, connected } = useWallet();
   const [baseOrQuote, setBaseOrQuote] = useState('');
   const baseCurrencyAccount = useSelectedBaseCurrencyAccount();
   const quoteCurrencyAccount = useSelectedQuoteCurrencyAccount();

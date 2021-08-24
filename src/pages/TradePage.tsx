@@ -27,7 +27,6 @@ import TradesTable from '../components/TradesTable';
 import UserInfoTable from '../components/UserInfoTable';
 import { notify } from '../utils/notifications';
 import styled from 'styled-components';
-import { nanoid } from 'nanoid';
 
 
 const { Option, OptGroup } = Select;
@@ -149,7 +148,7 @@ function TradePageInner() {
     const newCustomMarkets = customMarkets.filter((m) => m.address !== address);
     setCustomMarkets(newCustomMarkets);
   };
-  const [newMarKets, setNewMarkets] = useState(markets);
+  const [newMarKets] = useState(markets);
 
   return (
     <>
@@ -226,9 +225,6 @@ function MarketSelector({
     setHandleDeprecated(false);
     setMarketAddress(marketAddress);
   };
-
-  const extractBase = (a) => a.split('/')[0];
-  const extractQuote = (a) => a.split('/')[1];
 
   const selectedMarket = getMarketInfos(customMarkets)
     .find(

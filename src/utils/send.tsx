@@ -14,9 +14,7 @@ import {
   DexInstructions,
   Market,
   OpenOrders,
-  TOKEN_MINTS,
-  TokenInstructions,
-  parseInstructionErrorResponse,
+  TokenInstructions
 } from '@project-serum/serum';
 import { SelectedTokenAccounts, TokenAccount } from './types';
 import { getDecimalCount, sleep } from './utils';
@@ -24,7 +22,6 @@ import { getDecimalCount, sleep } from './utils';
 import BN from 'bn.js';
 import { Buffer } from 'buffer';
 import { Order } from '@project-serum/serum/lib/market';
-import Wallet from '@project-serum/sol-wallet-adapter';
 import assert from 'assert';
 import { getSelectedTokenAccountForMint } from './markets';
 import { getTokenByMintAddress } from './tokens'

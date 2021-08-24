@@ -1,14 +1,11 @@
 import BalancesTable from './BalancesTable';
 import OpenOrderTable from './OpenOrderTable';
-import React, { useEffect, useState } from 'react';
-import { Tabs, Typography, Col, Row } from 'antd';
+import React, { useState } from 'react';
+import { Col, Row } from 'antd';
 import FillsTable from './FillsTable';
 import FloatingElement from '../layout/FloatingElement';
 import FeesTable from './FeesTable';
 import { useOpenOrders, useBalances, useMarket } from '../../utils/markets';
-
-const { Paragraph } = Typography;
-const { TabPane } = Tabs;
 
 export default function Index() {
   const { market } = useMarket();
