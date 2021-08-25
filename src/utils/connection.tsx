@@ -7,7 +7,7 @@ import { ConnectionContextValues, EndpointInfo } from './types';
 
 
 export const endpoints = [
-  { url: 'https://api.mainnet-beta.solana.com', weight: 100 },
+  { url: 'https://free.rpcpool.com', weight: 100 },
   // { url: 'https://raydium.rpcpool.com', weight: 75 },
   // { url: 'https://solana-api.projectserum.com', weight: 25 }
 ]

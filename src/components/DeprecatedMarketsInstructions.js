@@ -16,11 +16,8 @@ const { Title } = Typography;
 
 export default function DeprecatedMarketsInstructions({ switchToLiveMarkets }) {
   const balances = useBalancesForDeprecatedMarkets();
-  const {
-    openOrders,
-    loaded,
-    refreshOpenOrders,
-  } = useGetOpenOrdersForDeprecatedMarkets();
+  const { openOrders, loaded, refreshOpenOrders } =
+    useGetOpenOrdersForDeprecatedMarkets();
 
   const { refresh } = useUnmigratedOpenOrdersAccounts();
   const needToCancelOrders = !openOrders || openOrders.length > 0;
@@ -37,7 +34,7 @@ export default function DeprecatedMarketsInstructions({ switchToLiveMarkets }) {
         <Link
           external
           to={
-            'https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
+            'https://solscan.io/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
           }
         >
           Native USDC
@@ -59,7 +56,7 @@ export default function DeprecatedMarketsInstructions({ switchToLiveMarkets }) {
         <Link
           external
           to={
-            'https://explorer.solana.com/address/BXXkv6z8ykpG1yuvUDPgh732wzVHB69RnB9YgSYh3itW'
+            'https://solscan.io/address/BXXkv6z8ykpG1yuvUDPgh732wzVHB69RnB9YgSYh3itW'
           }
         >
           Wrapped USDC
