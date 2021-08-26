@@ -27,6 +27,7 @@ import TradesTable from '../components/TradesTable';
 import UserInfoTable from '../components/UserInfoTable';
 import { notify } from '../utils/notifications';
 import styled from 'styled-components';
+import { nanoid } from 'nanoid';
 
 
 const { Option, OptGroup } = Select;
@@ -265,7 +266,7 @@ function MarketSelector({
           {customMarkets.map(({ address, name }, i) => (
             <Option
               value={address}
-              key={address}
+              key={nanoid()}
               name={name}
               style={{
                 padding: '10px',
@@ -293,25 +294,10 @@ function MarketSelector({
       )}
       <OptGroup label="Markets">
         {uniqueArray(markets)
-          // .sort((a, b) =>
-          //   extractQuote(a.name) === 'USDT' && extractQuote(b.name) !== 'USDT'
-          //     ? -1
-          //     : extractQuote(a.name) !== 'USDT' &&
-          //     extractQuote(b.name) === 'USDT'
-          //     ? 1
-          //     : 0,
-          // )
-          // .sort((a, b) =>
-          //   extractBase(a.name) < extractBase(b.name)
-          //     ? -1
-          //     : extractBase(a.name) > extractBase(b.name)
-          //     ? 1
-          //     : 0,
-          // )
           .map(({ address, name, deprecated }, i) => (
             <Option
               value={address.toBase58()}
-              key={address.toBase58()}
+              key={nanoid()}
               name={name}
               style={{
                 padding: '10px',
