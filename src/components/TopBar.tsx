@@ -146,7 +146,7 @@ export default function TopBar() {
                   display: 'inline-block',
                 }}
               >
-                TRADING
+                Trading
               </div>
               <div
                 style={{
