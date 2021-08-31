@@ -6,7 +6,6 @@ import { GlobalStyle } from './global_style';
 import { Spin } from 'antd';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Routes } from './routes';
-import { PreferencesProvider } from './utils/preferences';
 import { ReferrerProvider } from './utils/referrer';
 
 export default function App() {
@@ -17,11 +16,9 @@ export default function App() {
         <ConnectionProvider>
           <ReferrerProvider>
             <WalletProvider>
-              <PreferencesProvider>
-                <Suspense fallback={() => <Spin size="large" />}>
-                  <Routes />
-                </Suspense>
-              </PreferencesProvider>
+              <Suspense fallback={() => <Spin size="large" />}>
+                <Routes />
+              </Suspense>
             </WalletProvider>
           </ReferrerProvider>
         </ConnectionProvider>
