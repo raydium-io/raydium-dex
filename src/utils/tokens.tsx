@@ -627,5 +627,33 @@ export const TOKENS: Tokens = {
       mintAddress: 'MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac',
       decimals: 6,
       referrer: 'CijuvE6qDpxZ5WqdEQEe7mS11fXEKiiHc7RR8wRiGzjY',
-  }
+  },
+  CRP: {
+    symbol: 'CRP',
+    name: 'CRP',
+    mintAddress: 'DubwWZNWiNGMMeeQHPnMATNj77YZPZSAz2WVR5WjLJqz',
+    decimals: 9,
+    referrer: 'FKocyVJptELTbnkUkDRmT7y6hUem2JYrqHoph9uyvQXt',
+  },
+  ATLAS: {
+    symbol: 'ATLAS',
+    name: 'ATLAS',
+    mintAddress: 'ATLASXmbPQxBUYbxPsV97usA3fPQYEqzQBUHgiFCUsXx',
+    decimals: 8,
+    referrer: '9t9mzbkMtLdazj1D9JycS15Geb1KVtcDt4XyAkpM72Ee',
+  },
+  POLIS: {
+    symbol: 'POLIS',
+    name: 'POLIS',
+    mintAddress: 'poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qVk',
+    decimals: 8,
+    referrer: 'CQ7HWCeSSp3tAfWzqH7ZEzgnTBr5Tvz1No3Y1xbiWzBm',
+  },
+  GRAPE: {
+    symbol: 'GRAPE',
+    name: 'GRAPE',
+    mintAddress: '8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA',
+    decimals: 6,
+    referrer: '8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA',
+  },
 }

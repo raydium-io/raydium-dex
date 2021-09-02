@@ -341,6 +341,30 @@ const _MARKETS = [
     address: new PublicKey('6y9WTFJRYoqKXQQZftFxzLdnBYStvqrDmLwTFAUarudt'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'ATLAS/RAY',
+    deprecated: false,
+    address: new PublicKey('Bn7n597jMxU4KjBPUo3QwJhbqr5145cHy31p6EPwPHwL'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'ATLAS/USDC',
+    deprecated: false,
+    address: new PublicKey('Di66GTLsV64JgCCYGVcY21RZ173BHkjJVgPyezNN7P1K'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'POLIS/RAY',
+    deprecated: false,
+    address: new PublicKey('3UP5PuGN6db7NhWf4Q76FLnR4AguVFN14GvgDbDj1u7h'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'POLIS/USDC',
+    deprecated: false,
+    address: new PublicKey('HxFLKUAmAMLz1jtT3hbvCMELwH5H9tpM2QugP8sKyfhW'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -591,6 +615,22 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac'),
     name: 'MNGO',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('DubwWZNWiNGMMeeQHPnMATNj77YZPZSAz2WVR5WjLJqz'),
+    name: 'CRP',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('ATLASXmbPQxBUYbxPsV97usA3fPQYEqzQBUHgiFCUsXx'),
+    name: 'ATLAS',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qVk'),
+    name: 'POLIS',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA'),
+    name: 'GRAPE',
   });
 
   const baseCurrency =
