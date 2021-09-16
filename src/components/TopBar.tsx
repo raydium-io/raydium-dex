@@ -43,6 +43,7 @@ const EXTERNAL_LINKS = {
   '/migrate': 'https://raydium.io/migrate',
   '/info': 'https://raydium.io/info',
   '/acceleRaytor': 'https://raydium.io/acceleraytor/',
+  '/dropZone': 'https://dropzone.raydium.io',
   '/pools': 'https://raydium.io/pools/',
 };
 
@@ -284,6 +285,29 @@ export default function TopBar() {
                 style={{ color : 'rgb(173,175,184)',}}
               >
                 AcceleRaytor
+              </a>
+            </div>
+            <div
+              style={{
+                height: 50,
+                width: 100,
+                textAlign: 'center',
+                border: 'transparent',
+                background: 'transparent',
+                fontSize: 14,
+                fontStyle: 'normal',
+                fontWeight: 600,
+                color: 'rgb(173,175,184)',
+                display: 'inline-block',
+              }}
+            >
+              <a
+                href={EXTERNAL_LINKS['/dropZone']}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color : 'rgb(173,175,184)',}}
+              >
+                DropZone
               </a>
             </div>
             <div
