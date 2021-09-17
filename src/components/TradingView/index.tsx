@@ -67,9 +67,6 @@ export const TVChartContainer = () => {
 
     const widgetOptions: ChartingLibraryWidgetOptions = {
       symbol: marketName as string,
-      // BEWARE: no trailing slash is expected in feed URL
-      // tslint:disable-next-line:no-any
-      // @ts-ignore
       datafeed: datafeed,
       interval: defaultProps.interval as ChartingLibraryWidgetOptions['interval'],
       container_id: defaultProps.containerId as ChartingLibraryWidgetOptions['container_id'],
