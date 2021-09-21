@@ -32,7 +32,7 @@ const makeDataFeed = () => {
     onReady(callback) {
       setTimeout(() => callback({
         supported_resolutions: ['1', '3', '5', '15', '30', '45', '60', '120', '240',
-        '1D', '2D', '3D', '5D', '1W', '1M', '12M'],
+        '1D', '2D', '3D', '5D', '1W', '1M', '2M', '3M', '6M', '12M'],
         supports_group_request: false,
         supports_marks: false,
         supports_search: false,
@@ -40,8 +40,8 @@ const makeDataFeed = () => {
       }), 0)
     },
     async searchSymbol(userInput, exchange, symbolType, onResult) {
-      const result = await apiGet(`${URL_SERVER}search?query=${userInput}&type=${symbolType}&exchange=${exchange}&limit=${100}`);
-      onResult(result);
+      // const result = await apiGet(`${URL_SERVER}search?query=${userInput}&type=${symbolType}&exchange=${exchange}&limit=${100}`);
+      // onResult(result);
     },
     async resolveSymbol(
       symbolName,
@@ -49,9 +49,19 @@ const makeDataFeed = () => {
       onResolveErrorCallback,
       extension?,
     ) {
-      const marketInfo = USE_MARKETS.find(item => item.name === symbolName)
+      let customMarket = []
+      try {
+        customMarket = JSON.parse(localStorage.getItem('customMarkets'))
+      } catch(e) {
+        console.log('error', e)
+      }
+      let marketInfo = USE_MARKETS.find(item => item.name === symbolName)
 
       if (!marketInfo){
+        marketInfo = customMarket.find(item => item.name === symbolName)
+      }
+
+      if (!marketInfo) {
         return
       }
 
@@ -74,6 +84,8 @@ const makeDataFeed = () => {
     ) {
       from = Math.floor(from);
       to = Math.ceil(to);
+
+      console.log('get bars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON())
       
       resolution = convertResolutionToApi(resolution)
 
@@ -114,25 +126,20 @@ const makeDataFeed = () => {
           return;
         }
 
-        let candle;
         try {
           const to = Math.ceil(new Date().getTime() / 1000);
           const from = reduceTs(to, resolution);
 
-          resolution = convertResolutionToApi(resolution)
+          console.log('get subscribeBars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON())
+          const resolutionApi = convertResolutionToApi(resolution)
 
-          candle = await getApi(
-            `${URL_SERVER}history?market=${symbolInfo.market}&resolution=${resolution}&from_time=${from}&to_time=${to}`
+          const candle = await getApi(
+            `${URL_SERVER}history?market=${symbolInfo.market}&resolution=${resolutionApi}&from_time=${from}&to_time=${to}`
           )
-          const lastCandle = {
-            time: candle.t[0] * 1000,
-            close: candle.c[0],
-            open: candle.o[0],
-            high: candle.h[0],
-            low: candle.l[0],
-            volume: candle.v[0],
-          };
-          onRealtimeCallback(lastCandle);
+
+          for (const item of parseCandles(candle)){
+            onRealtimeCallback(item);
+          }
           continue;
         } catch (e) {
           console.warn(e);
@@ -168,48 +175,98 @@ const makeDataFeed = () => {
 };
 
 const reduceTs = (ts: number, resolutionTv: string) => {
-  let resolution = convertResolution(resolutionTv);
-  switch (resolution) {
-    case 1:
-      return ts - (ts % 60);
-    case 60:
-      return ts - (ts % (60 * 60));
-    case 4 * 60:
-      return ts - (ts % (4 * 60 * 60));
-    case '1D':
-      return ts - (ts % (24 * 60 * 60));
-    default:
-      return 0;
-  }
-};
-
-const convertResolution = (resolution: string) => {
-  switch (resolution) {
+  console.log(222222, resolutionTv)
+  switch (resolutionTv) {
     case '1':
-      return 1;
+      return ts - 60 * 1;
+    case '3':
+      return ts - 60 * 3;
+    case '5':
+      return ts - 60 * 5;
+    case '15':
+      return ts - 60 * 15;
+    case '30':
+      return ts - 60 * 30;
+    case '45':
+      return ts - 60 * 45;
     case '60':
-      return 60;
+      return ts - 60 * 60;
+    case '120':
+      return ts - 60 * 120;
     case '240':
-      return 4 * 60;
+      return ts - 60 * 240;
+    case '720':
+      return ts - 60 * 720;
     case '1D':
-      return '1D';
+      return ts - 3600 * 24;
+    case '2D':
+      return ts - 3600 * 24 * 2;
+    case '3D':
+      return ts - 3600 * 24 * 3;
+    case '5D':
+      return ts - 3600 * 24 * 5;
+    case '7D':
+      return ts - 3600 * 24 * 7;
+    case '1M': 
+      return ts - 3600 * 24 * 31 * 1;
+    case '2M': 
+      return ts - 3600 * 24 * 31 * 2;
+    case '3M': 
+      return ts - 3600 * 24 * 31 * 3;
+    case '6M': 
+      return ts - 3600 * 24 * 31 * 6;
+    case '1Y': 
+      return ts - 3600 * 24 * 31 * 12;
     default:
-      return 1;
+      throw Error(`reduceTs resolution error: ${resolutionTv}`)
   }
 };
 
 const convertResolutionToApi = (resolution: string) => {
+  console.log(111111, resolution)
   switch (resolution) {
     case '1':
-      return 1;
+      return '1min';
+    case '3':
+      return '3min';
+    case '5':
+      return '5min';
+    case '15':
+      return '3min';
+    case '30':
+      return '30min';
+    case '45':
+      return '45min';
     case '60':
       return '1h';
+    case '120':
+      return '2h';
     case '240':
-      return 4 * 60;
+      return '4h';
+    case '720':
+      return '12h';
     case '1D':
-      return '1D';
+      return '1d';
+    case '2D':
+      return '2d';
+    case '3D':
+      return '3d';
+    case '5D':
+      return '5d';
+    case '7D':
+      return '7d';
+    case '1M': 
+      return '1m';
+    case '2M': 
+      return '2m';
+    case '3M': 
+      return '3m';
+    case '6M': 
+      return '6m';
+    case '1Y': 
+      return '1y';
     default:
-      return 1;
+      throw Error(`convertResolutionToApi resolution error: ${resolution}`)
   }
 };
 
