@@ -34,7 +34,7 @@ const makeDataFeed = () => {
   return {
     onReady(callback) {
       setTimeout(() => callback({
-        supported_resolutions: ['15', '60', '120', '240', '1D',
+        supported_resolutions: ['5', '15', '60', '120', '240', '1D',
         //  '2D', '3D', '5D', '1W', '1M', '2M', '3M', '6M', '12M'
         ],
         supports_group_request: false,
