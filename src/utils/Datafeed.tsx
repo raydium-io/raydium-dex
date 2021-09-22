@@ -157,7 +157,7 @@ const makeDataFeed = () => {
           console.log('get subscribeBars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON(), subscriberUID)
           const resolutionApi = convertResolutionToApi(resolution)
 
-          if (lastReqTime[subscriberUID] && lastReqTime[subscriberUID] + 1000 * 15 > new Date().getTime()) {
+          if (lastReqTime[subscriberUID] && lastReqTime[subscriberUID] + 1000 * 60 > new Date().getTime()) {
             continue
           }
           lastReqTime[subscriberUID] = new Date().getTime()
