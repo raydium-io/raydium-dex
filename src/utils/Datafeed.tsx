@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { USE_MARKETS } from './markets';
 import { sleep } from './utils';
 
+const URL_SERVER = 'https://api.raydium.io/tv/';
 
 export const useTvDataFeed = () => {
   return useMemo(() => makeDataFeed(), []);
@@ -10,6 +11,8 @@ export const useTvDataFeed = () => {
 
 const makeDataFeed = () => {
   let subscriptions = {};
+  const overTime = {};
+  const lastReqTime = {}; 
 
   const getApi = async (url: string) => {
     try {
@@ -31,8 +34,9 @@ const makeDataFeed = () => {
   return {
     onReady(callback) {
       setTimeout(() => callback({
-        supported_resolutions: ['1', '3', '5', '15', '30', '45', '60', '120', '240',
-        '1D', '2D', '3D', '5D', '1W', '1M', '2M', '3M', '6M', '12M'],
+        supported_resolutions: ['15', '60', '120', '240', '1D',
+        //  '2D', '3D', '5D', '1W', '1M', '2M', '3M', '6M', '12M'
+        ],
         supports_group_request: false,
         supports_marks: false,
         supports_search: false,
@@ -40,7 +44,7 @@ const makeDataFeed = () => {
       }), 0)
     },
     async searchSymbol(userInput, exchange, symbolType, onResult) {
-      // const result = await apiGet(`${URL_SERVER}search?query=${userInput}&type=${symbolType}&exchange=${exchange}&limit=${100}`);
+      // const result = await apiGet(`${URL_SERVER}search?query=${userInput}&type=${symbolType}&exchange=${exchange}&limit=${1}`);
       // onResult(result);
     },
     async resolveSymbol(
@@ -55,7 +59,7 @@ const makeDataFeed = () => {
       } catch(e) {
         console.log('error', e)
       }
-      let marketInfo = USE_MARKETS.find(item => item.name === symbolName)
+      let marketInfo = USE_MARKETS.find(item => item.name === symbolName && !item.deprecated)
 
       if (!marketInfo){
         marketInfo = customMarket.find(item => item.name === symbolName)
@@ -85,14 +89,33 @@ const makeDataFeed = () => {
       from = Math.floor(from);
       to = Math.ceil(to);
 
-      console.log('get bars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON())
+      console.log('get bars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON(), resolution)
       
       resolution = convertResolutionToApi(resolution)
+
+      if (from < minTs(symbolInfo.out_count, resolution)) {
+        onHistoryCallback([], {nodeData: false})
+        return
+      }
+
+      if (from < 1609459200) from = 1609459200
+      
+      const key = `${symbolInfo.market}--${resolution}`
+
+      if (overTime[key] && overTime[key] > from) {
+        onHistoryCallback([], {nodeData: false})
+        return
+      }
 
       try {
         const result = await getApi(
           `${URL_SERVER}history?market=${symbolInfo.market}&resolution=${resolution}&from_time=${from}&to_time=${to}`
         )
+
+        if (result.c.length === 0 ) {
+          overTime[key] = to
+        } 
+
         onHistoryCallback(parseCandles(result), {
           nodeData: result.length === 0,
         });
@@ -107,6 +130,7 @@ const makeDataFeed = () => {
       subscriberUID,
       onResetCacheNeededCallback,
     ) {
+      console.log('subscribeBars', symbolInfo, resolution, subscriberUID)
       if (subscriptions[subscriberUID]) {
         subscriptions[subscriberUID].stop();
         delete subscriptions[subscriberUID];
@@ -130,8 +154,13 @@ const makeDataFeed = () => {
           const to = Math.ceil(new Date().getTime() / 1000);
           const from = reduceTs(to, resolution);
 
-          console.log('get subscribeBars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON())
+          console.log('get subscribeBars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON(), subscriberUID)
           const resolutionApi = convertResolutionToApi(resolution)
+
+          if (lastReqTime[subscriberUID] && lastReqTime[subscriberUID] + 1000 * 15 > new Date().getTime()) {
+            continue
+          }
+          lastReqTime[subscriberUID] = new Date().getTime()
 
           const candle = await getApi(
             `${URL_SERVER}history?market=${symbolInfo.market}&resolution=${resolutionApi}&from_time=${from}&to_time=${to}`
@@ -153,7 +182,7 @@ const makeDataFeed = () => {
       delete subscriptions[subscriberUID];
     },
     async searchSymbols(userInput: string, exchange: string, symbolType: string, onResult: SearchSymbolsCallback) {
-      const marketList: any[] = USE_MARKETS.filter(item => item.name.includes(userInput))
+      const marketList: any[] = USE_MARKETS.filter(item => item.name.includes(userInput) && !item.deprecated)
       const reList = []
       marketList.forEach(item => {
         reList.push({
@@ -166,7 +195,6 @@ const makeDataFeed = () => {
           ticker: item.name
         })
       })
-      console.log(userInput, exchange, symbolType, onResult, reList)
       if (onResult) {
         onResult(reList)
       }
@@ -174,8 +202,55 @@ const makeDataFeed = () => {
   };
 };
 
+const minTs = (minCount: number, resolutionTv: string) => {
+  const ts = new Date().getTime() / 1000
+  switch (resolutionTv) {
+    case '1min':
+      return ts - 60 * 1 * minCount;
+    case '3min':
+      return ts - 60 * 3 * minCount;
+    case '5min':
+      return ts - 60 * 5 * minCount;
+    case '15min':
+      return ts - 60 * 15 * minCount;
+    case '30min':
+      return ts - 60 * 30 * minCount;
+    case '45min':
+      return ts - 60 * 45 * minCount;
+    case '1h':
+      return ts - 60 * 60 * minCount;
+    case '2h':
+      return ts - 60 * 120 * minCount;
+    case '4h':
+      return ts - 60 * 240 * minCount;
+    case '12h':
+      return ts - 60 * 720 * minCount;
+    case '1d':
+      return ts - 3600 * 24 * minCount;
+    case '2d':
+      return ts - 3600 * 24 * 2 * minCount;
+    case '3d':
+      return ts - 3600 * 24 * 3 * minCount;
+    case '5d':
+      return ts - 3600 * 24 * 5 * minCount;
+    case '7d':
+      return ts - 3600 * 24 * 7 * minCount;
+    case '1m' :
+      return ts - 3600 * 24 * 31 * 1 * minCount;
+    case '2m' :
+      return ts - 3600 * 24 * 31 * 2 * minCount;
+    case '3m' :
+      return ts - 3600 * 24 * 31 * 3 * minCount;
+    case '6m' :
+      return ts - 3600 * 24 * 31 * 6 * minCount;
+    case '1y' :
+      return ts - 3600 * 24 * 31 * 12 * minCount;
+    default:
+      throw Error(`minTs resolution error: ${resolutionTv}`)
+  }
+};
+
 const reduceTs = (ts: number, resolutionTv: string) => {
-  console.log(222222, resolutionTv)
   switch (resolutionTv) {
     case '1':
       return ts - 60 * 1;
@@ -223,7 +298,6 @@ const reduceTs = (ts: number, resolutionTv: string) => {
 };
 
 const convertResolutionToApi = (resolution: string) => {
-  console.log(111111, resolution)
   switch (resolution) {
     case '1':
       return '1min';
@@ -232,7 +306,7 @@ const convertResolutionToApi = (resolution: string) => {
     case '5':
       return '5min';
     case '15':
-      return '3min';
+      return '15min';
     case '30':
       return '30min';
     case '45':

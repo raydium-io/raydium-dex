@@ -30,6 +30,7 @@ export interface ChartContainerProps {
   studiesOverrides: ChartingLibraryWidgetOptions['studies_overrides'];
   containerId: ChartingLibraryWidgetOptions['container_id'];
   theme: string;
+  timeframe: ChartingLibraryWidgetOptions['timeframe'];
 }
 
 export interface ChartContainerState {}
@@ -51,6 +52,7 @@ export const TVChartContainer = () => {
     fullscreen: false,
     autosize: true,
     studiesOverrides: {},
+    timeframe: '1D'
   };
 
   const tvWidgetRef = React.useRef<IChartingLibraryWidget | null>(null);
