@@ -30,6 +30,7 @@ export interface ChartContainerProps {
   studiesOverrides: ChartingLibraryWidgetOptions['studies_overrides'];
   containerId: ChartingLibraryWidgetOptions['container_id'];
   theme: string;
+  timeframe: ChartingLibraryWidgetOptions['timeframe'];
 }
 
 export interface ChartContainerState {}
@@ -51,6 +52,7 @@ export const TVChartContainer = () => {
     fullscreen: false,
     autosize: true,
     studiesOverrides: {},
+    timeframe: '1D'
   };
 
   const tvWidgetRef = React.useRef<IChartingLibraryWidget | null>(null);
@@ -67,9 +69,6 @@ export const TVChartContainer = () => {
 
     const widgetOptions: ChartingLibraryWidgetOptions = {
       symbol: marketName as string,
-      // BEWARE: no trailing slash is expected in feed URL
-      // tslint:disable-next-line:no-any
-      // @ts-ignore
       datafeed: datafeed,
       interval: defaultProps.interval as ChartingLibraryWidgetOptions['interval'],
       container_id: defaultProps.containerId as ChartingLibraryWidgetOptions['container_id'],

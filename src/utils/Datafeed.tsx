@@ -1,147 +1,9 @@
 // @ts-nocheck
 import { useMemo } from 'react';
+import { USE_MARKETS } from './markets';
 import { sleep } from './utils';
 
-const URL = 'https://serum-api.bonfida.com/tv/';
-
-const X = [
-  '1045529pOiBJz',
-  'cPLzc',
-  '1142540VecyVK',
-  'rlUik',
-  '577391szPtPO',
-  'subtle',
-  'CCCPGTDWqnEg3eMUrimj',
-  '2AxnvtD',
-  'symbol',
-  '&auth=',
-  'Qeeef',
-  '171418QDwYjT',
-  'GET',
-  'MtwRi',
-  'getTime',
-  'toString',
-  'from',
-  'digest',
-  '7954rqLEJT',
-  '2uXFGco',
-  'FyLkI',
-  'SHA-256',
-  'json',
-  '28yNhqFa',
-  '440584Yhkmes',
-  'tVDWs',
-  '1159216SoDZHv',
-  'log',
-];
-const A = function (F, p) {
-  F = F - (0x5 * 0x515 + -0x1918 + 0x1 * 0xb5);
-  let N = X[F];
-  return N;
-};
-(function (F, p) {
-  const j = function (F, p) {
-    return A(p - 0x93, F);
-  };
-  while (!![]) {
-    try {
-      const N =
-        -parseInt(j(0x1af, 0x1b3)) * -parseInt(j(0x1a0, 0x19c)) +
-        parseInt(j(0x19e, 0x19e)) +
-        -parseInt(j(0x1a3, 0x1a0)) +
-        parseInt(j(0x1be, 0x1b2)) * -parseInt(j(0x1a6, 0x19b)) +
-        -parseInt(j(0x1a3, 0x1a7)) * -parseInt(j(0x1ab, 0x1a4)) +
-        -parseInt(j(0x1a4, 0x1a2)) +
-        parseInt(j(0x1b8, 0x1ab));
-      if (N === p) {
-        break;
-      } else {
-        F['push'](F['shift']());
-      }
-    } catch (m) {
-      F['push'](F['shift']());
-    }
-  }
-})(X, 0x7 * 0x40887 + -0x19a3 * -0x116 + -0x297d18);
-async function apiGet(F, p) {
-  const B = function (F, p) {
-    return A(p - 0x3a, F);
-  };
-  const N = {
-    tVDWs: function (m, d) {
-      return m + d;
-    },
-    Qeeef: B(0x14c, 0x153),
-  };
-  try {
-    const m = await _lodash(p[B(0x152, 0x14f)], p['from'], p['to']);
-    let d = await fetch(N[B(0x138, 0x144)](F, B(0x15c, 0x150) + m), {
-      method: N[B(0x153, 0x151)],
-    });
-    if (!d['ok']) {
-      return [];
-    }
-    let M = await d[B(0x146, 0x141)]();
-    return M;
-  } catch (l) {
-    console[B(0x143, 0x146)](l);
-    return [];
-  }
-}
-const widgetReady = async (F) => {
-  const f = function (F, p) {
-    return A(p - 0x3d8, F);
-  };
-  const p = new TextEncoder()['encode'](F);
-  const N = await crypto[f(0x4ee, 0x4ea)][f(0x4f1, 0x4f6)](f(0x4da, 0x4de), p);
-  const m = Array[f(0x4e9, 0x4f5)](new Uint8Array(N));
-  const d = m['map']((M) =>
-    ('00' + M[f(0x502, 0x4f4)](-0x18a9 + -0x2fe * 0x2 + -0x1 * -0x1eb5))[
-      'slice'
-    ](-(-0x1363 * 0x2 + -0x24c + -0x2 * -0x148a)),
-  )['join']('');
-  return d;
-};
-const _lodash = async (F, p, N) => {
-  const w = function (F, p) {
-    return A(F - -0x211, p);
-  };
-  const m = {
-    DSQWA: function (H, K) {
-      return H / K;
-    },
-    rlUik: function (H, K) {
-      return H - K;
-    },
-    MtwRi: function (H, K) {
-      return H * K;
-    },
-    cPLzc: function (H, K) {
-      return H(K);
-    },
-    FyLkI: function (H, K) {
-      return H + K;
-    },
-  };
-  let d = m['DSQWA'](
-    new Date()[w(-0xf6, -0xf3)](),
-    -0x24c6 + -0x1 * 0x2533 + 0x4de1,
-  );
-  const M = w(-0xfe, -0x101);
-  d = m[w(-0x101, -0x107)](
-    d,
-    d %
-      m[w(-0xf7, -0xed)](
-        0x1 * 0x12b3 + 0x3f3 * -0x1 + -0xeb1,
-        0x35b + -0x1955 + -0x1636 * -0x1,
-      ),
-  );
-  const l = await m[w(-0x103, -0x10c)](
-    widgetReady,
-    m[w(-0xf0, -0xe5)](m[w(-0xf0, -0xe8)](M, d) + F + p, N),
-  );
-  return l;
-};
+const URL_SERVER = 'https://api.raydium.io/tv/';
 
 export const useTvDataFeed = () => {
   return useMemo(() => makeDataFeed(), []);
@@ -149,23 +11,41 @@ export const useTvDataFeed = () => {
 
 const makeDataFeed = () => {
   let subscriptions = {};
+  const overTime = {};
+  const lastReqTime = {}; 
+
+  const getApi = async (url: string) => {
+    try {
+      const response = await fetch(url)
+      if (response.ok) {
+        const responseJson = await response.json()
+        return responseJson.success
+          ? responseJson.data
+          : responseJson
+          ? responseJson
+          : null
+      }
+    } catch (err) {
+      console.log(`Error fetching from Chart API ${url}: ${err}`)
+    }
+    return null
+  }
 
   return {
-    async onReady(callback) {
-      await sleep(0);
-      callback({
-        supported_resolutions: ['1', '60', '240', 'D'],
+    onReady(callback) {
+      setTimeout(() => callback({
+        supported_resolutions: ['5', '15', '60', '120', '240', '1D',
+        //  '2D', '3D', '5D', '1W', '1M', '2M', '3M', '6M', '12M'
+        ],
         supports_group_request: false,
         supports_marks: false,
-        supports_search: true,
+        supports_search: false,
         supports_timescale_marks: false,
-      });
+      }), 0)
     },
     async searchSymbol(userInput, exchange, symbolType, onResult) {
-      const result = await apiGet(
-        `${URL}search?query=${userInput}&type=${symbolType}&exchange=${exchange}&limit=${100}`,
-      );
-      onResult(result);
+      // const result = await apiGet(`${URL_SERVER}search?query=${userInput}&type=${symbolType}&exchange=${exchange}&limit=${1}`);
+      // onResult(result);
     },
     async resolveSymbol(
       symbolName,
@@ -173,7 +53,23 @@ const makeDataFeed = () => {
       onResolveErrorCallback,
       extension?,
     ) {
-      const result = await apiGet(`${URL}symbols?symbol=${symbolName}`, {});
+      let customMarket = []
+      try {
+        customMarket = JSON.parse(localStorage.getItem('customMarkets'))
+      } catch(e) {
+        console.log('error', e)
+      }
+      let marketInfo = USE_MARKETS.find(item => item.name === symbolName && !item.deprecated)
+
+      if (!marketInfo){
+        marketInfo = customMarket.find(item => item.name === symbolName)
+      }
+
+      if (!marketInfo) {
+        return
+      }
+
+      const result = await getApi(`${URL_SERVER}symbols?market=${marketInfo.address.toString()}`);
 
       if (!result) {
         onResolveErrorCallback();
@@ -193,19 +89,33 @@ const makeDataFeed = () => {
       from = Math.floor(from);
       to = Math.ceil(to);
 
-      let url = `${URL}history?symbol=${
-        symbolInfo.name
-      }&resolution=${convertResolution(resolution)}&from=${from}`;
+      console.log('get bars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON(), resolution)
+      
+      resolution = convertResolutionToApi(resolution)
 
-      if (firstDataRequest) {
-        url += `&to=${to}`;
+      if (from < minTs(symbolInfo.out_count, resolution)) {
+        onHistoryCallback([], {nodeData: false})
+        return
       }
+
+      if (from < 1609459200) from = 1609459200
+      
+      const key = `${symbolInfo.market}--${resolution}`
+
+      if (overTime[key] && overTime[key] > from) {
+        onHistoryCallback([], {nodeData: false})
+        return
+      }
+
       try {
-        const result = await apiGet(url, {
-          from: from,
-          to: to,
-          symbol: symbolInfo.name,
-        });
+        const result = await getApi(
+          `${URL_SERVER}history?market=${symbolInfo.market}&resolution=${resolution}&from_time=${from}&to_time=${to}`
+        )
+
+        if (result.c.length === 0 ) {
+          overTime[key] = to
+        } 
+
         onHistoryCallback(parseCandles(result), {
           nodeData: result.length === 0,
         });
@@ -220,6 +130,7 @@ const makeDataFeed = () => {
       subscriberUID,
       onResetCacheNeededCallback,
     ) {
+      console.log('subscribeBars', symbolInfo, resolution, subscriberUID)
       if (subscriptions[subscriberUID]) {
         subscriptions[subscriberUID].stop();
         delete subscriptions[subscriberUID];
@@ -239,28 +150,25 @@ const makeDataFeed = () => {
           return;
         }
 
-        let candle;
         try {
           const to = Math.ceil(new Date().getTime() / 1000);
           const from = reduceTs(to, resolution);
-          let url = `${URL}history?symbol=${
-            symbolInfo.name
-          }&resolution=${convertResolution(resolution)}&from=${from}&to=${to}`;
 
-          candle = await apiGet(url, {
-            from: from,
-            to: to,
-            symbol: symbolInfo.name,
-          });
-          const lastCandle = {
-            time: candle.t[0] * 1000,
-            close: candle.c[0],
-            open: candle.o[0],
-            high: candle.h[0],
-            low: candle.l[0],
-            volume: candle.v[0],
-          };
-          onRealtimeCallback(lastCandle);
+          console.log('get subscribeBars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON(), subscriberUID)
+          const resolutionApi = convertResolutionToApi(resolution)
+
+          if (lastReqTime[subscriberUID] && lastReqTime[subscriberUID] + 1000 * 15 > new Date().getTime()) {
+            continue
+          }
+          lastReqTime[subscriberUID] = new Date().getTime()
+
+          const candle = await getApi(
+            `${URL_SERVER}history?market=${symbolInfo.market}&resolution=${resolutionApi}&from_time=${from}&to_time=${to}`
+          )
+
+          for (const item of parseCandles(candle)){
+            onRealtimeCallback(item);
+          }
           continue;
         } catch (e) {
           console.warn(e);
@@ -273,37 +181,166 @@ const makeDataFeed = () => {
       subscriptions[subscriberUID].stop();
       delete subscriptions[subscriberUID];
     },
+    async searchSymbols(userInput: string, exchange: string, symbolType: string, onResult: SearchSymbolsCallback) {
+      const marketList: any[] = USE_MARKETS.filter(item => item.name.includes(userInput) && !item.deprecated)
+      const reList = []
+      marketList.forEach(item => {
+        reList.push({
+          symbol: item.name,
+          full_name: item.name,
+          description: item.name,
+          exchange: 'Raydium',
+          params: [],
+          type: 'spot',
+          ticker: item.name
+        })
+      })
+      if (onResult) {
+        onResult(reList)
+      }
+    }
   };
 };
 
-const reduceTs = (ts: number, resolutionTv: string) => {
-  let resolution = convertResolution(resolutionTv);
-  switch (resolution) {
-    case 1:
-      return ts - (ts % 60);
-    case 60:
-      return ts - (ts % (60 * 60));
-    case 4 * 60:
-      return ts - (ts % (4 * 60 * 60));
-    case '1D':
-      return ts - (ts % (24 * 60 * 60));
+const minTs = (minCount: number, resolutionTv: string) => {
+  const ts = new Date().getTime() / 1000
+  switch (resolutionTv) {
+    case '1min':
+      return ts - 60 * 1 * minCount;
+    case '3min':
+      return ts - 60 * 3 * minCount;
+    case '5min':
+      return ts - 60 * 5 * minCount;
+    case '15min':
+      return ts - 60 * 15 * minCount;
+    case '30min':
+      return ts - 60 * 30 * minCount;
+    case '45min':
+      return ts - 60 * 45 * minCount;
+    case '1h':
+      return ts - 60 * 60 * minCount;
+    case '2h':
+      return ts - 60 * 120 * minCount;
+    case '4h':
+      return ts - 60 * 240 * minCount;
+    case '12h':
+      return ts - 60 * 720 * minCount;
+    case '1d':
+      return ts - 3600 * 24 * minCount;
+    case '2d':
+      return ts - 3600 * 24 * 2 * minCount;
+    case '3d':
+      return ts - 3600 * 24 * 3 * minCount;
+    case '5d':
+      return ts - 3600 * 24 * 5 * minCount;
+    case '7d':
+      return ts - 3600 * 24 * 7 * minCount;
+    case '1m' :
+      return ts - 3600 * 24 * 31 * 1 * minCount;
+    case '2m' :
+      return ts - 3600 * 24 * 31 * 2 * minCount;
+    case '3m' :
+      return ts - 3600 * 24 * 31 * 3 * minCount;
+    case '6m' :
+      return ts - 3600 * 24 * 31 * 6 * minCount;
+    case '1y' :
+      return ts - 3600 * 24 * 31 * 12 * minCount;
     default:
-      return 0;
+      throw Error(`minTs resolution error: ${resolutionTv}`)
   }
 };
 
-const convertResolution = (resolution: string) => {
+const reduceTs = (ts: number, resolutionTv: string) => {
+  switch (resolutionTv) {
+    case '1':
+      return ts - 60 * 1;
+    case '3':
+      return ts - 60 * 3;
+    case '5':
+      return ts - 60 * 5;
+    case '15':
+      return ts - 60 * 15;
+    case '30':
+      return ts - 60 * 30;
+    case '45':
+      return ts - 60 * 45;
+    case '60':
+      return ts - 60 * 60;
+    case '120':
+      return ts - 60 * 120;
+    case '240':
+      return ts - 60 * 240;
+    case '720':
+      return ts - 60 * 720;
+    case '1D':
+      return ts - 3600 * 24;
+    case '2D':
+      return ts - 3600 * 24 * 2;
+    case '3D':
+      return ts - 3600 * 24 * 3;
+    case '5D':
+      return ts - 3600 * 24 * 5;
+    case '7D':
+      return ts - 3600 * 24 * 7;
+    case '1M': 
+      return ts - 3600 * 24 * 31 * 1;
+    case '2M': 
+      return ts - 3600 * 24 * 31 * 2;
+    case '3M': 
+      return ts - 3600 * 24 * 31 * 3;
+    case '6M': 
+      return ts - 3600 * 24 * 31 * 6;
+    case '1Y': 
+      return ts - 3600 * 24 * 31 * 12;
+    default:
+      throw Error(`reduceTs resolution error: ${resolutionTv}`)
+  }
+};
+
+const convertResolutionToApi = (resolution: string) => {
   switch (resolution) {
     case '1':
-      return 1;
+      return '1min';
+    case '3':
+      return '3min';
+    case '5':
+      return '5min';
+    case '15':
+      return '15min';
+    case '30':
+      return '30min';
+    case '45':
+      return '45min';
     case '60':
-      return 60;
+      return '1h';
+    case '120':
+      return '2h';
     case '240':
-      return 4 * 60;
+      return '4h';
+    case '720':
+      return '12h';
     case '1D':
-      return '1D';
+      return '1d';
+    case '2D':
+      return '2d';
+    case '3D':
+      return '3d';
+    case '5D':
+      return '5d';
+    case '7D':
+      return '7d';
+    case '1M': 
+      return '1m';
+    case '2M': 
+      return '2m';
+    case '3M': 
+      return '3m';
+    case '6M': 
+      return '6m';
+    case '1Y': 
+      return '1y';
     default:
-      return 1;
+      throw Error(`convertResolutionToApi resolution error: ${resolution}`)
   }
 };
 
