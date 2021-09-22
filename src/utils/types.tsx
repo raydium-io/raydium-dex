@@ -129,13 +129,9 @@ export interface SelectedTokenAccounts {
   [tokenMint: string]: string;
 }
 
-export interface BonfidaTrade {
-  market: string;
+export interface TradeLayout {
   size: number;
   price: number;
-  orderId: string;
   time: number;
   side: string;
-  feeCost: number;
-  marketAddress: string;
 }

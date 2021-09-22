@@ -1,10 +1,10 @@
 import { Col, Row } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
-import { useMarket, useBonfidaTrades } from '../utils/markets';
+import { useMarket, useRaydiumTrades } from '../utils/markets';
 import { getDecimalCount } from '../utils/utils';
 import FloatingElement from './layout/FloatingElement';
-import { BonfidaTrade } from '../utils/types';
+import { TradeLayout } from '../utils/types';
 
 const Title = styled.div`
   color: rgba(255, 255, 255, 1);
@@ -16,7 +16,7 @@ const SizeTitle = styled(Row)`
 
 export default function PublicTrades({ smallScreen }) {
   const { baseCurrency, quoteCurrency, market } = useMarket();
-  const [trades, loaded] = useBonfidaTrades();
+  const [trades, loaded] = useRaydiumTrades();
 
   return (
     <FloatingElement
@@ -61,7 +61,7 @@ export default function PublicTrades({ smallScreen }) {
             height: 350
           }}
         >
-          {trades.map((trade: BonfidaTrade, i: number) => (
+          {trades.map((trade: TradeLayout, i: number) => (
             <Row key={i} style={{ marginBottom: 4 }}>
               <Col
                 span={8}

@@ -34,7 +34,7 @@ import { refreshCache, useAsyncData } from './fetch-loop';
 import { useAccountData, useAccountInfo, useConnection } from './connection';
 
 import BN from 'bn.js';
-import BonfidaApi from './bonfidaConnector';
+import RaydiumApi from './raydiumConnector';
 import { Order } from '@project-serum/serum/lib/market';
 import { PublicKey , Connection} from '@solana/web3.js';
 import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
@@ -516,6 +516,7 @@ const _VERY_SLOW_REFRESH_INTERVAL = 5000 * 1000;
 
 // For things that don't really change
 const _SLOW_REFRESH_INTERVAL = 5 * 1000;
+const _SLOW_REFRESH_INTERVAL_NEW = 60 * 1000;
 
 // For things that change frequently
 const _FAST_REFRESH_INTERVAL = 1000;
@@ -825,21 +826,21 @@ export function _useUnfilteredTrades(limit = 10000) {
   //   .map(market.parseFillEvent.bind(market));
 }
 
-export function useBonfidaTrades() {
+export function useRaydiumTrades() {
   const { market } = useMarket();
   const marketAddress = market?.address.toBase58();
 
-  async function getBonfidaTrades() {
+  async function getRaydiumTrades() {
     if (!marketAddress) {
       return null;
     }
-    return await BonfidaApi.getRecentTrades(marketAddress);
+    return await RaydiumApi.getRecentTrades(marketAddress);
   }
 
   return useAsyncData(
-    getBonfidaTrades,
-    tuple('getBonfidaTrades', marketAddress),
-    { refreshInterval: _SLOW_REFRESH_INTERVAL },
+    getRaydiumTrades,
+    tuple('getRaydiumTrades', marketAddress),
+    { refreshInterval: _SLOW_REFRESH_INTERVAL_NEW },
     false,
   );
 }
