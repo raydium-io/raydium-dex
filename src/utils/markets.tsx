@@ -49,7 +49,7 @@ const _IGNORE_DEPRECATED = false;
 const _MARKETS = [
   {
     name: 'RAY/WUSDT',
-    deprecated: false,
+    deprecated: true,
     address: new PublicKey('C4z32zw9WKaGPhNuU54ohzrV4CE1Uau3cFx6T8RLjxYC'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
