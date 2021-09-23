@@ -60,6 +60,12 @@ const _MARKETS = [
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
+    name: 'RAY/USDT',
+    deprecated: false,
+    address: new PublicKey('teE55QrL4a4QSfydR9dnHF97jgCfptpuigbb53Lo95g'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
     name: 'RAY/SRM',
     deprecated: false,
     address: new PublicKey('Cm4MmknScg7qbKqytb1mM92xgDxv3TNXos4tKbBqTDy7'),
@@ -375,18 +381,20 @@ const _MARKETS = [
 ];
 
 MARKETS.forEach(item => {
-  if (item.address.toBase58() !== '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') {
-    if (item.address.toBase58() === '7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2') {
-      _MARKETS.push( {
-        address: item.address,
-        name: 'xCOPE/USDC',
-        programId: item.programId,
-        deprecated: item.deprecated,
+  if (item.address.toBase58() === '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') return
+  if (_MARKETS.find(oldMarket => oldMarket.address.toBase58() === item.address.toBase58())) return
+
+  if (item.address.toBase58() === '7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2') {
+    _MARKETS.push( {
+      address: item.address,
+      name: 'xCOPE/USDC',
+      programId: item.programId,
+      deprecated: item.deprecated,
     })
-    } else {
-      _MARKETS.push(item)
-    }
+    return
   }
+  
+  _MARKETS.push(item)
 })
 
 export const USE_MARKETS: MarketInfo[] = _IGNORE_DEPRECATED
