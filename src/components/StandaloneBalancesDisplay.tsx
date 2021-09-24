@@ -200,7 +200,7 @@ export default function StandaloneBalancesDisplay() {
                   <StandaloneTokenAccountsSelect
                     accounts={tokenAccounts?.filter(
                       (account) => account.effectiveMint.toBase58() === mint,
-                    ).sort((a, b) => a===b ? 1 : -1)}
+                    ).sort((a, b) => a.pubkey.toString() === wallet?.publicKey.toString() ? -1 : 1)}
                     mint={mint}
                     label
                   />
