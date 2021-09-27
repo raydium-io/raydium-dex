@@ -15,15 +15,13 @@ export default function StandaloneTokenAccountsSelect({
   mint: string | undefined;
   label?: boolean;
 }) {
-  const mintWSol = 'So11111111111111111111111111111111111111112'
-
   const [
     selectedTokenAccounts,
     setSelectedTokenAccounts,
   ] = useSelectedTokenAccounts();
 
   let selectedValue: string | undefined;
-  if (mint && mint in selectedTokenAccounts && mint !== mintWSol) {
+  if (mint && mint in selectedTokenAccounts) {
     selectedValue = selectedTokenAccounts[mint];
   } else if (accounts && accounts?.length > 0) {
     selectedValue = accounts[0].pubkey.toBase58();
