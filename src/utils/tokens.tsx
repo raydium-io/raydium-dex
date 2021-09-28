@@ -656,4 +656,11 @@ export const TOKENS: Tokens = {
     decimals: 6,
     referrer: '8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA',
   },
+  LARIX: {
+    symbol: 'LARIX',
+    name: 'LARIX',
+    mintAddress: 'Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC',
+    decimals: 6,
+    referrer: 'DReKowvoxxEDdi5jnxBWJLTV73D9oHSt9uNMuSCk9cLk',
+  }
 }
