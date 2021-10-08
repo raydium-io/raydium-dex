@@ -383,6 +383,48 @@ const _MARKETS = [
     address: new PublicKey('DE6EjZoMrC5a3Pbdk8eCMGEY9deeeHECuGFmEuUpXWZm'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'RIN/USDC',
+    deprecated: false,
+    address: new PublicKey('7gZNLDbWE73ueAoHuAeFoSu7JqmorwCLpNTBXHtYSFTa'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'APEX/USDC',
+    deprecated: false,
+    address: new PublicKey('GX26tyJyDxiFj5oaKvNB9npAHNgdoV9ZYHs5ijs5yG2U'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'mSOL/RAY',
+    deprecated: false,
+    address: new PublicKey('HVFpsSP4QsC8gFfsFWwYcdmvt3FepDRB6xdFK2pSQtMr'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'MNDE/mSOL',
+    deprecated: false,
+    address: new PublicKey('AVxdeGgihchiKrhWne5xyUJj7bV2ohACkQFXMAtpMetx'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'LARIX/RAY',
+    deprecated: false,
+    address: new PublicKey('5GH4F2Z9adqkEP8FtR4sJqvrVgBuUSrWoQAa7bVCdB44'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'LIQ/USDC',
+    deprecated: false,
+    address: new PublicKey('D7p7PebNjpkH6VNHJhmiDFNmpz9XE7UaTv9RouxJMrwb'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'WAG/USDC',
+    deprecated: false,
+    address: new PublicKey('BHqcTEDhCoZgvXcsSbwnTuzPdxv1HPs6Kz4AnPpNrGuq'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -656,6 +698,26 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC'),
     name: 'LARIX',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp'),
+    name: 'RIN',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('51tMb3zBKDiQhNwGqpgwbavaGH54mk8fXFzxTc1xnasg'),
+    name: 'APEX',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey'),
+    name: 'MNDE',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('4wjPQJ6PrkC4dHhYghwJzGBVP78DkBzA2U3kHoFNBuhj'),
+    name: 'LIQ',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('5tN42n9vMi6ubp67Uy4NnmM5DMZYN8aS8GeB3bEDHr6E'),
+    name: 'WAG',
   });
 
   const baseCurrency =

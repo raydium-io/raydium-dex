@@ -662,5 +662,40 @@ export const TOKENS: Tokens = {
     mintAddress: 'Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC',
     decimals: 6,
     referrer: 'DReKowvoxxEDdi5jnxBWJLTV73D9oHSt9uNMuSCk9cLk',
+  },
+  RIN: {
+    symbol: 'RIN',
+    name: 'RIN',
+    mintAddress: 'E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp',
+    decimals: 9,
+    tags: ['raydium']
+  },
+  APEX: {
+    symbol: 'APEX',
+    name: 'APEX',
+    mintAddress: '51tMb3zBKDiQhNwGqpgwbavaGH54mk8fXFzxTc1xnasg',
+    decimals: 9,
+    tags: ['raydium']
+  },
+  MNDE: {
+    symbol: 'MNDE',
+    name: 'MNDE',
+    mintAddress: 'MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey',
+    decimals: 9,
+    tags: ['raydium']
+  },
+  LIQ: {
+    symbol: 'LIQ',
+    name: 'LIQ',
+    mintAddress: '4wjPQJ6PrkC4dHhYghwJzGBVP78DkBzA2U3kHoFNBuhj',
+    decimals: 6,
+    tags: ['raydium']
+  },
+  WAG: {
+    symbol: 'WAG',
+    name: 'WAG',
+    mintAddress: '5tN42n9vMi6ubp67Uy4NnmM5DMZYN8aS8GeB3bEDHr6E',
+    decimals: 9,
+    tags: ['raydium']
   }
 }
