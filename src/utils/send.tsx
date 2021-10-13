@@ -24,7 +24,6 @@ import {
   Market,
   OpenOrders,
   parseInstructionErrorResponse,
-  TOKEN_MINTS,
   TokenInstructions,
 } from '@project-serum/serum';
 import { SelectedTokenAccounts, TokenAccount } from './types';
