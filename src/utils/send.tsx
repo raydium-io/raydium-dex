@@ -33,6 +33,7 @@ import { Buffer } from 'buffer';
 import assert from 'assert';
 import { struct } from 'superstruct';
 import { WalletAdapter } from '../wallet-adapters';
+import { getTokenByMintAddress } from './tokens';
 
 export async function createTokenAccountTransaction({
   connection,
@@ -127,16 +128,11 @@ export async function settleFunds({
   }
   let referrerQuoteWallet: PublicKey | null = null;
   if (market.supportsReferralFees) {
-    const usdt = TOKEN_MINTS.find(({ name }) => name === 'USDT');
-    const usdc = TOKEN_MINTS.find(({ name }) => name === 'USDC');
-    if (usdtRef && usdt && market.quoteMintAddress.equals(usdt.address)) {
-      referrerQuoteWallet = usdtRef;
-    } else if (
-      usdcRef &&
-      usdc &&
-      market.quoteMintAddress.equals(usdc.address)
-    ) {
-      referrerQuoteWallet = usdcRef;
+    const quoteToken = getTokenByMintAddress(
+      market.quoteMintAddress.toBase58(),
+    );
+    if (quoteToken?.referrer) {
+      referrerQuoteWallet = new PublicKey(quoteToken?.referrer);
     }
   }
   const {
