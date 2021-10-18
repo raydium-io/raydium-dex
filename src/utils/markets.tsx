@@ -425,6 +425,12 @@ const _MARKETS = [
     address: new PublicKey('BHqcTEDhCoZgvXcsSbwnTuzPdxv1HPs6Kz4AnPpNrGuq'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'JungleCats/SOL',
+    deprecated: false,
+    address: new PublicKey('3KazPGTkRSn7znj5WSDUVYt73n6H87CLGw8HB5b9oeKF'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -718,6 +724,10 @@ export function getMarketDetails(
   TOKEN_MINTS.push({
     address: new PublicKey('5tN42n9vMi6ubp67Uy4NnmM5DMZYN8aS8GeB3bEDHr6E'),
     name: 'WAG',
+  });
+  TOKEN_MINTS.push({
+    address: new PublicKey('9vaCzR4n4QpdN2vyaFmy7ZtvzGHVY3WVzDnLJAQLsKCX'),
+    name: 'JungleCats',
   });
 
   const baseCurrency =

@@ -697,5 +697,12 @@ export const TOKENS: Tokens = {
     mintAddress: '5tN42n9vMi6ubp67Uy4NnmM5DMZYN8aS8GeB3bEDHr6E',
     decimals: 9,
     tags: ['raydium']
+  },
+  JungleCats: {
+    symbol: 'JungleCats',
+    name: 'JungleCats',
+    mintAddress: '9vaCzR4n4QpdN2vyaFmy7ZtvzGHVY3WVzDnLJAQLsKCX',
+    decimals: 0,
+    tags: ['raydium']
   }
 }
