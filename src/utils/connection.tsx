@@ -9,7 +9,7 @@ import { ConnectionContextValues, EndpointInfo } from './types';
 export const endpoints = [
   { url: 'https://raydium.rpcpool.com', weight: 100 },
   // { url: 'https://solana-api.projectserum.com', weight: 30 },
-  // { url: 'https://solana-api.tt-prod.net/', weight: 20 }
+  { url: 'https://raydium.genesysgo.net', weight: 30 }
 ]
 
 export function getRandomEndpoint() {
