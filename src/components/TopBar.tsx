@@ -28,25 +28,6 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const EXTERNAL_LINKS = {
-  '/learn': 'https://serum-academy.com/en/serum-dex/',
-  '/add-market': 'https://serum-academy.com/en/add-market/',
-  '/wallet-support': 'https://serum-academy.com/en/wallet-support',
-  '/dex-list': 'https://serum-academy.com/en/dex-list/',
-  '/developer-resources': 'https://serum-academy.com/en/developer-resources/',
-  '/explorer': 'https://solscan.io',
-  '/srm-faq': 'https://projectserum.com/srm-faq',
-  '/swap': 'https://raydium.io/swap',
-  '/liquidity': 'https://raydium.io/liquidity',
-  '/farms': 'https://raydium.io/farms',
-  '/staking': 'https://raydium.io/staking',
-  '/migrate': 'https://raydium.io/migrate',
-  '/info': 'https://raydium.io/info',
-  '/acceleRaytor': 'https://raydium.io/acceleraytor/',
-  '/dropZone': 'https://dropzone.raydium.io',
-  '/pools': 'https://raydium.io/pools/',
-};
-
 const MENU = [
    {
     'title': 'Trading',
