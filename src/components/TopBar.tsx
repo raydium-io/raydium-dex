@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { Col, Row, Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.svg';
@@ -46,6 +46,55 @@ const EXTERNAL_LINKS = {
   '/dropZone': 'https://dropzone.raydium.io',
   '/pools': 'https://raydium.io/pools/',
 };
+
+const MENU = [
+   {
+    'title': 'Trading',
+    'link': '/',
+  },
+  {
+    'title': 'Swap',
+    'link': 'https://raydium.io/swap/',
+  },
+  {
+    'title': 'Liquidity',
+    'link': 'https://raydium.io/liquidity/',
+  },
+  {
+    'title': 'Farms',
+    'link': 'https://raydium.io/farms/',
+  },
+  {
+    'title': 'Staking',
+    'link': 'https://raydium.io/staking/',
+  },
+  {
+    'title': 'AcceleRaytor',
+    'link': 'https://raydium.io/acceleRaytor/',
+  },
+  {
+    'title': 'DropZone',
+    'link': 'https://dropzone.raydium.io/',
+  },
+  {
+    'title': 'NFTs',
+    'child': [
+      {
+        'title': 'Browse NFTs',
+        'link': 'https://nft.raydium.io/marketplace'
+      },
+      {
+        'title': 'Explore Collections',
+        'link': 'https://nft.raydium.io/collections'
+      },
+    ]
+  },
+  {
+    'title': 'Migrate',
+    'link': 'https://raydium.io/migrate/',
+  },
+  
+]
 
 export default function TopBar() {
   const {
@@ -115,6 +164,22 @@ export default function TopBar() {
   const tradePageUrl = location.pathname.startsWith('/market/')
     ? location.pathname
     : getTradePageUrl();
+  
+    const { SubMenu } = Menu;
+
+  const menuDiv = 
+  <Menu mode="horizontal" defaultSelectedKeys={['Trading']} style={{fontSize: '16px', display: 'flex', justifyContent: 'center',background: '#0F1429'}} selectable={false} >
+    {MENU.map(item => {
+      if (item.child === undefined) {
+        return <Menu.Item key={item.title}><a href={item.link} target={item.link.startsWith('/') ? '_self' : '_blank'} rel="noopener noreferrer">{item.title}</a></Menu.Item>
+      } else {
+        return <SubMenu key={item.title} title={item.title}>
+          {item.child.map(itemChild => <Menu.Item key={itemChild.title}><a href={itemChild.link} target={itemChild.link.startsWith('/') ? '_self' : '_blank'} rel="noopener noreferrer">{itemChild.title}</a></Menu.Item>)}
+        </SubMenu>
+      }
+    }
+    )}
+    </Menu>
 
   return (
     <>
@@ -132,230 +197,7 @@ export default function TopBar() {
             </LogoWrapper>
           </Col>
           <Col flex="auto" style={{ textAlign: 'center'}}>
-              <div
-                style={{
-                  height: 50,
-                  width: 100,
-                  textAlign: 'center',
-                  border: 'transparent',
-                  borderBottom: '1px solid RGB(194,0,251)',
-                  background: 'transparent',
-                  fontSize: 14,
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  color: 'rgb(173,175,184)',
-                  display: 'inline-block',
-                }}
-              >
-                Trading
-              </div>
-              <div
-                style={{
-                  height: 50,
-                  width: 100,
-                  textAlign: 'center',
-                  border: 'transparent',
-                  background: 'transparent',
-                  fontSize: 14,
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  color: 'rgb(173,175,184)',
-                  display: 'inline-block',
-                }}
-              >
-                <a
-                  href={EXTERNAL_LINKS['/swap']}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color : 'rgb(173,175,184)',}}
-                >
-                  Swap
-                </a>
-              </div>
-              <div
-                style={{
-                  height: 50,
-                  width: 100,
-                  textAlign: 'center',
-                  border: 'transparent',
-                  background: 'transparent',
-                  fontSize: 14,
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  color: 'rgb(173,175,184)',
-                  display: 'inline-block',
-                }}
-              >
-                <a
-                  href={EXTERNAL_LINKS['/liquidity']}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color : 'rgb(173,175,184)',}}
-                >
-                  Liquidity
-                </a>
-              </div>
-            <div
-              style={{
-                height: 50,
-                width: 100,
-                textAlign: 'center',
-                border: 'transparent',
-                background: 'transparent',
-                fontSize: 14,
-                fontStyle: 'normal',
-                fontWeight: 600,
-                color: 'rgb(173,175,184)',
-                display: 'inline-block',
-              }}
-            >
-              <a
-                href={EXTERNAL_LINKS['/pools']}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color : 'rgb(173,175,184)',}}
-              >
-                Pools
-              </a>
-            </div>
-              <div
-                style={{
-                  height: 50,
-                  width: 100,
-                  textAlign: 'center',
-                  border: 'transparent',
-                  background: 'transparent',
-                  fontSize: 14,
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  color: 'rgb(173,175,184)',
-                  display: 'inline-block',
-                }}
-              >
-                <a
-                  href={EXTERNAL_LINKS['/farms']}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color : 'rgb(173,175,184)',}}
-                >
-                  Farms
-                </a>
-              </div>
-            <div
-              style={{
-                height: 50,
-                width: 100,
-                textAlign: 'center',
-                border: 'transparent',
-                background: 'transparent',
-                fontSize: 14,
-                fontStyle: 'normal',
-                fontWeight: 600,
-                color: 'rgb(173,175,184)',
-                display: 'inline-block',
-              }}
-            >
-              <a
-                href={EXTERNAL_LINKS['/staking']}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color : 'rgb(173,175,184)',}}
-              >
-                Staking
-              </a>
-            </div>
-            <div
-              style={{
-                height: 50,
-                width: 100,
-                textAlign: 'center',
-                border: 'transparent',
-                background: 'transparent',
-                fontSize: 14,
-                fontStyle: 'normal',
-                fontWeight: 600,
-                color: 'rgb(173,175,184)',
-                display: 'inline-block',
-              }}
-            >
-              <a
-                href={EXTERNAL_LINKS['/acceleRaytor']}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color : 'rgb(173,175,184)',}}
-              >
-                AcceleRaytor
-              </a>
-            </div>
-            <div
-              style={{
-                height: 50,
-                width: 100,
-                textAlign: 'center',
-                border: 'transparent',
-                background: 'transparent',
-                fontSize: 14,
-                fontStyle: 'normal',
-                fontWeight: 600,
-                color: 'rgb(173,175,184)',
-                display: 'inline-block',
-              }}
-            >
-              <a
-                href={EXTERNAL_LINKS['/dropZone']}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color : 'rgb(173,175,184)',}}
-              >
-                DropZone
-              </a>
-            </div>
-            <div
-              style={{
-                height: 50,
-                width: 100,
-                textAlign: 'center',
-                border: 'transparent',
-                background: 'transparent',
-                fontSize: 14,
-                fontStyle: 'normal',
-                fontWeight: 600,
-                color: 'rgb(173,175,184)',
-                display: 'inline-block',
-              }}
-            >
-              <a
-                href={EXTERNAL_LINKS['/migrate']}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color : 'rgb(173,175,184)',}}
-              >
-                Migrate
-              </a>
-            </div>
-            <div
-              style={{
-                height: 50,
-                width: 100,
-                textAlign: 'center',
-                border: 'transparent',
-                background: 'transparent',
-                fontSize: 14,
-                fontStyle: 'normal',
-                fontWeight: 600,
-                color: 'rgb(173,175,184)',
-                display: 'inline-block',
-              }}
-            >
-              <a
-                href={EXTERNAL_LINKS['/info']}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color : 'rgb(173,175,184)',}}
-              >
-                Info
-              </a>
-            </div>
+            {menuDiv}
           </Col>
           <Col flex="none" style={{ paddingRight: 20}}>
             <WalletConnect />
