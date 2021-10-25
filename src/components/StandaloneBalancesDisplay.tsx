@@ -181,12 +181,12 @@ export default function StandaloneBalancesDisplay() {
                 <Col span={6} style={{ paddingTop: 8}}>
                 </Col>
                 <Col span={9} style={{ paddingTop: 8}}>
-                  <ActionButton
+                  {/* <ActionButton
                     size="small"
                     onClick={() => setBaseOrQuote(baseOrQuote)}
                   >
                     Deposit
-                  </ActionButton>
+                  </ActionButton> */}
                 </Col>
                 <Col span={9} style={{ paddingTop: 8}}>
                   <ActionButton size="small" onClick={onSettleFunds}>
