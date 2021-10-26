@@ -420,6 +420,12 @@ const _MARKETS = [
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
+    name: 'LIQ/RAY',
+    deprecated: false,
+    address: new PublicKey('FL8yPAyVTepV5YfzDfJvNu6fGL7Rcv5v653LdZ6h4Bsu'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
     name: 'WAG/USDC',
     deprecated: false,
     address: new PublicKey('BHqcTEDhCoZgvXcsSbwnTuzPdxv1HPs6Kz4AnPpNrGuq'),
