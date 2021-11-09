@@ -28,6 +28,7 @@ import {
 import {
   getTokenAccountInfo,
   parseTokenAccountData,
+  TOKENS,
   useMintInfos,
 } from './tokens';
 import { refreshCache, useAsyncData } from './fetch-loop';
@@ -479,6 +480,30 @@ const _MARKETS = [
     address: new PublicKey('CwK9brJ43MR4BJz2dwnDM7EXCNyHhGqCJDrAdsEts8n5'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'whETH-SOL',
+    deprecated: false,
+    address: new PublicKey('7gtMZphDnZre32WfedWnDLhYYWJ2av1CCn1RES5g8QUf'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'whETH-USDC',
+    deprecated: false,
+    address: new PublicKey('8Gmi2HhZmwQPVdCwzS7CM66MGstMXPcTVHA7jF19cLZz'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'weUNI-USDC',
+    deprecated: false,
+    address: new PublicKey('B7b5rjQuqQCuGqmUBWmcCTqaL3Z1462mo4NArqty6QFR'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'weSUSHI-USDC',
+    deprecated: false,
+    address: new PublicKey('3uWVMWu7cwMnYMAAdtsZNwaaqeeeZHARGZwcExnQiFay'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
@@ -657,141 +682,14 @@ export function getMarketDetails(
       TOKEN_MINTS[indexItem].name = 'xCOPE'
     }
   }
-  TOKEN_MINTS.push({
-    address: new PublicKey('8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh'),
-    name: 'COPE',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('StepAscQoEioFxxWGnh2sLBDFp9d8rvKz2Yp39iDpyT'),
-    name: 'STEP',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('ETAtLmCmsoiEEKfNrHKJ2kYy3MoABhU6NQvpSfij5tDs'),
-    name: 'MEDIA',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('8PMHT4swUMtBzgHnh5U564N5sjPSiUz2cjEQzFnnP1Fo'),
-    name: 'ROPE',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('MERt85fc5boKw3BW1eYdxonEuJNvXbiMbs6hvheau5K'),
-    name: 'MER',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('TuLipcqtGVXP9XR62wM8WWCm6a9vhLs7T1uoWBk6FDs'),
-    name: 'TULIP',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('E5rk3nmgLUuKUiS94gg4bpWwWwyjCMtddsAXkTFLtHEy'),
-    name: 'WOO',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('4dmKkXNHdgYsXqBHCuMikNQWwVomZURhYvkkX5c4pQ7y'),
-    name: 'SNY',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('BLwTnYKqf7u4qjgZrrsKeNs2EzWkMLqVCu6j8iHyrNA3'),
-    name: 'BOP',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('SLRSSpSLUTP7okbCUBYStWCo1vUgyt775faPqz8HUMr'),
-    name: 'SLRS',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU'),
-    name: 'SAMO',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('CDJWUqTcYTVAKXAVXoQZFes5JUFc7owSeq7eMQcDSbo5'),
-    name: 'renBTC',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('ArUkYE2XDKzqy77PRRGjo4wREWwqk6RXTfM9NeqzPvjU'),
-    name: 'renDOGE',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('3bRTivrVsitbmCTGtqwp7hxXPsybkjn4XLNtPsHqa3zR'),
-    name: 'LIKE',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('GsNzxJfFn6zQdJGeYsupJWzUAm57Ba7335mfhWvFiE9Z'),
-    name: 'DXL',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So'),
-    name: 'mSOL',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS'),
-    name: 'PAI',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('PoRTjZMPXb9T7dyU7tpLEZRQj7e6ssfAE62j2oQuc6y'),
-    name: 'PORT',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac'),
-    name: 'MNGO',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('DubwWZNWiNGMMeeQHPnMATNj77YZPZSAz2WVR5WjLJqz'),
-    name: 'CRP',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('ATLASXmbPQxBUYbxPsV97usA3fPQYEqzQBUHgiFCUsXx'),
-    name: 'ATLAS',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qVk'),
-    name: 'POLIS',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA'),
-    name: 'GRAPE',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('Lrxqnh6ZHKbGy3dcrCED43nsoLkM1LTzU2jRfWe8qUC'),
-    name: 'LARIX',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp'),
-    name: 'RIN',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('51tMb3zBKDiQhNwGqpgwbavaGH54mk8fXFzxTc1xnasg'),
-    name: 'APEX',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey'),
-    name: 'MNDE',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('4wjPQJ6PrkC4dHhYghwJzGBVP78DkBzA2U3kHoFNBuhj'),
-    name: 'LIQ',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('5tN42n9vMi6ubp67Uy4NnmM5DMZYN8aS8GeB3bEDHr6E'),
-    name: 'WAG',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('9vaCzR4n4QpdN2vyaFmy7ZtvzGHVY3WVzDnLJAQLsKCX'),
-    name: 'JungleCats',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('FnKE9n6aGjQoNWRBZXy4RW6LZVao7qwBonUbiD7edUmZ'),
-    name: 'SYP',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('23sUwdK725SsMe9L5sX6h1NaLJvuhFcBQ8tunpNcc3R7'),
-    name: 'MUNK',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('Aj2HHSuPg1WmyAa6eAyS2uamESPomsoGsi56LXjNyXrb'),
-    name: 'Legends',
-  });
-  TOKEN_MINTS.push({
-    address: new PublicKey('9nEqaUcb16sQ3Tn1psbkWqyhPdLmfHWjKGymREjsAgTE'),
-    name: 'WOOF',
+
+  Object.values(TOKENS).forEach(itemToken => {
+    if (!TOKEN_MINTS.find(item => item.address.toString === itemToken.mintAddress)) {
+      TOKEN_MINTS.push({
+        address: new PublicKey(itemToken.mintAddress),
+        name: itemToken.symbol,
+      });
+    }
   });
 
   const baseCurrency =
