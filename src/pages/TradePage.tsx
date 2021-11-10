@@ -76,7 +76,8 @@ function TradePageInner() {
   const [handleDeprecated, setHandleDeprecated] = useState(false);
   const [addMarketVisible, setAddMarketVisible] = useState(false);
   const deprecatedMarkets = useUnmigratedDeprecatedMarkets();
-  const [dimensions, setDimensions] = useState({
+  // const [dimensions, setDimensions] = useState({
+  const [dimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
   });
