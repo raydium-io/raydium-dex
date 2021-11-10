@@ -53,6 +53,7 @@ const makeDataFeed = () => {
       onResolveErrorCallback,
       extension?,
     ) {
+      let fromCustomMarket = false
       let customMarket = []
       try {
         const customMarketStr = localStorage.getItem('customMarkets')
@@ -63,18 +64,37 @@ const makeDataFeed = () => {
       let marketInfo = USE_MARKETS.find(item => item.name === symbolName && !item.deprecated)
 
       if (!marketInfo){
-        marketInfo = customMarket.find(item => item.name === symbolName)
+        marketInfo = customMarket.find(item => item.name === symbolName || item.userName === symbolName)
+        fromCustomMarket = true
       }
 
       if (!marketInfo) {
         return
       }
 
-      const result = await getApi(`${URL_SERVER}symbols?market=${marketInfo.address.toString()}`);
-
+      const result = await getApi(`${URL_SERVER}symbols?market=${marketInfo.address.toString()}`)
       if (!result) {
         onResolveErrorCallback();
         return;
+      }
+      if (result.name !== marketInfo.name) {
+        if (result.name.includes('unknown')) {
+          result.name = marketInfo.name
+          result.ticker = marketInfo.name
+          result.description = marketInfo.name
+        } else {
+          if (fromCustomMarket) {
+            for(let index = 0 ; index < customMarket.length; index++ ) {
+              if (customMarket[index].name === symbolName) {
+                customMarket[index].userName = customMarket[index].name
+                customMarket[index].name = result.name
+              }
+            }
+            localStorage.setItem('customMarkets', JSON.stringify(customMarket))
+          } else {
+            result.name = marketInfo.name
+          }
+        }
       }
       onSymboleResolvedCallback(result);
     },
@@ -90,8 +110,6 @@ const makeDataFeed = () => {
       from = Math.floor(from);
       to = Math.ceil(to);
 
-      console.log('get bars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON(), resolution)
-      
       resolution = convertResolutionToApi(resolution)
 
       if (from < minTs(symbolInfo.out_count, resolution)) {
@@ -131,7 +149,6 @@ const makeDataFeed = () => {
       subscriberUID,
       onResetCacheNeededCallback,
     ) {
-      console.log('subscribeBars', symbolInfo, resolution, subscriberUID)
       if (subscriptions[subscriberUID]) {
         subscriptions[subscriberUID].stop();
         delete subscriptions[subscriberUID];
@@ -155,7 +172,6 @@ const makeDataFeed = () => {
           const to = Math.ceil(new Date().getTime() / 1000);
           const from = reduceTs(to, resolution);
 
-          console.log('get subscribeBars', from, to, new Date(from * 1000).toJSON(), new Date(to * 1000).toJSON(), subscriberUID)
           const resolutionApi = convertResolutionToApi(resolution)
 
           if (lastReqTime[subscriberUID] && lastReqTime[subscriberUID] + 1000 * 60 > new Date().getTime()) {

@@ -76,7 +76,8 @@ function TradePageInner() {
   const [handleDeprecated, setHandleDeprecated] = useState(false);
   const [addMarketVisible, setAddMarketVisible] = useState(false);
   const deprecatedMarkets = useUnmigratedDeprecatedMarkets();
-  const [dimensions, setDimensions] = useState({
+  // const [dimensions, setDimensions] = useState({
+  const [dimensions] = useState({
     height: window.innerHeight,
     width: window.innerWidth,
   });
@@ -89,17 +90,17 @@ function TradePageInner() {
     ({ size, price }: { size?: number; price?: number }) => void
     >();
 
-  useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setDimensions({
+  //       height: window.innerHeight,
+  //       width: window.innerWidth,
+  //     });
+  //   };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   const width = dimensions?.width;
   const componentProps = {
