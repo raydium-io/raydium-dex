@@ -53,6 +53,7 @@ const makeDataFeed = () => {
       onResolveErrorCallback,
       extension?,
     ) {
+      console.log('ttt', symbolName)
       let fromCustomMarket = false
       let customMarket = []
       try {
@@ -73,7 +74,7 @@ const makeDataFeed = () => {
       }
 
       const result = await getApi(`${URL_SERVER}symbols?market=${marketInfo.address.toString()}`)
-
+      console.log('ttt', symbolName, marketInfo, customMarket, fromCustomMarket, result)
       if (!result) {
         onResolveErrorCallback();
         return;
@@ -81,6 +82,8 @@ const makeDataFeed = () => {
       if (result.name !== marketInfo.name) {
         if (result.name.includes('unknown')) {
           result.name = marketInfo.name
+          result.ticker = marketInfo.name
+          result.description = marketInfo.name
         } else {
           if (fromCustomMarket) {
             for(let index = 0 ; index < customMarket.length; index++ ) {
