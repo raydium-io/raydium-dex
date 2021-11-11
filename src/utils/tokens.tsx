@@ -795,7 +795,7 @@ export const TOKENS: Tokens = {
   weAXS: {
     symbol: 'weAXS',
     name: 'weAXS',
-    mintAddress: 'FSu46jRsf9bEzX86XBkoXwF4MWqnYTRXAFiebvVuST2d',
+    mintAddress: 'HysWcbHiYY9888pHbaqhwLYZQeZrcQMXKQWRqS7zcPK5',
     decimals: 8,
   },
   wsSHIB: {

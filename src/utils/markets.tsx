@@ -645,7 +645,7 @@ const _MARKETS = [
   {
     name: 'weAXS/USDC',
     deprecated: false,
-    address: new PublicKey('AGuz7MeE9ExpmJRvpymtSZPXFmqBoBsrnA7N2JnRSCcs'),
+    address: new PublicKey('HZCheduA4nsSuQpVww1TiyKZpXSAitqaXxjBD2ymg22X'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
