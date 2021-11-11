@@ -773,5 +773,74 @@ export const TOKENS: Tokens = {
     name: 'weSUSHI',
     mintAddress: 'ChVzxWRmrTeSgwd3Ui3UumcN8KX7VK3WaD4KGeSKpypj',
     decimals: 8,
+  },
+  GOFX: {
+    symbol: 'GOFX',
+    name: 'GOFX',
+    mintAddress: 'GFX1ZjR2P15tmrSwow6FjyDYcEkoFb4p4gJCpLBjaxHD',
+    decimals: 9,
+  },
+  IN: {
+    symbol: 'IN',
+    name: 'IN',
+    mintAddress: 'inL8PMVd6iiW3RCBJnr5AsrRN6nqr4BTrcNuQWQSkvY',
+    decimals: 9,
+  },
+  STARS: {
+    symbol: 'STARS',
+    name: 'STARS',
+    mintAddress: 'HCgybxq5Upy8Mccihrp7EsmwwFqYZtrHrsmsKwtGXLgW',
+    decimals: 6,
+  },
+  weAXS: {
+    symbol: 'weAXS',
+    name: 'weAXS',
+    mintAddress: 'FSu46jRsf9bEzX86XBkoXwF4MWqnYTRXAFiebvVuST2d',
+    decimals: 8,
+  },
+  wsSHIB: {
+    symbol: 'wsSHIB',
+    name: 'wsSHIB',
+    mintAddress: 'CiKu4eHsVrc1eueVQeHn7qhXTcVu95gSQmBpX4utjL9z',
+    decimals: 8,
+  },
+  weDYDX: {
+    symbol: 'weDYDX',
+    name: 'weDYDX',
+    mintAddress: '4Hx6Bj56eGyw8EJrrheM6LBQAvVYRikYCWsALeTrwyRU',
+    decimals: 8,
+  },
+
+
+  
+  OXS: {
+    symbol: 'OXS',
+    name: 'OXS',
+    mintAddress: '4TGxgCSJQx2GQk9oHZ8dC5m3JNXTYZHjXumKAW3vLnNx',
+    decimals: 9,
+  },
+  APYS: {
+    symbol: 'APYS',
+    name: 'APYS',
+    mintAddress: '5JnZ667P3VcjDinkJFysWh2K2KtViy63FZ3oL5YghEhW',
+    decimals: 9,
+  },
+  OOGI: {
+    symbol: 'OOGI',
+    name: 'OOGI',
+    mintAddress: 'H7Qc9APCWWGDVxGD5fJHmLTmdEgT9GFatAKFNg6sHh8A',
+    decimals: 9,
+  },
+  STR: {
+    symbol: 'STR',
+    name: 'STR',
+    mintAddress: '9zoqdwEBKWEi9G5Ze8BSkdmppxGgVv1Kw4LuigDiNr9m',
+    decimals: 9,
+  },
+  DATE: {
+    symbol: 'DATE',
+    name: 'DATE',
+    mintAddress: 'Ce3PSQfkxT5ua4r2JqCoWYrMwKWC5hEzwsrT9Hb7mAz9',
+    decimals: 9,
   }
 }
