@@ -786,6 +786,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'inL8PMVd6iiW3RCBJnr5AsrRN6nqr4BTrcNuQWQSkvY',
     decimals: 9,
   },
+  weDYDX: {
+    symbol: 'weDYDX',
+    name: 'weDYDX',
+    mintAddress: '4Hx6Bj56eGyw8EJrrheM6LBQAvVYRikYCWsALeTrwyRU',
+    decimals: 8,
+  },
   STARS: {
     symbol: 'STARS',
     name: 'STARS',
@@ -798,27 +804,51 @@ export const TOKENS: Tokens = {
     mintAddress: 'HysWcbHiYY9888pHbaqhwLYZQeZrcQMXKQWRqS7zcPK5',
     decimals: 8,
   },
-  wsSHIB: {
-    symbol: 'wsSHIB',
-    name: 'wsSHIB',
+  weSHIB: {
+    symbol: 'weSHIB',
+    name: 'weSHIB',
     mintAddress: 'CiKu4eHsVrc1eueVQeHn7qhXTcVu95gSQmBpX4utjL9z',
     decimals: 8,
   },
-  weDYDX: {
-    symbol: 'weDYDX',
-    name: 'weDYDX',
-    mintAddress: '4Hx6Bj56eGyw8EJrrheM6LBQAvVYRikYCWsALeTrwyRU',
-    decimals: 8,
-  },
-
-
-  
   OXS: {
     symbol: 'OXS',
     name: 'OXS',
     mintAddress: '4TGxgCSJQx2GQk9oHZ8dC5m3JNXTYZHjXumKAW3vLnNx',
     decimals: 9,
   },
+  CWAR: {
+    symbol: 'CWAR',
+    name: 'CWAR',
+    mintAddress: 'HfYFjMKNZygfMC8LsQ8LtpPsPxEJoXJx4M6tqi75Hajo',
+    decimals: 9,
+  },
+  UPS: {
+    symbol: 'UPS',
+    name: 'UPS',
+    mintAddress: 'EwJN2GqUGXXzYmoAciwuABtorHczTA5LqbukKXV1viH7',
+    decimals: 6,
+  },
+  weSAND: {
+    symbol: 'weSAND',
+    name: 'weSAND',
+    mintAddress: '49c7WuCZkQgc3M4qH8WuEUNXfgwupZf1xqWkDQ7gjRGt',
+    decimals: 8,
+  },
+  weMANA: {
+    symbol: 'weMANA',
+    name: 'weMANA',
+    mintAddress: '7dgHoN8wBZCc5wbnQ2C47TDnBMAxG4Q5L3KjP67z8kNi',
+    decimals: 8,
+  },
+  CAVE: {
+    symbol: 'CAVE',
+    name: 'CAVE',
+    mintAddress: '4SZjjNABoqhbd4hnapbvoEPEqT8mnNkfbEoAwALf1V8t',
+    decimals: 6,
+  },
+
+
+  
   APYS: {
     symbol: 'APYS',
     name: 'APYS',

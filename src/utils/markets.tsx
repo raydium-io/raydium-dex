@@ -601,15 +601,79 @@ const _MARKETS = [
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
-    name: 'USDT/USDC',
+    name: 'weDYDX/USDC',
     deprecated: false,
-    address: new PublicKey('77quYg4MGneUdjgXCunt9GgM1usmrxKY31twEy3WHwcS'),
+    address: new PublicKey('GNmTGd6iQvQApXgsyvHepDpCnvdRPiWzRr8kzFEMMNKN'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'STARS/USDC',
+    deprecated: false,
+    address: new PublicKey('DvLrUbE8THQytBCe3xrpbYadNRUfUT7SVCm677Nhrmby'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'weAXS/USDC',
+    deprecated: false,
+    address: new PublicKey('HZCheduA4nsSuQpVww1TiyKZpXSAitqaXxjBD2ymg22X'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'weSHIB/USDC',
+    deprecated: false,
+    address: new PublicKey('Er7Jp4PADPVHifykFwbVoHdkL1RtZSsx9zGJrPJTrCgW'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'SBR/USDC',
+    deprecated: false,
+    address: new PublicKey('HXBi8YBwbh4TXF6PjVw81m8Z3Cc4WBofvauj5SBFdgUs'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
     name: 'OXS/USDC',
     deprecated: false,
     address: new PublicKey('gtQT1ipaCBC5wmTm99F9irBDhiLJCo1pbxrcFUMn6mp'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'CWAR/USDC',
+    deprecated: false,
+    address: new PublicKey('CDYafmdHXtfZadhuXYiR7QaqmK9Ffgk2TA8otUWj9SWz'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'UPS/USDC',
+    deprecated: false,
+    address: new PublicKey('DByPstQRx18RU2A8DH6S9mT7bpT6xuLgD2TTFiZJTKZP'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'weSAND/USDC',
+    deprecated: false,
+    address: new PublicKey('3FE2g3cadTJjN3C7gNRavwnv7Yh9Midq7h9KgTVUE7tR'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'weMANA/USDC',
+    deprecated: false,
+    address: new PublicKey('7GSn6KQRasgPQCHwCbuDjDCsyZ3cxVHKWFmBXzJUUW8P'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'CAVE/USDC',
+    deprecated: false,
+    address: new PublicKey('KrGK6ZHyE7Nt35D7GqAKJYAYUPUysGtVBgTXsJuAxMT'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+
+
+
+
+  {
+    name: 'USDT/USDC',
+    deprecated: false,
+    address: new PublicKey('77quYg4MGneUdjgXCunt9GgM1usmrxKY31twEy3WHwcS'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
@@ -634,30 +698,6 @@ const _MARKETS = [
     name: 'DATE/USDC',
     deprecated: false,
     address: new PublicKey('3jszawPiXjuqg5MwAAHS8wehWy1k7de5u5pWmmPZf6dM'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'STARS/USDC',
-    deprecated: false,
-    address: new PublicKey('DvLrUbE8THQytBCe3xrpbYadNRUfUT7SVCm677Nhrmby'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'weAXS/USDC',
-    deprecated: false,
-    address: new PublicKey('HZCheduA4nsSuQpVww1TiyKZpXSAitqaXxjBD2ymg22X'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'weSHIB/USDC',
-    deprecated: false,
-    address: new PublicKey('Er7Jp4PADPVHifykFwbVoHdkL1RtZSsx9zGJrPJTrCgW'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'weDYDX/USDC',
-    deprecated: false,
-    address: new PublicKey('GNmTGd6iQvQApXgsyvHepDpCnvdRPiWzRr8kzFEMMNKN'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   }
   // ...MARKETS,
