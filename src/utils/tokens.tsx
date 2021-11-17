@@ -872,5 +872,11 @@ export const TOKENS: Tokens = {
     name: 'DATE',
     mintAddress: 'Ce3PSQfkxT5ua4r2JqCoWYrMwKWC5hEzwsrT9Hb7mAz9',
     decimals: 9,
+  },
+  COBAN: {
+    symbol: 'COBAN',
+    name: 'COBAN',
+    mintAddress: '7udMmYXh6cuWVY6qQVCd9b429wDVn2J71r5BdxHkQADY',
+    decimals: 3,
   }
 }

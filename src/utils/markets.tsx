@@ -699,6 +699,12 @@ const _MARKETS = [
     deprecated: false,
     address: new PublicKey('3jszawPiXjuqg5MwAAHS8wehWy1k7de5u5pWmmPZf6dM'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'COBAN/USDC',
+    deprecated: false,
+    address: new PublicKey('4VCnuHoo6A3XhQ9YrD6YZWQKVvLxVGzHTB2opNyQi7bz'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   }
   // ...MARKETS,
 ];
