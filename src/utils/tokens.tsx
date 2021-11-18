@@ -878,5 +878,11 @@ export const TOKENS: Tokens = {
     name: 'COBAN',
     mintAddress: '7udMmYXh6cuWVY6qQVCd9b429wDVn2J71r5BdxHkQADY',
     decimals: 3,
+  },
+  GENE: {
+    symbol: 'GENE',
+    name: 'GENE',
+    mintAddress: 'GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz',
+    decimals: 9,
   }
 }
