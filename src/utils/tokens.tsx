@@ -884,5 +884,11 @@ export const TOKENS: Tokens = {
     name: 'GENE',
     mintAddress: 'GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz',
     decimals: 9,
+  },
+  SONAR: {
+    symbol: 'SONAR',
+    name: 'SONAR',
+    mintAddress: 'sonarX4VtVkQemriJeLm6CKeW3GDMyiBnnAEMw1MRAE',
+    decimals: 9,
   }
 }
