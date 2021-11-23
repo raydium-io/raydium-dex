@@ -621,6 +621,12 @@ export const TOKENS: Tokens = {
     decimals: 6,
     referrer: 'M4nDMB9krXbaNFPVu1DjrBTfqPUHbKEQLZSSDNH2JrL',
   },
+  GENE: {
+    symbol: 'GENE',
+    name: 'GENE',
+    mintAddress: 'GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz',
+    decimals: 9,
+  },
   CHEEMS: {
     symbol: 'CHEEMS',
     name: 'CHEEMS',
@@ -846,6 +852,30 @@ export const TOKENS: Tokens = {
     mintAddress: '4SZjjNABoqhbd4hnapbvoEPEqT8mnNkfbEoAwALf1V8t',
     decimals: 6,
   },
+  JSOL: {
+    symbol: 'JSOL',
+    name: 'JSOL',
+    mintAddress: '7Q2afV64in6N6SeZsAAB81TJzwDoD6zpqmHkzi9Dcavn',
+    decimals: 9,
+  },
+  APT: {
+    symbol: 'APT',
+    name: 'APT',
+    mintAddress: 'APTtJyaRX5yGTsJU522N4VYWg3vCvSb65eam5GrPT5Rt',
+    decimals: 6,
+  },
+  SONAR: {
+    symbol: 'SONAR',
+    name: 'SONAR',
+    mintAddress: 'sonarX4VtVkQemriJeLm6CKeW3GDMyiBnnAEMw1MRAE',
+    decimals: 9,
+  },
+  SHILL: {
+    symbol: 'SHILL',
+    name: 'SHILL',
+    mintAddress: '6cVgJUqo4nmvQpbgrDZwyfd6RwWw5bfnCamS3M9N1fd',
+    decimals: 6,
+  },
 
 
   
@@ -878,23 +908,5 @@ export const TOKENS: Tokens = {
     name: 'COBAN',
     mintAddress: '7udMmYXh6cuWVY6qQVCd9b429wDVn2J71r5BdxHkQADY',
     decimals: 3,
-  },
-  GENE: {
-    symbol: 'GENE',
-    name: 'GENE',
-    mintAddress: 'GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz',
-    decimals: 9,
-  },
-  SONAR: {
-    symbol: 'SONAR',
-    name: 'SONAR',
-    mintAddress: 'sonarX4VtVkQemriJeLm6CKeW3GDMyiBnnAEMw1MRAE',
-    decimals: 9,
-  },
-  SHILL: {
-    symbol: 'SHILL',
-    name: 'SHILL',
-    mintAddress: '6cVgJUqo4nmvQpbgrDZwyfd6RwWw5bfnCamS3M9N1fd',
-    decimals: 6,
   }
 }
