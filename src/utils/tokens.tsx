@@ -890,5 +890,11 @@ export const TOKENS: Tokens = {
     name: 'SONAR',
     mintAddress: 'sonarX4VtVkQemriJeLm6CKeW3GDMyiBnnAEMw1MRAE',
     decimals: 9,
+  },
+  SHILL: {
+    symbol: 'SHILL',
+    name: 'SHILL',
+    mintAddress: '6cVgJUqo4nmvQpbgrDZwyfd6RwWw5bfnCamS3M9N1fd',
+    decimals: 6,
   }
 }
