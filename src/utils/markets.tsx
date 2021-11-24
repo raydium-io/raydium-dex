@@ -205,6 +205,12 @@ const _MARKETS = [
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
+    name: 'MOF/USDC',
+    deprecated: false,
+    address: new PublicKey('6HKDynRqoLrt2rbFNKPt1arVtFZJqTQZT8odYnGwoeYD'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
     name: 'MER/USDC',
     deprecated: false,
     address: new PublicKey('G4LcexdCzzJUKZfqyVDQFzpkjhB1JoCNL8Kooxi9nJz5'),
