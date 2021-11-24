@@ -753,6 +753,12 @@ const _MARKETS = [
     deprecated: false,
     address: new PublicKey('4VCnuHoo6A3XhQ9YrD6YZWQKVvLxVGzHTB2opNyQi7bz'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'DFL/USDC',
+    deprecated: false,
+    address: new PublicKey('9UBuWgKN8ZYXcZWN67Spfp3Yp67DKBq1t31WLrVrPjTR'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   }
   // ...MARKETS,
 ];
