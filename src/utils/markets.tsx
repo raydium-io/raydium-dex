@@ -769,7 +769,7 @@ const _MARKETS = [
   {
     name: 'MIMO/SOL',
     deprecated: false,
-    address: new PublicKey('8aEBxzfZWHbkVkrAv1KgRVVRjBdzdgipX4TCVdDRyUSw'),
+    address: new PublicKey('BBD3mBvHnx4PWiGeJCvwG8zosHwmAuwkx7JLjfTCRMw'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   }
   // ...MARKETS,
