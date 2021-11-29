@@ -914,5 +914,11 @@ export const TOKENS: Tokens = {
     name: 'DFL',
     mintAddress: 'DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh',
     decimals: 9,
+  },
+  MIMO: {
+    symbol: 'MIMO',
+    name: 'MIMO',
+    mintAddress: '9TE7ebz1dsFo1uQ2T4oYAKSm39Y6fWuHrd6Uk6XaiD16',
+    decimals: 9,
   }
 }

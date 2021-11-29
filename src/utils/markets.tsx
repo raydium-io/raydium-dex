@@ -759,6 +759,12 @@ const _MARKETS = [
     deprecated: false,
     address: new PublicKey('9UBuWgKN8ZYXcZWN67Spfp3Yp67DKBq1t31WLrVrPjTR'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'MIMO/SOL',
+    deprecated: false,
+    address: new PublicKey('8aEBxzfZWHbkVkrAv1KgRVVRjBdzdgipX4TCVdDRyUSw'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   }
   // ...MARKETS,
 ];
