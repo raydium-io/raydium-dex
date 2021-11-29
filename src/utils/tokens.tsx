@@ -876,6 +876,12 @@ export const TOKENS: Tokens = {
     mintAddress: '6cVgJUqo4nmvQpbgrDZwyfd6RwWw5bfnCamS3M9N1fd',
     decimals: 6,
   },
+  BOKU: {
+    symbol: 'BOKU',
+    name: 'BOKU',
+    mintAddress: 'CN7qFa5iYkHz99PTctvT4xXUHnxwjQ5MHxCuTJtPN5uS',
+    decimals: 9,
+  },
 
 
   

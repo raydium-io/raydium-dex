@@ -714,6 +714,18 @@ const _MARKETS = [
     address: new PublicKey('3KNXNjf1Vp3V5gYPjwnpALYCPhWpRXsPPC8CWBXqmnnN'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'DFL/USDC',
+    deprecated: false,
+    address: new PublicKey('9UBuWgKN8ZYXcZWN67Spfp3Yp67DKBq1t31WLrVrPjTR'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'BOKU/USDC',
+    deprecated: false,
+    address: new PublicKey('Dvm8jjdAy8uyXn9WXjS2p1mcPeFTuYS6yW2eUL9SJE8p'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
 
 
 
@@ -752,12 +764,6 @@ const _MARKETS = [
     name: 'COBAN/USDC',
     deprecated: false,
     address: new PublicKey('4VCnuHoo6A3XhQ9YrD6YZWQKVvLxVGzHTB2opNyQi7bz'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'DFL/USDC',
-    deprecated: false,
-    address: new PublicKey('9UBuWgKN8ZYXcZWN67Spfp3Yp67DKBq1t31WLrVrPjTR'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
