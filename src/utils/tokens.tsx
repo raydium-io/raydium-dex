@@ -926,5 +926,17 @@ export const TOKENS: Tokens = {
     name: 'MIMO',
     mintAddress: '9TE7ebz1dsFo1uQ2T4oYAKSm39Y6fWuHrd6Uk6XaiD16',
     decimals: 9,
+  },
+  wbWBNB: {
+    symbol: 'wbWBNB',
+    name: 'wbWBNB',
+    mintAddress: '9gP2kCy3wA1ctvYWQk75guqXuHfrEomqydHLtcTCqiLa',
+    decimals: 8,
+  },
+  wePEOPLE: {
+    symbol: 'wePEOPLE',
+    name: 'wePEOPLE',
+    mintAddress: 'CobcsUrt3p91FwvULYKorQejgsm5HoQdv5T8RUZ6PnLA',
+    decimals: 8,
   }
 }

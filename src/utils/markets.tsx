@@ -771,6 +771,18 @@ const _MARKETS = [
     deprecated: false,
     address: new PublicKey('BBD3mBvHnx4PWiGeJCvwG8zosHwmAuwkx7JLjfTCRMw'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'wbWBNB/USDC',
+    deprecated: false,
+    address: new PublicKey('3zzTxtDCt9PimwzGrgWJEbxZfSLetDMkdYegPanGNpMf'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'wePEOPLE/USDC',
+    deprecated: false,
+    address: new PublicKey('GsWEL352sYgQC3uAVKgEQz2TtA1RA5cgNwUQahyzwJyz'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   }
   // ...MARKETS,
 ];
