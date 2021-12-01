@@ -876,11 +876,77 @@ export const TOKENS: Tokens = {
     mintAddress: '6cVgJUqo4nmvQpbgrDZwyfd6RwWw5bfnCamS3M9N1fd',
     decimals: 6,
   },
+  TTT: {
+    symbol: 'TTT',
+    name: 'TabTrader',
+    mintAddress: 'FNFKRV3V8DtA3gVJN6UshMiLGYA8izxFwkNWmJbFjmRj',
+    decimals: 6,
+  },
   BOKU: {
     symbol: 'BOKU',
     name: 'BOKU',
     mintAddress: 'CN7qFa5iYkHz99PTctvT4xXUHnxwjQ5MHxCuTJtPN5uS',
     decimals: 9,
+  },
+  MIMO: {
+    symbol: 'MIMO',
+    name: 'MIMO',
+    mintAddress: '9TE7ebz1dsFo1uQ2T4oYAKSm39Y6fWuHrd6Uk6XaiD16',
+    decimals: 9,
+  },
+  wbWBNB: {
+    symbol: 'wbWBNB',
+    name: 'wbWBNB',
+    mintAddress: '9gP2kCy3wA1ctvYWQk75guqXuHfrEomqydHLtcTCqiLa',
+    decimals: 8,
+  },
+  wePEOPLE: {
+    symbol: 'wePEOPLE',
+    name: 'wePEOPLE',
+    mintAddress: 'CobcsUrt3p91FwvULYKorQejgsm5HoQdv5T8RUZ6PnLA',
+    decimals: 8,
+  },
+  XTAG: {
+    symbol: 'XTAG',
+    name: 'XTAG',
+    mintAddress: '5gs8nf4wojB5EXgDUWNLwXpknzgV2YWDhveAeBZpVLbp',
+    decimals: 6,
+  },
+  KKO: {
+    symbol: 'KKO',
+    name: 'KKO',
+    mintAddress: 'kiNeKo77w1WBEzFFCXrTDRWGRWGP8yHvKC9rX6dqjQh',
+    decimals: 9,
+  },
+  VI: {
+    symbol: 'VI',
+    name: 'VI',
+    mintAddress: '7zBWymxbZt7PVHQzfi3i85frc1YRiQc23K7bh3gos8ZC',
+    decimals: 9,
+  },
+  SOLC: {
+    symbol: 'SOLC',
+    name: 'SOLC',
+    mintAddress: 'Bx1fDtvTN6NvE4kjdPHQXtmGSg582bZx9fGy4DQNMmAT',
+    decimals: 9,
+  },
+  STR: {
+    symbol: 'STR',
+    name: 'STR',
+    mintAddress: '9zoqdwEBKWEi9G5Ze8BSkdmppxGgVv1Kw4LuigDiNr9m',
+    decimals: 9,
+  },
+  SPWN: {
+    symbol: 'SPWN',
+    name: 'SPWN',
+    mintAddress: '5U9QqCPhqXAJcEv9uyzFJd5zhN93vuPk1aNNkXnUfPnt',
+    decimals: 9,
+  },
+  ISOLA: {
+    symbol: 'ISOLA',
+    name: 'ISOLA',
+    mintAddress: '333iHoRM2Awhf9uVZtSyTfU8AekdGrgQePZsKMFPgKmS',
+    decimals: 6,
   },
 
 
@@ -895,12 +961,6 @@ export const TOKENS: Tokens = {
     symbol: 'OOGI',
     name: 'OOGI',
     mintAddress: 'H7Qc9APCWWGDVxGD5fJHmLTmdEgT9GFatAKFNg6sHh8A',
-    decimals: 9,
-  },
-  STR: {
-    symbol: 'STR',
-    name: 'STR',
-    mintAddress: '9zoqdwEBKWEi9G5Ze8BSkdmppxGgVv1Kw4LuigDiNr9m',
     decimals: 9,
   },
   DATE: {
@@ -921,22 +981,4 @@ export const TOKENS: Tokens = {
     mintAddress: 'DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh',
     decimals: 9,
   },
-  MIMO: {
-    symbol: 'MIMO',
-    name: 'MIMO',
-    mintAddress: '9TE7ebz1dsFo1uQ2T4oYAKSm39Y6fWuHrd6Uk6XaiD16',
-    decimals: 9,
-  },
-  wbWBNB: {
-    symbol: 'wbWBNB',
-    name: 'wbWBNB',
-    mintAddress: '9gP2kCy3wA1ctvYWQk75guqXuHfrEomqydHLtcTCqiLa',
-    decimals: 8,
-  },
-  wePEOPLE: {
-    symbol: 'wePEOPLE',
-    name: 'wePEOPLE',
-    mintAddress: 'CobcsUrt3p91FwvULYKorQejgsm5HoQdv5T8RUZ6PnLA',
-    decimals: 8,
-  }
 }
