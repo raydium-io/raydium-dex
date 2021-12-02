@@ -786,6 +786,12 @@ const _MARKETS = [
     address: new PublicKey('42QVcMqoXmHT94zaBXm9KeU7pqDfBuAPHYN9ADW8weCF'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'TTT/USDC',
+    deprecated: false,
+    address: new PublicKey('2sdQQDyBsHwQBRJFsYAGpLZcxzGscMUd5uxr8jowyYHs'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
 
 
 
