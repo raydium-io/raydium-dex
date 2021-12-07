@@ -792,6 +792,12 @@ const _MARKETS = [
     address: new PublicKey('2sdQQDyBsHwQBRJFsYAGpLZcxzGscMUd5uxr8jowyYHs'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'RUN/USDC',
+    deprecated: false,
+    address: new PublicKey('HCvX4un57v1SdYQ2LFywaDYyZySqLHMQ5cojq5kQJM3y'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
 
 
 

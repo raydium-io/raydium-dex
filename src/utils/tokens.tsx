@@ -948,6 +948,18 @@ export const TOKENS: Tokens = {
     mintAddress: '333iHoRM2Awhf9uVZtSyTfU8AekdGrgQePZsKMFPgKmS',
     decimals: 6,
   },
+  RUN: {
+    symbol: 'RUN',
+    name: 'RUN',
+    mintAddress: '6F9XriABHfWhit6zmMUYAQBSy6XK5VF1cHXuW5LDpRtC',
+    decimals: 9,
+  },
+  REAL: {
+    symbol: 'REAL',
+    name: 'REAL',
+    mintAddress: 'AD27ov5fVU2XzwsbvnFvb1JpCBaCB5dRXrczV9CqSVGb',
+    decimals: 9,
+  },
 
 
   
