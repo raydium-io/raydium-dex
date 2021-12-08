@@ -960,6 +960,12 @@ export const TOKENS: Tokens = {
     mintAddress: 'AD27ov5fVU2XzwsbvnFvb1JpCBaCB5dRXrczV9CqSVGb',
     decimals: 9,
   },
+  CRWNY: {
+    symbol: 'CRWNY',
+    name: 'CRWNY',
+    mintAddress: 'CRWNYkqdgvhGGae9CKfNka58j6QQkaD5bLhKXvUYqnc1',
+    decimals: 6,
+  },
 
 
   
