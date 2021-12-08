@@ -110,6 +110,7 @@ const makeDataFeed = () => {
       from = Math.floor(from);
       to = Math.ceil(to);
 
+      window.localStorage.setItem('resolution', resolution)
       resolution = convertResolutionToApi(resolution)
 
       if (from < minTs(symbolInfo.out_count, resolution)) {
@@ -314,7 +315,7 @@ const reduceTs = (ts: number, resolutionTv: string) => {
   }
 };
 
-const convertResolutionToApi = (resolution: string) => {
+export const convertResolutionToApi = (resolution: string) => {
   switch (resolution) {
     case '1':
       return '1min';

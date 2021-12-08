@@ -11,7 +11,7 @@ import {
 
 import { flatten } from '../../utils/utils';
 import { useMarket } from '../../utils/markets';
-import { useTvDataFeed } from '../../utils/Datafeed';
+import { convertResolutionToApi, useTvDataFeed } from '../../utils/Datafeed';
 
 export interface ChartContainerProps {
   symbol: ChartingLibraryWidgetOptions['symbol'];
@@ -37,10 +37,18 @@ export interface ChartContainerState {}
 
 export const TVChartContainer = () => {
   let datafeed = useTvDataFeed();
+  let resolution = window.localStorage.getItem('resolution') ?? '60'
+
+  try {
+    convertResolutionToApi(resolution)
+  } catch(e) {
+    resolution = '60'
+  }
+  
   const defaultProps: ChartContainerProps = {
     symbol: 'RAY/USDT',
     // @ts-ignore
-    interval: '60',
+    interval: resolution ? resolution : '60',
     auto_save_delay: 5,
     theme: 'Dark',
     containerId: 'tv_chart_container',
