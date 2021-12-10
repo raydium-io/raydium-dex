@@ -810,6 +810,18 @@ const _MARKETS = [
     address: new PublicKey('6NRE3U7BRWftimyzmKoNSseWDMMxzuoTefxCRBciwD3'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'BLOCK/USDC',
+    deprecated: false,
+    address: new PublicKey('2b6GbUbY979QhRoWb2b9F3vNi7pcCGPDivuiKPHC56zY'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'REAL/USDC',
+    deprecated: false,
+    address: new PublicKey('AU8VGwd4NGRbcMz9LT6Fu2LP69LPAbWUJ6gEfEgeYM33'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
 
 
 
