@@ -966,6 +966,30 @@ export const TOKENS: Tokens = {
     mintAddress: 'CH74tuRLTYcxG7qNJCsV9rghfLXJCQJbsu7i52a8F1Gn',
     decimals: 6,
   },
+  RUN: {
+    symbol: 'RUN',
+    name: 'RUN',
+    mintAddress: '6F9XriABHfWhit6zmMUYAQBSy6XK5VF1cHXuW5LDpRtC',
+    decimals: 9,
+  },
+  REAL: {
+    symbol: 'REAL',
+    name: 'REAL',
+    mintAddress: 'AD27ov5fVU2XzwsbvnFvb1JpCBaCB5dRXrczV9CqSVGb',
+    decimals: 9,
+  },
+  CRWNY: {
+    symbol: 'CRWNY',
+    name: 'CRWNY',
+    mintAddress: 'CRWNYkqdgvhGGae9CKfNka58j6QQkaD5bLhKXvUYqnc1',
+    decimals: 6,
+  },
+  BLOCK: {
+    symbol: 'BLOCK',
+    name: 'BLOCK',
+    mintAddress: 'NFTUkR4u7wKxy9QLaX2TGvd9oZSWoMo4jqSJqdMb7Nk',
+    decimals: 6,
+  },
 
 
   
