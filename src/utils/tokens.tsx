@@ -948,6 +948,24 @@ export const TOKENS: Tokens = {
     mintAddress: '333iHoRM2Awhf9uVZtSyTfU8AekdGrgQePZsKMFPgKmS',
     decimals: 6,
   },
+  SOLAR: {
+    symbol: 'SOLAR',
+    name: 'SOLAR',
+    mintAddress: '2wmKXX1xsxLfrvjEPrt2UHiqj8Gbzwxvffr9qmNjsw8g',
+    decimals: 9,
+  },
+  BASIS: {
+    symbol: 'BASIS',
+    name: 'BASIS',
+    mintAddress: 'Basis9oJw9j8cw53oMV7iqsgo6ihi9ALw4QR31rcjUJa',
+    decimals: 6,
+  },
+  SOLX: {
+    symbol: 'SOLX',
+    name: 'SOLX',
+    mintAddress: 'CH74tuRLTYcxG7qNJCsV9rghfLXJCQJbsu7i52a8F1Gn',
+    decimals: 6,
+  },
 
 
   
