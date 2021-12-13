@@ -1023,4 +1023,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'DFL1zNkaGPWm1BqAVqRjCZvHmwTFrEaJtbzJWgseoNJh',
     decimals: 9,
   },
+  CHICKS: {
+    symbol: 'CHICKS',
+    name: 'CHICKS',
+    mintAddress: 'cxxShYRVcepDudXhe7U62QHvw8uBJoKFifmzggGKVC2',
+    decimals: 9,
+  },
 }

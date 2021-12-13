@@ -880,6 +880,12 @@ const _MARKETS = [
     address: new PublicKey('HCWgghHfDefcGZsPsLAdMP3NigJwBrptZnXemeQchZ69'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'CHICKS/USDC',
+    deprecated: false,
+    address: new PublicKey('Eg8a9ZicLPSyak4CiXfiMeJK6jmHq57Xx5ag5GY6vcDj'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
