@@ -345,7 +345,7 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
       </Col>
 
       <Col flex="auto" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <TVChartContainer showHeight={540} />
+        <TVChartContainer/>
         <UserInfoTable smallScreen={false}/>
       </Col>
 
@@ -365,7 +365,7 @@ const RenderSmaller = ({ onChangeOrderRef, onPrice, onSize, height, width }) => 
     <>
       <Row>
         <Col span={24}>
-          <TVChartContainer showHeight={height / 2} />
+          <TVChartContainer/>
         </Col>
 
         <Col span={16}>
@@ -380,7 +380,7 @@ const RenderSmaller = ({ onChangeOrderRef, onPrice, onSize, height, width }) => 
         </Col>
 
         <Col xs={24} sm={12}>
-          <StandaloneBalancesDisplay showLogo={width > 540}/>
+          <StandaloneBalancesDisplay/>
         </Col>
         <Col xs={24} sm={12}>
           <TradesTable smallScreen={false} />

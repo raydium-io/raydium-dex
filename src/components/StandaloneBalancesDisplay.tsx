@@ -33,7 +33,7 @@ const ActionButton = styled(Button)`
   border: 1px solid rgba(241, 241, 242, 0.5);
 `;
 
-export default function StandaloneBalancesDisplay({showLogo = true}) {
+export default function StandaloneBalancesDisplay() {
   const { baseCurrency, quoteCurrency, market } = useMarket();
   const balances = useBalances();
   const openOrdersAccount = useSelectedOpenOrdersAccount(true);
@@ -214,7 +214,7 @@ export default function StandaloneBalancesDisplay({showLogo = true}) {
         baseOrQuote={baseOrQuote}
         onClose={() => setBaseOrQuote('')}
       />
-      <div style={{ textAlign: 'center', paddingTop: 32, display: showLogo ? 'block':'none' }}>
+      <div style={{ textAlign: 'center', paddingTop: 32, display: window.innerWidth>540 ? 'block':'none' }}>
         <img src={logo1} alt="" />
         <div style={{ paddingTop: 20, fontSize: 16, color: '#F1F1F2' }}>
           First time trading
