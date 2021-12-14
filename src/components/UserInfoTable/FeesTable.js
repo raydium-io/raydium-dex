@@ -55,13 +55,13 @@ export default function FeesTable() {
               >
                 <Col span={4} style={{ textAlign: 'left' }}>
                   <Typography>{feeTier}</Typography>
-                  {index === 0 ? (
+                  {/* {index === 0 ? (
                     <div style={{ marginLeft: 10 }}>
                       <Tag color={'#41C77A'} style={{ fontWeight: 700 }}>
                         Selected
                       </Tag>
                     </div>
-                  ) : null}
+                  ) : null} */}
                 </Col>
                 <Col span={4} style={{ textAlign: 'left' }}>
                   {percentFormat.format(getFeeRates(feeTier).taker)}
@@ -70,7 +70,9 @@ export default function FeesTable() {
                   {percentFormat.format(getFeeRates(feeTier).maker)}
                 </Col>
                 <Col span={4} style={{ textAlign: 'left' }}>
-                  {pubkey.toBase58()}
+                  {pubkey.toBase58().substr(0, 7)}
+                  ...
+                  {pubkey.toBase58().substr(pubkey.toBase58().length - 7, 7)}
                 </Col>
                 <Col span={4} style={{ textAlign: 'left' }}>
                   {balance}

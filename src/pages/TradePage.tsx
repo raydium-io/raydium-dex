@@ -123,8 +123,6 @@ function TradePageInner() {
       );
     } else if (width < 1000) {
       return <RenderSmaller {...componentProps} />;
-    } else if (width < 1450) {
-      return <RenderSmall {...componentProps} />;
     } else {
       return <RenderNormal {...componentProps} />;
     }
@@ -337,8 +335,8 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
       }}
     >
       <Col
-        flex="360px"
-        style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+        flex="15%"
+        style={{ height: '100%', display: 'flex', flexDirection: 'column',  minWidth: '280px' }}
       >
         <TradeForm setChangeOrderRef={onChangeOrderRef} />
         <StandaloneBalancesDisplay />
@@ -349,7 +347,9 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
         <UserInfoTable />
       </Col>
 
-      <Col flex={'360px'} style={{ height: '100%' }}>
+      <Col
+        flex="15%" 
+        style={{ height: '100%', minWidth: '280px' }}>
         <Orderbook smallScreen={false} onPrice={onPrice} onSize={onSize} />
         <TradesTable smallScreen={false} />
       </Col>
