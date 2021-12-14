@@ -1,5 +1,10 @@
 import React from 'react';
-import { Row, Col, Typography, Tag } from 'antd';
+import {
+  Row,
+  Col,
+  Typography,
+  //  Tag
+} from 'antd';
 import { useFeeDiscountKeys } from '../../utils/markets';
 import { TokenInstructions, getFeeRates } from '@project-serum/serum';
 import { percentFormat } from '../../utils/utils';
@@ -24,22 +29,19 @@ export default function FeesTable() {
               paddingBottom: 16,
             }}
           >
-            <Col span={4} style={{ textAlign: 'left' }}>
+            <Col span={5} style={{ textAlign: 'left' }}>
               Fee Tier
             </Col>
-            <Col span={4} style={{ textAlign: 'left' }}>
+            <Col span={5} style={{ textAlign: 'left' }}>
               Taker
             </Col>
             <Col span={4} style={{ textAlign: 'left' }}>
               Maker
             </Col>
-            <Col span={4} style={{ textAlign: 'left' }}>
-              Public Key
-            </Col>
-            <Col span={4} style={{ textAlign: 'left' }}>
+            <Col span={5} style={{ textAlign: 'left' }}>
               Balance
             </Col>
-            <Col span={4} style={{ textAlign: 'left' }}>
+            <Col span={5} style={{ textAlign: 'left' }}>
               Mint
             </Col>
           </Row>
@@ -53,7 +55,7 @@ export default function FeesTable() {
                   paddingBottom: 16,
                 }}
               >
-                <Col span={4} style={{ textAlign: 'left' }}>
+                <Col span={5} style={{ textAlign: 'left' }}>
                   <Typography>{feeTier}</Typography>
                   {/* {index === 0 ? (
                     <div style={{ marginLeft: 10 }}>
@@ -63,26 +65,25 @@ export default function FeesTable() {
                     </div>
                   ) : null} */}
                 </Col>
-                <Col span={4} style={{ textAlign: 'left' }}>
+                <Col span={5} style={{ textAlign: 'left' }}>
                   {percentFormat.format(getFeeRates(feeTier).taker)}
                 </Col>
                 <Col span={4} style={{ textAlign: 'left' }}>
                   {percentFormat.format(getFeeRates(feeTier).maker)}
                 </Col>
-                <Col span={4} style={{ textAlign: 'left' }}>
-                  {pubkey.toBase58().substr(0, 7)}
-                  ...
-                  {pubkey.toBase58().substr(pubkey.toBase58().length - 7, 7)}
-                </Col>
-                <Col span={4} style={{ textAlign: 'left' }}>
+                <Col span={5} style={{ textAlign: 'left' }}>
                   {balance}
                 </Col>
-                <Col span={4} style={{ textAlign: 'left' }}>
+                <Col span={5} style={{ textAlign: 'left' }}>
                   {mint.equals(TokenInstructions.SRM_MINT)
                     ? 'SRM'
                     : mint.equals(TokenInstructions.MSRM_MINT)
                     ? 'MSRM'
                     : 'UNKNOWN'}
+                </Col>
+
+                <Col span={24} style={{ textAlign: 'left' }}>
+                  Public key: {pubkey.toBase58()}
                 </Col>
               </Row>
             ))}

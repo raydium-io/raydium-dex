@@ -35,7 +35,7 @@ export interface ChartContainerProps {
 
 export interface ChartContainerState {}
 
-export const TVChartContainer = () => {
+export const TVChartContainer = ({showHeight }) => {
   let datafeed = useTvDataFeed();
   let resolution = window.localStorage.getItem('resolution') ?? '60'
 
@@ -145,6 +145,5 @@ export const TVChartContainer = () => {
         .subscribe('onAutoSaveNeeded', () => tvWidget.saveChartToServer());
     });
   }, [chartProperties, datafeed, defaultProps.autosize, defaultProps.clientId, defaultProps.containerId, defaultProps.fullscreen, defaultProps.interval, defaultProps.libraryPath, defaultProps.studiesOverrides, defaultProps.theme, defaultProps.userId, marketName]);
-
-  return <div style={{ height: 540 }} id={defaultProps.containerId} className={'TVChartContainer'} />;
+  return <div style={{ height: showHeight }} id={defaultProps.containerId} className={'TVChartContainer'} />;
 };
