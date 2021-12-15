@@ -7,7 +7,7 @@ export function notify({
   description,
   txid,
   type = 'info',
-  placement = 'bottomLeft',
+  placement = 'bottomRight',
 }: {
   message: string;
   description?: string | JSX.Element;
