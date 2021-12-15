@@ -145,5 +145,5 @@ export const TVChartContainer = () => {
         .subscribe('onAutoSaveNeeded', () => tvWidget.saveChartToServer());
     });
   }, [chartProperties, datafeed, defaultProps.autosize, defaultProps.clientId, defaultProps.containerId, defaultProps.fullscreen, defaultProps.interval, defaultProps.libraryPath, defaultProps.studiesOverrides, defaultProps.theme, defaultProps.userId, marketName]);
-  return <div style={{ height: window.innerWidth < 1000 ? window.innerHeight / 2 : 540 }} id={defaultProps.containerId} className={'TVChartContainer'} />;
+  return <div style={{ height: window.innerWidth < 1000 ? '50vh' : 540 }} id={defaultProps.containerId} className={'TVChartContainer'} />;
 };

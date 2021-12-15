@@ -124,7 +124,7 @@ function TradePageInner() {
         />
       );
     } else if (width < 1000) {
-      return <RenderSmaller {...componentProps} height={height} width={width} />;
+      return <RenderSmaller {...componentProps} />;
     } else {
       return <RenderNormal {...componentProps} />;
     }
@@ -159,7 +159,6 @@ function TradePageInner() {
         onClose={() => setAddMarketVisible(false)}
         onAddCustomMarket={onAddCustomMarket}
       />
-      {window.innerHeight}---{window.innerWidth}
       <Wrapper>
         <Row
           align="middle"
@@ -361,7 +360,7 @@ const RenderNormal = ({ onChangeOrderRef, onPrice, onSize }) => {
   );
 };
 
-const RenderSmaller = ({ onChangeOrderRef, onPrice, onSize, height, width }) => {
+const RenderSmaller = ({ onChangeOrderRef, onPrice, onSize }) => {
   return (
     <>
       <Row>
