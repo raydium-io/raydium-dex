@@ -862,6 +862,30 @@ const _MARKETS = [
     address: new PublicKey('4VCnuHoo6A3XhQ9YrD6YZWQKVvLxVGzHTB2opNyQi7bz'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SOLX/USDC',
+    deprecated: false,
+    address: new PublicKey('6DhnyzBiw59MgjjVE1dGwfX8PKSFmN5gagcoCAn6U6x8'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'SOLAR/USDC',
+    deprecated: false,
+    address: new PublicKey('BHfFJM36MirbBtLCcnZokwRvxUPxk7Ez6EAT6k44q6Go'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'BASIS/USDC',
+    deprecated: false,
+    address: new PublicKey('HCWgghHfDefcGZsPsLAdMP3NigJwBrptZnXemeQchZ69'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'CHICKS/USDC',
+    deprecated: false,
+    address: new PublicKey('Eg8a9ZicLPSyak4CiXfiMeJK6jmHq57Xx5ag5GY6vcDj'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
