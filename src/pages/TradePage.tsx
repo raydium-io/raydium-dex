@@ -159,6 +159,7 @@ function TradePageInner() {
         onClose={() => setAddMarketVisible(false)}
         onAddCustomMarket={onAddCustomMarket}
       />
+      {window.innerHeight}---{window.innerWidth}
       <Wrapper>
         <Row
           align="middle"
