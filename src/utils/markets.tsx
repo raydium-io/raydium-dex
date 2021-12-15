@@ -886,6 +886,12 @@ const _MARKETS = [
     address: new PublicKey('Eg8a9ZicLPSyak4CiXfiMeJK6jmHq57Xx5ag5GY6vcDj'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'NOVA/USDT',
+    deprecated: false,
+    address: new PublicKey('2JYtpRB51ShaB7i4eaQyx6QYqWFmm38CAakFSMP8xush'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 

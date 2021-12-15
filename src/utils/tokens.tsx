@@ -1029,4 +1029,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'cxxShYRVcepDudXhe7U62QHvw8uBJoKFifmzggGKVC2',
     decimals: 9,
   },
+  NOVA: {
+    symbol: 'NOVA',
+    name: 'NOVA',
+    mintAddress: 'BDrL8huis6S5tpmozaAaT5zhE5A7ZBAB2jMMvpKEeF8A',
+    decimals: 9,
+  },
 }
