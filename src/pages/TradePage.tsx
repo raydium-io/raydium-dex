@@ -103,7 +103,6 @@ function TradePageInner() {
   // }, []);
 
   const width = dimensions?.width;
-  const height = dimensions?.height
 
   const componentProps = {
     onChangeOrderRef: (ref) => (changeOrderRef.current = ref),
