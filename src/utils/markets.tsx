@@ -892,6 +892,12 @@ const _MARKETS = [
     address: new PublicKey('2JYtpRB51ShaB7i4eaQyx6QYqWFmm38CAakFSMP8xush'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'GST/USDC',
+    deprecated: false,
+    address: new PublicKey('2JiQd14xAjmcNEJicyU1m3TVbzQDktTvY285gkozD46J'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 

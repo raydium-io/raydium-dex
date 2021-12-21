@@ -1035,4 +1035,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'BDrL8huis6S5tpmozaAaT5zhE5A7ZBAB2jMMvpKEeF8A',
     decimals: 9,
   },
+  GST: {
+    symbol: 'GST',
+    name: 'GST',
+    mintAddress: 'AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB',
+    decimals: 9,
+  },
 }
