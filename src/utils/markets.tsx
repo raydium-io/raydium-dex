@@ -898,6 +898,12 @@ const _MARKETS = [
     address: new PublicKey('2JiQd14xAjmcNEJicyU1m3TVbzQDktTvY285gkozD46J'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'MBS/USDC',
+    deprecated: false,
+    address: new PublicKey('9sUSmgx78tt692hzwiRdBdfwjxPF6nsYeJfPCrTz6vxm'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
