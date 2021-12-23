@@ -1047,4 +1047,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'Fm9rHUTF5v3hwMLbStjZXqNBBoZyGriQaFM6sTFz3K8A',
     decimals: 6,
   },
+  RACEFI: {
+    symbol: 'RACEFI',
+    name: 'RACEFI',
+    mintAddress: 'AAmGoPDFLG6bE82BgZWjVi8k95tj9Tf3vUN7WvtUm2BU',
+    decimals: 6,
+  },
 }

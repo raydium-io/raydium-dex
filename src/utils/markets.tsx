@@ -904,6 +904,12 @@ const _MARKETS = [
     address: new PublicKey('9sUSmgx78tt692hzwiRdBdfwjxPF6nsYeJfPCrTz6vxm'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'RACEFI/USDC',
+    deprecated: false,
+    address: new PublicKey('4iQ4BRcg6E7hNB384TzhQAjjVYnweMkQh5WFC2t8JNjw'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
