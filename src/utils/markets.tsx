@@ -910,6 +910,18 @@ const _MARKETS = [
     address: new PublicKey('4iQ4BRcg6E7hNB384TzhQAjjVYnweMkQh5WFC2t8JNjw'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'MEAN/RAY',
+    deprecated: false,
+    address: new PublicKey('2zJKJgDb8M57J8K5JHZqJyU5ZWZHsxyFtCPi6GdRCi91'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'MEAN/USDC',
+    deprecated: false,
+    address: new PublicKey('3WXrxhrj4PXYUwW4ozBjxdSxwEp9ELKf3vETxXTqdiQJ'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 

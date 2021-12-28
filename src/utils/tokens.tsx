@@ -1053,4 +1053,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'AAmGoPDFLG6bE82BgZWjVi8k95tj9Tf3vUN7WvtUm2BU',
     decimals: 6,
   },
+  MEAN: {
+    symbol: 'MEAN',
+    name: 'MEAN',
+    mintAddress: 'MEANeD3XDdUmNMsRGjASkSWdC8prLYsoRJ61pPeHctD',
+    decimals: 6,
+  },
 }
