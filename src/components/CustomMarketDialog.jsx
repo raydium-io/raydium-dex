@@ -127,9 +127,16 @@ export default function CustomMarketDialog({
       title={'Add custom market'}
       visible={visible}
       onOk={onSubmit}
-      okText={'Add'}
+      okText={
+        market && knownProgram && knownProgram.deprecated
+          ? 'Refused to add'
+          : 'Add'
+      }
       onCancel={onDoClose}
-      okButtonProps={{ disabled: !canSubmit }}
+      okButtonProps={{
+        disabled:
+          !canSubmit || (market && knownProgram && knownProgram.deprecated),
+      }}
     >
       <div>
         {wellFormedMarketId ? (
