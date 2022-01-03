@@ -922,6 +922,12 @@ const _MARKETS = [
     address: new PublicKey('3WXrxhrj4PXYUwW4ozBjxdSxwEp9ELKf3vETxXTqdiQJ'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'TINY/USDC',
+    deprecated: false,
+    address: new PublicKey('998TAsB7D2FnFrri5YSVHfw7Ajgckz5skdu1qPPMFVSt'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 

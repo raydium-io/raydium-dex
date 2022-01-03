@@ -1059,4 +1059,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'MEANeD3XDdUmNMsRGjASkSWdC8prLYsoRJ61pPeHctD',
     decimals: 6,
   },
+  TINY: {
+    symbol: 'TINY',
+    name: 'TINY',
+    mintAddress: 'HKfs24UEDQpHS5hUyKYkHd9q7GY5UQ679q2bokeL2whu',
+    decimals: 6,
+  },
 }
