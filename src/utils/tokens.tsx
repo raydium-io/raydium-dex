@@ -1065,4 +1065,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'HKfs24UEDQpHS5hUyKYkHd9q7GY5UQ679q2bokeL2whu',
     decimals: 6,
   },
+  SHDW: {
+    symbol: 'SHDW',
+    name: 'SHDW',
+    mintAddress: 'SHDWyBxihqiCj6YekG2GUr7wqKLeLAMK1gHZck9pL6y',
+    decimals: 9,
+  },
 }

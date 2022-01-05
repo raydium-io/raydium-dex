@@ -928,6 +928,12 @@ const _MARKETS = [
     address: new PublicKey('998TAsB7D2FnFrri5YSVHfw7Ajgckz5skdu1qPPMFVSt'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SHDW/USDC',
+    deprecated: false,
+    address: new PublicKey('CVJVpXU9xksCt2uSduVDrrqVw6fLZCAtNusuqLKc5DhW'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
