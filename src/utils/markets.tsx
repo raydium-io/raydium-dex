@@ -934,6 +934,12 @@ const _MARKETS = [
     address: new PublicKey('CVJVpXU9xksCt2uSduVDrrqVw6fLZCAtNusuqLKc5DhW'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SCY/USDC',
+    deprecated: false,
+    address: new PublicKey('DR8V2wUCSFKCGjML6AZvUB2eYWDPVQ5xju3DeXGgpSaB'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
