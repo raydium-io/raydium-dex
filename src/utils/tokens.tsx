@@ -1077,4 +1077,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'SCYfrGCw8aDiqdgcpdGjV6jp4UVVQLuphxTDLNWu36f',
     decimals: 9,
   },
+  SLC: {
+    symbol: 'SLC',
+    name: 'SLC',
+    mintAddress: 'METAmTMXwdb8gYzyCPfXXFmZZw4rUsXX58PNsDg7zjL',
+    decimals: 6,
+  },
 }
