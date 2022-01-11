@@ -946,6 +946,12 @@ const _MARKETS = [
     address: new PublicKey('DvmDTjsdnN77q7SST7gngLydP1ASNNpUVi4cNfU95oCr'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: '$WOOD/USDC',
+    deprecated: false,
+    address: new PublicKey('27vfNXchi3Pzdz7QDb1q9zcjvk5sU94U7gUNcis89Vy1'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
