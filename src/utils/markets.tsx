@@ -964,6 +964,12 @@ const _MARKETS = [
     address: new PublicKey('HubRne1PhTa8ufcGRmS6sMJpbB5yY3BEykUuw8xXoAyy'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SVT/USDC',
+    deprecated: false,
+    address: new PublicKey('HuFKVQNyB177c9DiocQksYzBCtHMRUP5bBXZJzuLvYQm'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 

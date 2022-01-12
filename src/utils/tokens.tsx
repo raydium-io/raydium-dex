@@ -1101,4 +1101,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'F3nefJBcejYbtdREjui1T9DPh5dBgpkKq7u2GAAMXs5B',
     decimals: 6,
   },
+  SVT: {
+    symbol: 'SVT',
+    name: 'SVT',
+    mintAddress: 'svtMpL5eQzdmB3uqK9NXaQkq8prGZoKQFNVJghdWCkV',
+    decimals: 6,
+  },
 }
