@@ -1095,4 +1095,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'F6v4wfAdJB8D8p77bMXZgYt8TDKsYxLYxH5AFhUkYx9W',
     decimals: 6,
   },
+  AART: {
+    symbol: 'AART',
+    name: 'AART',
+    mintAddress: 'F3nefJBcejYbtdREjui1T9DPh5dBgpkKq7u2GAAMXs5B',
+    decimals: 6,
+  },
 }

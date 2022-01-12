@@ -958,6 +958,12 @@ const _MARKETS = [
     address: new PublicKey('HBTu8hNaoT3VyiSSzJYa8jwt9sDGKtJviSwFa11iXdmE'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'AART/USDC',
+    deprecated: false,
+    address: new PublicKey('HubRne1PhTa8ufcGRmS6sMJpbB5yY3BEykUuw8xXoAyy'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
