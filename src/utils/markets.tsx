@@ -952,12 +952,6 @@ const _MARKETS = [
     address: new PublicKey('27vfNXchi3Pzdz7QDb1q9zcjvk5sU94U7gUNcis89Vy1'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
-  {
-    name: 'OOGI/USDC',
-    deprecated: false,
-    address: new PublicKey('ANUCohkG9gamUn6ofZEbnzGkjtyMexDhnjCwbLDmQ8Ub'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
   // ...MARKETS,
 ];
 
