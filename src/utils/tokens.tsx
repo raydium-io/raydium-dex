@@ -1089,4 +1089,10 @@ export const TOKENS: Tokens = {
     mintAddress: '674PmuiDtgKx3uKuJ1B16f9m5L84eFvNwj3xDMvHcbo7',
     decimals: 9,
   },
+  LUNA: {
+    symbol: 'LUNA',
+    name: 'LUNA',
+    mintAddress: 'F6v4wfAdJB8D8p77bMXZgYt8TDKsYxLYxH5AFhUkYx9W',
+    decimals: 6,
+  },
 }
