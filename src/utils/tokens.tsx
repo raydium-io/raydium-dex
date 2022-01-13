@@ -1107,4 +1107,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'svtMpL5eQzdmB3uqK9NXaQkq8prGZoKQFNVJghdWCkV',
     decimals: 6,
   },
+  BOT: {
+    symbol: 'BOT',
+    name: 'BOT',
+    mintAddress: 'AkhdZGVbJXPuQZ53u2LrimCjkRP6ZyxG1SoM85T98eE1',
+    decimals: 8,
+  },
 }
