@@ -1113,4 +1113,10 @@ export const TOKENS: Tokens = {
     mintAddress: 'AkhdZGVbJXPuQZ53u2LrimCjkRP6ZyxG1SoM85T98eE1',
     decimals: 8,
   },
+  FANT: {
+    symbol: 'FANT',
+    name: 'FANT',
+    mintAddress: 'FANTafPFBAt93BNJVpdu25pGPmca3RfwdsDsRrT3LX1r',
+    decimals: 6,
+  },
 }

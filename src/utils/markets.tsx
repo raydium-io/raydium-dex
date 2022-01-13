@@ -976,6 +976,12 @@ const _MARKETS = [
     address: new PublicKey('EbtdM5qD52MBb8mKLXfFc2G8wpzP4mMhtsdAJzvZ9tfC'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'FANT/USDC',
+    deprecated: false,
+    address: new PublicKey('4rtLjEACKFbUxGB2zrWxNkRnCNbSr7ES1ZsXrTd6mhbr'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
