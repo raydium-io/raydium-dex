@@ -1119,4 +1119,18 @@ export const TOKENS: Tokens = {
     mintAddress: 'FANTafPFBAt93BNJVpdu25pGPmca3RfwdsDsRrT3LX1r',
     decimals: 6,
   },
+  NOS: {
+    symbol: 'NOS',
+    name: 'NOS',
+    mintAddress: 'nosXBVoaCTtYdLvKY6Csb4AC8JCdQKKAaWYtx2ZMoo7',
+    decimals: 6,
+    tags: ['raydium']
+  },
+  SB: {
+    symbol: 'SB',
+    name: 'SB',
+    mintAddress: 'SuperbZyz7TsSdSoFAZ6RYHfAWe9NmjXBLVQpS8hqdx',
+    decimals: 6,
+    tags: ['raydium']
+  },
 }
