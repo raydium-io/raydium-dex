@@ -1147,7 +1147,7 @@ const _SLOW_REFRESH_INTERVAL_NEW = 60 * 1000;
 const _FAST_REFRESH_INTERVAL = 1000;
 
 export const DEFAULT_MARKET = USE_MARKETS.find(
-  ({ name, deprecated }) => name === 'RAY/USDT' && !deprecated,
+  ({ name, deprecated }) => name === 'RAY/USDC' && !deprecated,
 );
 
 export function getMarketDetails(
@@ -1230,7 +1230,7 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
         console.log('Switching markets from deprecated', marketInfo);
         if (DEFAULT_MARKET) {
           // setMarketAddress(DEFAULT_MARKET.address.toBase58());
-          setMarketAddress('C4z32zw9WKaGPhNuU54ohzrV4CE1Uau3cFx6T8RLjxYC');
+          setMarketAddress('2xiv8A5xrJ7RnGdxXB42uFEkYHJjszEhaJyKKt4WaLep');
         }
       }
     }
@@ -1292,7 +1292,7 @@ export function getTradePageUrl(marketAddress?: string) {
     if (saved) {
       marketAddress = JSON.parse(saved);
     }
-    marketAddress = marketAddress || DEFAULT_MARKET?.address.toBase58() || '';
+    marketAddress = marketAddress || DEFAULT_MARKET?.address.toBase58() || '2xiv8A5xrJ7RnGdxXB42uFEkYHJjszEhaJyKKt4WaLep';
   }
   return `/market/${marketAddress}`;
 }
@@ -2132,7 +2132,7 @@ export function useBalancesForDeprecatedMarkets() {
 export function getMarketInfos(
   customMarkets: CustomMarketInfo[],
 ): MarketInfo[] {
-  const customMarketsInfo = customMarkets.map((m) => ({
+  const customMarketsInfo = customMarkets.filter(item => !USE_MARKETS.find(itemNew => itemNew.address.toString() === item.address && itemNew.deprecated === true)).map((m) => ({
     ...m,
     address: new PublicKey(m.address),
     programId: new PublicKey(m.programId),
