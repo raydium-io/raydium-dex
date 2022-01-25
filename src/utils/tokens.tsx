@@ -1147,4 +1147,11 @@ export const TOKENS: Tokens = {
     decimals: 0,
     tags: ['raydium']
   },
+  ATS: {
+    symbol: 'ATS',
+    name: 'ATS',
+    mintAddress: 'HJbNXx2YMRxgfUJ6K4qeWtjatMK5KYQT1QnsCdDWywNv',
+    decimals: 9,
+    tags: ['raydium']
+  },
 }

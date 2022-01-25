@@ -1006,6 +1006,12 @@ const _MARKETS = [
     address: new PublicKey('EjQGc33aFu8VDPWnopohcEHcBXWPRnRm8J3t2oDG7Znf'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'ATS/USDC',
+    deprecated: false,
+    address: new PublicKey('HXFsb7CLFQPECRjgTMiAKr53RujWsH79SGNsNLjJuzXi'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
