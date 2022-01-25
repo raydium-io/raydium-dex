@@ -1133,4 +1133,18 @@ export const TOKENS: Tokens = {
     decimals: 6,
     tags: ['raydium']
   },
+  FCON: {
+    symbol: 'FCON',
+    name: 'FCON',
+    mintAddress: 'HovGjrBGTfna4dvg6exkMxXuexB3tUfEZKcut8AWowXj',
+    decimals: 4,
+    tags: ['raydium']
+  },
+  Dappie: {
+    symbol: 'Dappie',
+    name: 'Dappie',
+    mintAddress: 'FnkKMAE6PPp7um7W2PcZXVuvu3gBT8KrfZR4ymzP5Ki2',
+    decimals: 0,
+    tags: ['raydium']
+  },
 }

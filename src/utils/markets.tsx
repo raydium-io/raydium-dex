@@ -994,6 +994,18 @@ const _MARKETS = [
     address: new PublicKey('E3cNotFPoECwQvacT2D7u3C3tKRkGtUxv8WFYazBEx4X'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'FCON/USDC',
+    deprecated: false,
+    address: new PublicKey('GnZuMX8RFGzasx4CoJaTSseGExqdva9KYY4Pw6QpGjS2'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'Dappie/SOL',
+    deprecated: false,
+    address: new PublicKey('EjQGc33aFu8VDPWnopohcEHcBXWPRnRm8J3t2oDG7Znf'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
