@@ -118,8 +118,6 @@ const makeDataFeed = () => {
         return
       }
 
-      if (from < 1609459200) from = 1609459200
-      
       const key = `${symbolInfo.market}--${resolution}`
 
       if (overTime[key] && overTime[key] > from) {
