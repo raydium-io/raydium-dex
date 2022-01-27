@@ -1154,4 +1154,11 @@ export const TOKENS: Tokens = {
     decimals: 9,
     tags: ['raydium']
   },
+  PSY: {
+    symbol: 'PSY',
+    name: 'PSY',
+    mintAddress: 'PsyFiqqjiv41G7o5SMRzDJCu4psptThNR2GtfeGHfSq',
+    decimals: 6,
+    tags: ['raydium']
+  },
 }
