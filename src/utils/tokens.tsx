@@ -1161,4 +1161,11 @@ export const TOKENS: Tokens = {
     decimals: 6,
     tags: ['raydium']
   },
+  GARI: {
+    symbol: 'GARI',
+    name: 'GARI',
+    mintAddress: 'CKaKtYvz6dKPyMvYq9Rh3UBrnNqYZAyd7iF4hJtjUvks',
+    decimals: 9,
+    tags: ['raydium']
+  },
 }
