@@ -1024,6 +1024,12 @@ const _MARKETS = [
     address: new PublicKey('CM1i8dGf2tkAFfKQGuS1gPAaMJmgGgpfCUgjc8oRSrtF'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'FLWR/USDC',
+    deprecated: false,
+    address: new PublicKey('CptfkZ4ZVDosgjLAoxNApRUEBg82qQKfiqpWiJwc3iRF'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
