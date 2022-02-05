@@ -1175,4 +1175,11 @@ export const TOKENS: Tokens = {
     decimals: 2,
     tags: ['raydium']
   },
+  PHASE: {
+    symbol: 'PHASE',
+    name: 'PHASE',
+    mintAddress: 'FZxUbyQ9oeFiSDaabw8KfAWACsDMQhbuxR9vm2Rh7Ewm',
+    decimals: 9,
+    tags: ['raydium']
+  },
 }

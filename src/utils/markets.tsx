@@ -1030,6 +1030,12 @@ const _MARKETS = [
     address: new PublicKey('CptfkZ4ZVDosgjLAoxNApRUEBg82qQKfiqpWiJwc3iRF'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'PHASE/USDC',
+    deprecated: false,
+    address: new PublicKey('2YqCaodHzKRwJ6pyS2boVVmrSmDXceyGPspLhXwjEUUb'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
