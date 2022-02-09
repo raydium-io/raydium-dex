@@ -1154,4 +1154,11 @@ export const TOKENS: Tokens = {
     decimals: 9,
     tags: ['raydium']
   },
+  DOGO: {
+    symbol: 'DOGO',
+    name: 'DOGO',
+    mintAddress: '5LSFpvLDkcdV2a3Kiyzmg5YmJsj2XDLySaXvnfP1cgLT',
+    decimals: 6,
+    tags: ['raydium']
+  },
 }

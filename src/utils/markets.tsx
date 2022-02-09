@@ -1012,6 +1012,18 @@ const _MARKETS = [
     address: new PublicKey('6NvErACd7kKz5uPDAfXKahW9sFooUJvtfRh5Kzq6GH9z'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'DOGO/SOL',
+    deprecated: false,
+    address: new PublicKey('DAjtDAPrxDEKND4zT5iCqn9A9NhxpCoqqSUxHnrrFEcD'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'STR/USDC',
+    deprecated: false,
+    address: new PublicKey('6vXecj4ipEXChK9uPAd5giWn6aB3fn5Lbu4eVMLX7rRU'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
