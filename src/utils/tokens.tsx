@@ -1154,6 +1154,34 @@ export const TOKENS: Tokens = {
     decimals: 9,
     tags: ['raydium']
   },
+  PSY: {
+    symbol: 'PSY',
+    name: 'PSY',
+    mintAddress: 'PsyFiqqjiv41G7o5SMRzDJCu4psptThNR2GtfeGHfSq',
+    decimals: 6,
+    tags: ['raydium']
+  },
+  GARI: {
+    symbol: 'GARI',
+    name: 'GARI',
+    mintAddress: 'CKaKtYvz6dKPyMvYq9Rh3UBrnNqYZAyd7iF4hJtjUvks',
+    decimals: 9,
+    tags: ['raydium']
+  },
+  FLWR: {
+    symbol: 'FLWR',
+    name: 'FLWR',
+    mintAddress: 'FLWRna1gxehQ9pSyZMzxfp4UhewvLPwuKfdUTgdZuMBY',
+    decimals: 2,
+    tags: ['raydium']
+  },
+  PHASE: {
+    symbol: 'PHASE',
+    name: 'PHASE',
+    mintAddress: 'FZxUbyQ9oeFiSDaabw8KfAWACsDMQhbuxR9vm2Rh7Ewm',
+    decimals: 9,
+    tags: ['raydium']
+  },
   DOGO: {
     symbol: 'DOGO',
     name: 'DOGO',
