@@ -1189,4 +1189,18 @@ export const TOKENS: Tokens = {
     decimals: 6,
     tags: ['raydium']
   },
+  SEEDED: {
+    symbol: 'SEEDED',
+    name: 'SEEDED',
+    mintAddress: 'seedEDBqu63tJ7PFqvcbwvThrYUkQeqT6NLf81kLibs',
+    decimals: 9,
+    tags: ['raydium']
+  },
+  SNS: {
+    symbol: 'SNS',
+    name: 'SNS',
+    mintAddress: 'SNSNkV9zfG5ZKWQs6x4hxvBRV6s8SqMfSGCtECDvdMd',
+    decimals: 9,
+    tags: ['raydium']
+  },
 }

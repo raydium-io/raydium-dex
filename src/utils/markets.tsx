@@ -1036,6 +1036,18 @@ const _MARKETS = [
     address: new PublicKey('2YqCaodHzKRwJ6pyS2boVVmrSmDXceyGPspLhXwjEUUb'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'SNS/USDC',
+    deprecated: false,
+    address: new PublicKey('J3JcSC428ahZSW1VGFggdYXqXvijAcfY3LgrgYgFTWP8'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
+  {
+    name: 'SEEDED/USDC',
+    deprecated: false,
+    address: new PublicKey('4tmqy49UB7Kf7PNfpcsqqTVBWJ2LM3mLzqbSh76wVz8p'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 
