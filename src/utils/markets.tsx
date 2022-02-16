@@ -1048,6 +1048,12 @@ const _MARKETS = [
     address: new PublicKey('4tmqy49UB7Kf7PNfpcsqqTVBWJ2LM3mLzqbSh76wVz8p'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
+  {
+    name: 'AUDIO/USDC',
+    deprecated: false,
+    address: new PublicKey('FxquLRmVMPXiS84FFSp8q5fbVExhLkX85yiXucyu7xSC'),
+    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
+  },
   // ...MARKETS,
 ];
 

@@ -1203,4 +1203,11 @@ export const TOKENS: Tokens = {
     decimals: 9,
     tags: ['raydium']
   },
+  AUDIO: {
+    symbol: 'AUDIO',
+    name: 'AUDIO',
+    mintAddress: '9LzCMqDgTKYz9Drzqnpgee3SGa89up3a247ypMj2xrqM',
+    decimals: 8,
+    tags: ['raydium']
+  },
 }
