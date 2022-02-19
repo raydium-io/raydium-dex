@@ -72,7 +72,7 @@ function TradePageInner() {
     setCustomMarkets,
     setMarketAddress,
   } = useMarket();
-  const markets = useMarketsList();
+  // const markets = useMarketsList();
   const [handleDeprecated, setHandleDeprecated] = useState(false);
   const [addMarketVisible, setAddMarketVisible] = useState(false);
   const deprecatedMarkets = useUnmigratedDeprecatedMarkets();
@@ -149,7 +149,7 @@ function TradePageInner() {
     const newCustomMarkets = customMarkets.filter((m) => m.address !== address);
     setCustomMarkets(newCustomMarkets);
   };
-  const [newMarKets] = useState(markets);
+  // const [newMarKets] = useState(markets);
 
   return (
     <>
@@ -166,7 +166,7 @@ function TradePageInner() {
         >
           <Col>
             <MarketSelector
-              markets={newMarKets}
+              markets={useMarketsList()}
               setHandleDeprecated={setHandleDeprecated}
               placeholder={'Select market'}
               customMarkets={customMarkets}

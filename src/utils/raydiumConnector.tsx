@@ -1,7 +1,7 @@
 import { TradeLayout } from './types';
 
 export default class RaydiumApi {
-  static URL: string = 'https://api.raydium.io/';
+  static URL: string = 'https://api.raydium.io/v1/dex/';
 
   static async get(path: string) {
     try {
