@@ -10,7 +10,7 @@ import {
   TokenAccount
 } from './types';
 import {
-  MARKETS,
+  // MARKETS,
   Market,
   OpenOrders,
   Orderbook,
