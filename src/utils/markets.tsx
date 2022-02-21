@@ -84,59 +84,31 @@ const _MARKETS = [
     address: new PublicKey('6jx6aoNFbmorwyncVP5V5ESKfuFc9oUYebob1iF6tgN4'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
-  {
-    name: 'OXY/WUSDT',
-    deprecated: true,
-    address: new PublicKey('HdBhZrnrxpje39ggXnTb6WuTWVvj5YKcSHwYGQCRsVj'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
-  {
-    name: 'OXY/USDC',
-    deprecated: true,
-    address: new PublicKey('GZ3WBFsqntmERPwumFEYgrX2B7J7G11MzNZAy7Hje27X'),
-    programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
-  },
   // ...MARKETS,
 ];
 
 
-function addMarket() {
-  fetch('https://api.raydium.io/v1/dex/market')
-    .then(async (response) => {
-      const marketData: {[programId: string]: {market: string, name: string}[]} = await response.json()
-      for (const [programId, marketList] of Object.entries(marketData)) {
-        for (const itemMarket of marketList) {
-          if (!_MARKETS.find(item => item.address.toString() === itemMarket.market)) {
-            console.log('111')
-            _MARKETS.push({
-              name: itemMarket.name,
-              deprecated: false,
-              address: new PublicKey(itemMarket.market),
-              programId: new PublicKey(programId)
-            })
-          }
-        }
-      }
-    })
-}
-addMarket()
 
-MARKETS.forEach(item => {
-  if (item.address.toBase58() === '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') return
-  if (_MARKETS.find(oldMarket => oldMarket.address.toBase58() === item.address.toBase58())) return
 
-  if (item.address.toBase58() === '7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2') {
-    _MARKETS.push( {
-      address: item.address,
-      name: 'xCOPE/USDC',
-      programId: item.programId,
-      deprecated: item.deprecated,
-    })
-    return
-  }
+
+
+
+// MARKETS.forEach(item => {
+//   if (item.address.toBase58() === '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') return
+//   if (_MARKETS.find(oldMarket => oldMarket.address.toBase58() === item.address.toBase58())) return
+
+//   if (item.address.toBase58() === '7MpMwArporUHEGW7quUpkPZp5L5cHPs9eKUfKCdaPHq2') {
+//     _MARKETS.push( {
+//       address: item.address,
+//       name: 'xCOPE/USDC',
+//       programId: item.programId,
+//       deprecated: item.deprecated,
+//     })
+//     return
+//   }
   
-  _MARKETS.push(item)
-})
+//   _MARKETS.push(item)
+// })
 
 export const USE_MARKETS: MarketInfo[] = _IGNORE_DEPRECATED
   ? _MARKETS.map((m) => ({ ...m, deprecated: false }))
@@ -340,12 +312,60 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
   const address = marketAddress && new PublicKey(marketAddress);
   const connection = useConnection();
   const marketInfos = getMarketInfos(customMarkets);
-  const marketInfo =
-    address && marketInfos.find((market) => market.address.equals(address));
+  const marketInfo = address && marketInfos.find((market) => market.address.equals(address));
 
   const [market, setMarket] = useState<Market | null>();
 
   const [marketName, setMarketName] = useState('RAY/USDT');
+
+
+  useEffect(()=>{
+    const fetchMarket = async () => {
+      const data = await fetch('https://api.raydium.io/v1/dex/market');
+      const json = await data.json();
+      return json;
+    }
+
+    fetchMarket().then(json=>{
+      window.localStorage.setItem('apiMarket', JSON.stringify(json))
+      const marketData: {[programId: string]: {[market: string]:string}} = (json ?? {}).data ?? {}
+      for (const [programId, marketDict] of Object.entries(marketData)) {
+        for (const [itemMarket, marketName] of Object.entries(marketDict)) {
+          if (!_MARKETS.find(item => item.address.toString() === itemMarket)) {
+            _MARKETS.push({
+              name: marketName,
+              deprecated: false,
+              address: new PublicKey(itemMarket),
+              programId: new PublicKey(programId)
+            })
+          }
+        }
+      }
+
+    })
+  },[])
+  
+  useEffect(()=>{
+    const localMarket = window.localStorage.getItem('apiMarket')
+    try {
+      if (localMarket === null) throw Error('no local market')
+      const marketData: {[programId: string]: {[market: string]:string}}  = (JSON.parse(localMarket) ?? {}).data ?? {}
+      for (const [programId, marketDict] of Object.entries(marketData)) {
+        for (const [itemMarket, marketName] of Object.entries(marketDict)) {
+          if (!_MARKETS.find(item => item.address.toString() === itemMarket)) {
+            _MARKETS.push({
+              name: marketName,
+              deprecated: false,
+              address: new PublicKey(itemMarket),
+              programId: new PublicKey(programId)
+            })
+          }
+        }
+      }
+    } catch(e) {
+      console.error('local market error', e)
+    }
+  },[])
 
   // Replace existing market with a non-deprecated one on first load
   useEffect(() => {
