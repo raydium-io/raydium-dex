@@ -285,16 +285,3 @@ export const TOKENS: Tokens = {
     referrer: '33XpMmMQRf6tSPpmYyzpwU4uXpZHkFwCZsusD9dMYkjy',
   },
 }
-
-function addToken() {
-  fetch('https://api.raydium.io/v1/dex/token')
-    .then(async (response) => {
-      for (const [mint, symbol] of Object.entries((await response.json()).data)) {
-        TOKENS[mint] = {
-          symbol,
-          mintAddress: mint
-        }
-      }
-    })
-}
-addToken()

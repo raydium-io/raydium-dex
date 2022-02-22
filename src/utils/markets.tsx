@@ -7,7 +7,7 @@ import {
   MarketInfo,
   OrderWithMarketAndMarketName,
   SelectedTokenAccounts,
-  TokenAccount
+  TokenAccount,
 } from './types';
 import {
   // MARKETS,
@@ -15,10 +15,10 @@ import {
   OpenOrders,
   Orderbook,
   TOKEN_MINTS,
-  TokenInstructions
+  TokenInstructions,
 } from '@project-serum/serum';
 import React, { useContext, useEffect, useState } from 'react';
-import {getCache, setCache} from './fetch-loop';
+import { getCache, setCache } from './fetch-loop';
 import {
   divideBnToNumber,
   floorToDecimal,
@@ -37,7 +37,7 @@ import { useAccountData, useAccountInfo, useConnection } from './connection';
 import BN from 'bn.js';
 import RaydiumApi from './raydiumConnector';
 import { Order } from '@project-serum/serum/lib/market';
-import { PublicKey , Connection} from '@solana/web3.js';
+import { PublicKey, Connection } from '@solana/web3.js';
 import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
 import { notify } from './notifications';
 import { sleep } from './utils';
@@ -87,12 +87,6 @@ const _MARKETS = [
   // ...MARKETS,
 ];
 
-
-
-
-
-
-
 // MARKETS.forEach(item => {
 //   if (item.address.toBase58() === '5GAPymgnnWieGcRrcghZdA3aanefqa4cZx1ZSE8UTyMV') return
 //   if (_MARKETS.find(oldMarket => oldMarket.address.toBase58() === item.address.toBase58())) return
@@ -106,7 +100,7 @@ const _MARKETS = [
 //     })
 //     return
 //   }
-  
+
 //   _MARKETS.push(item)
 // })
 
@@ -175,9 +169,9 @@ export function useUnmigratedOpenOrdersAccounts() {
     let deprecatedOpenOrdersAccounts: OpenOrders[] = [];
     const deprecatedProgramIds = Array.from(
       new Set(
-        USE_MARKETS.filter(
-          ({ deprecated }) => deprecated,
-        ).map(({ programId }) => programId.toBase58()),
+        USE_MARKETS.filter(({ deprecated }) => deprecated).map(
+          ({ programId }) => programId.toBase58(),
+        ),
       ),
     ).map((publicKeyStr) => new PublicKey(publicKeyStr));
     let programId: PublicKey;
@@ -229,9 +223,8 @@ export function useUnmigratedOpenOrdersAccounts() {
   };
 }
 
-const MarketContext: React.Context<null | MarketContextValues> = React.createContext<null | MarketContextValues>(
-  null,
-);
+const MarketContext: React.Context<null | MarketContextValues> =
+  React.createContext<null | MarketContextValues>(null);
 
 const _VERY_SLOW_REFRESH_INTERVAL = 5000 * 1000;
 
@@ -263,14 +256,21 @@ export function getMarketDetails(
   //   address: new PublicKey('4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R'),
   //   name: 'RAY',
   // });
-  for(let indexItem = 0 ;indexItem < TOKEN_MINTS.length; indexItem += 1) {
-    if (TOKEN_MINTS[indexItem].address.toString() === '3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE') {
-      TOKEN_MINTS[indexItem].name = 'xCOPE'
+  for (let indexItem = 0; indexItem < TOKEN_MINTS.length; indexItem += 1) {
+    if (
+      TOKEN_MINTS[indexItem].address.toString() ===
+      '3K6rftdAaQYMPunrtNRHgnK2UAtjm2JwyT2oCiTDouYE'
+    ) {
+      TOKEN_MINTS[indexItem].name = 'xCOPE';
     }
   }
 
-  Object.values(TOKENS).forEach(itemToken => {
-    if (!TOKEN_MINTS.find(item => item.address.toString === itemToken.mintAddress)) {
+  Object.values(TOKENS).forEach((itemToken) => {
+    if (
+      !TOKEN_MINTS.find(
+        (item) => item.address.toString === itemToken.mintAddress,
+      )
+    ) {
       TOKEN_MINTS.push({
         address: new PublicKey(itemToken.mintAddress),
         name: itemToken.symbol,
@@ -312,60 +312,130 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
   const address = marketAddress && new PublicKey(marketAddress);
   const connection = useConnection();
   const marketInfos = getMarketInfos(customMarkets);
-  const marketInfo = address && marketInfos.find((market) => market.address.equals(address));
+  const marketInfo =
+    address && marketInfos.find((market) => market.address.equals(address));
 
   const [market, setMarket] = useState<Market | null>();
 
   const [marketName, setMarketName] = useState('RAY/USDT');
 
+  const [localToken, setLocalToken] = useState(false)
+  const [localMarket, setLocalMarket] = useState(false)
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchMarket = async () => {
       const data = await fetch('https://api.raydium.io/v1/dex/market');
       const json = await data.json();
       return json;
-    }
+    };
 
-    fetchMarket().then(json=>{
-      window.localStorage.setItem('apiMarket', JSON.stringify(json))
-      const marketData: {[programId: string]: {[market: string]:string}} = (json ?? {}).data ?? {}
+    fetchMarket().then((json) => {
+      window.localStorage.setItem('apiMarket', JSON.stringify(json));
+      const marketData: { [programId: string]: { [market: string]: string } } =
+        (json ?? {}).data ?? {};
       for (const [programId, marketDict] of Object.entries(marketData)) {
         for (const [itemMarket, marketName] of Object.entries(marketDict)) {
-          if (!_MARKETS.find(item => item.address.toString() === itemMarket)) {
+          if (
+            !_MARKETS.find((item) => item.address.toString() === itemMarket)
+          ) {
             _MARKETS.push({
               name: marketName,
               deprecated: false,
               address: new PublicKey(itemMarket),
-              programId: new PublicKey(programId)
-            })
+              programId: new PublicKey(programId),
+            });
           }
         }
       }
+      console.log('load market over')
+      setLocalMarket(true)
+    });
+  }, []);
 
-    })
-  },[])
-  
-  useEffect(()=>{
-    const localMarket = window.localStorage.getItem('apiMarket')
+  useEffect(() => {
+    const localMarket = window.localStorage.getItem('apiMarket');
     try {
-      if (localMarket === null) throw Error('no local market')
-      const marketData: {[programId: string]: {[market: string]:string}}  = (JSON.parse(localMarket) ?? {}).data ?? {}
+      if (localMarket === null) {
+        console.log('no local market');
+        return
+      }
+      const marketData: { [programId: string]: { [market: string]: string } } =
+        (JSON.parse(localMarket) ?? {}).data ?? {};
       for (const [programId, marketDict] of Object.entries(marketData)) {
         for (const [itemMarket, marketName] of Object.entries(marketDict)) {
-          if (!_MARKETS.find(item => item.address.toString() === itemMarket)) {
+          if (
+            !_MARKETS.find((item) => item.address.toString() === itemMarket)
+          ) {
             _MARKETS.push({
               name: marketName,
               deprecated: false,
               address: new PublicKey(itemMarket),
-              programId: new PublicKey(programId)
-            })
+              programId: new PublicKey(programId),
+            });
           }
         }
       }
-    } catch(e) {
-      console.error('local market error', e)
+      console.log('local market over')
+      setLocalMarket(true)
+    } catch (e) {
+      console.error('local market error', e);
     }
-  },[])
+  }, []);
+
+
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const data = await fetch('https://api.raydium.io/v1/dex/token');
+      const json = await data.json();
+      return json;
+    };
+
+    fetchToken().then((json) => {
+      window.localStorage.setItem('apiToken', JSON.stringify(json));
+      const tokenData: { [programId: string]: { [market: string]: string } } =
+        (json ?? {}).data ?? {};
+      for (const [mint, symbol] of Object.entries(tokenData)) {
+        if (
+          TOKENS[mint] === undefined || !Object.values(TOKENS).find((item) => item.mintAddress === mint)
+        ) {
+          TOKENS[mint] = {
+            symbol,
+            mintAddress: mint,
+          };
+        }
+      }
+      setLocalToken(true)
+      console.log('load token over')
+    });
+  }, []);
+
+  useEffect(() => {
+    const localToken = window.localStorage.getItem('apiToken');
+    try {
+      if (localToken === null) {
+        console.log('no local token');
+        return
+      }
+      const json = JSON.parse(localToken)
+      const tokenData: { [programId: string]: { [market: string]: string } } =
+        (json ?? {}).data ?? {};
+      for (const [mint, symbol] of Object.entries(tokenData)) {
+        if (
+          TOKENS[mint] === undefined || !Object.values(TOKENS).find((item) => item.mintAddress === mint)
+        ) {
+          TOKENS[mint] = {
+            symbol,
+            mintAddress: mint,
+          };
+        }
+      }
+      setLocalToken(true)
+      console.log('local token over')
+    } catch (e) {
+      console.error('local token error', e);
+    }
+  }, []);
 
   // Replace existing market with a non-deprecated one on first load
   useEffect(() => {
@@ -390,8 +460,8 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
     ) {
       return;
     }
+    if (!localMarket || !localToken) return;
     setMarket(null);
-
     if (!marketInfo || !marketInfo.address) {
       notify({
         message: 'Error loading market',
@@ -412,7 +482,7 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
         }),
       );
     // eslint-disable-next-line
-  }, [connection, marketInfo]);
+  }, [connection, marketInfo, USE_MARKETS, localMarket, localToken]);
 
   return (
     <MarketContext.Provider
@@ -436,7 +506,10 @@ export function getTradePageUrl(marketAddress?: string) {
     if (saved) {
       marketAddress = JSON.parse(saved);
     }
-    marketAddress = marketAddress || DEFAULT_MARKET?.address.toBase58() || '2xiv8A5xrJ7RnGdxXB42uFEkYHJjszEhaJyKKt4WaLep';
+    marketAddress =
+      marketAddress ||
+      DEFAULT_MARKET?.address.toBase58() ||
+      '2xiv8A5xrJ7RnGdxXB42uFEkYHJjszEhaJyKKt4WaLep';
   }
   return `/market/${marketAddress}`;
 }
@@ -445,10 +518,8 @@ export function useSelectedTokenAccounts(): [
   SelectedTokenAccounts,
   (newSelectedTokenAccounts: SelectedTokenAccounts) => void,
 ] {
-  const [
-    selectedTokenAccounts,
-    setSelectedTokenAccounts,
-  ] = useLocalStorageState<SelectedTokenAccounts>('selectedTokenAccounts', {});
+  const [selectedTokenAccounts, setSelectedTokenAccounts] =
+    useLocalStorageState<SelectedTokenAccounts>('selectedTokenAccounts', {});
   return [selectedTokenAccounts, setSelectedTokenAccounts];
 }
 
@@ -585,26 +656,41 @@ export function useOpenOrdersAccounts(fast = false) {
 }
 
 // todo: refresh cache after some time?
-export async function getCachedMarket(connection: Connection, address: PublicKey, programId: PublicKey) {
+export async function getCachedMarket(
+  connection: Connection,
+  address: PublicKey,
+  programId: PublicKey,
+) {
   let market;
-  const cacheKey = tuple('getCachedMarket', 'market', address.toString(), connection);
+  const cacheKey = tuple(
+    'getCachedMarket',
+    'market',
+    address.toString(),
+    connection,
+  );
   if (!getCache(cacheKey)) {
-    market = await Market.load(connection, address, {}, programId)
-    setCache(cacheKey, market)
+    market = await Market.load(connection, address, {}, programId);
+    setCache(cacheKey, market);
   } else {
     market = getCache(cacheKey);
   }
   return market;
 }
 
-export async function getCachedOpenOrderAccounts(connection: Connection, market: Market, owner: PublicKey) {
+export async function getCachedOpenOrderAccounts(
+  connection: Connection,
+  market: Market,
+  owner: PublicKey,
+) {
   let accounts;
-  const cacheKey = tuple('getCachedOpenOrderAccounts', market.address.toString(), owner.toString(), connection);
+  const cacheKey = tuple(
+    'getCachedOpenOrderAccounts',
+    market.address.toString(),
+    owner.toString(),
+    connection,
+  );
   if (!getCache(cacheKey)) {
-    accounts = await market.findOpenOrdersAccountsForOwner(
-      connection,
-      owner,
-    );
+    accounts = await market.findOpenOrdersAccountsForOwner(connection, owner);
     setCache(cacheKey, accounts);
   } else {
     accounts = getCache(cacheKey);
@@ -744,10 +830,8 @@ export function useLocallyStoredFeeDiscountKey(): {
   storedFeeDiscountKey: PublicKey | undefined;
   setStoredFeeDiscountKey: (key: string) => void;
 } {
-  const [
-    storedFeeDiscountKey,
-    setStoredFeeDiscountKey,
-  ] = useLocalStorageState<string>(`feeDiscountKey`, undefined);
+  const [storedFeeDiscountKey, setStoredFeeDiscountKey] =
+    useLocalStorageState<string>(`feeDiscountKey`, undefined);
   return {
     storedFeeDiscountKey: storedFeeDiscountKey
       ? new PublicKey(storedFeeDiscountKey)
@@ -850,10 +934,8 @@ export function useAllOpenOrdersAccounts() {
 }
 
 export function useAllOpenOrdersBalances() {
-  const [
-    openOrdersAccounts,
-    loadedOpenOrdersAccounts,
-  ] = useAllOpenOrdersAccounts();
+  const [openOrdersAccounts, loadedOpenOrdersAccounts] =
+    useAllOpenOrdersAccounts();
   const [mintInfos, mintInfosConnected] = useMintInfos();
   const [allMarkets] = useAllMarkets();
   if (!loadedOpenOrdersAccounts || !mintInfosConnected) {
@@ -1276,12 +1358,21 @@ export function useBalancesForDeprecatedMarkets() {
 export function getMarketInfos(
   customMarkets: CustomMarketInfo[],
 ): MarketInfo[] {
-  const customMarketsInfo = customMarkets.filter(item => !USE_MARKETS.find(itemNew => itemNew.address.toString() === item.address && itemNew.deprecated === true)).map((m) => ({
-    ...m,
-    address: new PublicKey(m.address),
-    programId: new PublicKey(m.programId),
-    deprecated: false,
-  }));
+  const customMarketsInfo = customMarkets
+    .filter(
+      (item) =>
+        !USE_MARKETS.find(
+          (itemNew) =>
+            itemNew.address.toString() === item.address &&
+            itemNew.deprecated === true,
+        ),
+    )
+    .map((m) => ({
+      ...m,
+      address: new PublicKey(m.address),
+      programId: new PublicKey(m.programId),
+      deprecated: false,
+    }));
 
   return [...customMarketsInfo, ...USE_MARKETS];
 }
@@ -1357,7 +1448,11 @@ export function getExpectedFillPrice(
   return formattedPrice;
 }
 
-export function useCurrentlyAutoSettling(): [boolean, (currentlyAutoSettling: boolean) => void] {
-  const [currentlyAutoSettling, setCurrentlyAutosettling] = useState<boolean>(false);
+export function useCurrentlyAutoSettling(): [
+  boolean,
+  (currentlyAutoSettling: boolean) => void,
+] {
+  const [currentlyAutoSettling, setCurrentlyAutosettling] =
+    useState<boolean>(false);
   return [currentlyAutoSettling, setCurrentlyAutosettling];
 }
