@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { USE_MARKETS } from './markets';
 import { sleep } from './utils';
 
-const URL_SERVER = 'https://api.raydium.io/tv/';
+const URL_SERVER = 'https://api.raydium.io/v1/dex/tv/';
 
 export const useTvDataFeed = () => {
   return useMemo(() => makeDataFeed(), []);
