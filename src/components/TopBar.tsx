@@ -55,7 +55,7 @@ const MENU = [
   },
   {
     'title': 'AcceleRaytor',
-    'link': 'https://raydium.io/acceleRaytor/',
+    'link': 'https://v1.raydium.io/acceleRaytor/',
   },
   {
     'title': 'DropZone',
