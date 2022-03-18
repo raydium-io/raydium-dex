@@ -9,6 +9,7 @@ import { useOpenOrders, useBalances, useMarket } from '../../utils/markets';
 
 export default function Index({ smallScreen }) {
   const { market } = useMarket();
+  const marketAddress = market?.address.toString();
   const [activeKeyStr, setActiveKeyStr] = useState('orders');
   if (smallScreen) {
     return (
@@ -115,7 +116,9 @@ export default function Index({ smallScreen }) {
           {activeKeyStr && activeKeyStr === 'orders' ? <OpenOrdersTab /> : null}
           {activeKeyStr && activeKeyStr === 'fills' ? <FillsTable /> : null}
           {activeKeyStr && activeKeyStr === 'balances' ? <BalancesTab /> : null}
-          {activeKeyStr && activeKeyStr === 'fees' ? <FeesTable /> : null}
+          {activeKeyStr && activeKeyStr === 'fees' ? (
+            <FeesTable market={{ marketAddress }} />
+          ) : null}
         </div>
       </FloatingElement>
     );
@@ -228,7 +231,9 @@ export default function Index({ smallScreen }) {
           {activeKeyStr && activeKeyStr === 'orders' ? <OpenOrdersTab /> : null}
           {activeKeyStr && activeKeyStr === 'fills' ? <FillsTable /> : null}
           {activeKeyStr && activeKeyStr === 'balances' ? <BalancesTab /> : null}
-          {activeKeyStr && activeKeyStr === 'fees' ? <FeesTable /> : null}
+          {activeKeyStr && activeKeyStr === 'fees' ? (
+            <FeesTable market={{ marketAddress }} />
+          ) : null}
         </div>
       </FloatingElement>
     );

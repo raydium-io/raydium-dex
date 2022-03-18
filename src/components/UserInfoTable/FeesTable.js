@@ -9,8 +9,18 @@ import { useFeeDiscountKeys } from '../../utils/markets';
 import { TokenInstructions } from '@project-serum/serum';
 import { percentFormat } from '../../utils/utils';
 
-function getFeeRates(feeTier) {
-  if (feeTier === 1) {
+function getFeeRates(feeTier, market) {
+  if (
+    [
+      '77quYg4MGneUdjgXCunt9GgM1usmrxKY31twEy3WHwcS',
+      '5cLrMai1DsLRYc1Nio9qMTicsWtvzjzZfJPXyAoF4t1Z',
+      'EERNEEnBqdGzBS8dd46wwNY5F2kwnaCQ3vsq2fNKGogZ',
+      '8sFf9TW3KzxLiBXcDcjAxqabEsRroo4EiRr3UG1xbJ9m',
+      '2iDSTGhjJEiRxNaLF27CY6daMYPs5hgYrP2REHd5YD62',
+    ].includes(market)
+  ) {
+    return { taker: 0.001, maker: 0 };
+  } else if (feeTier === 1) {
     return { taker: 0.0039, maker: 0 };
   } else if (feeTier === 2) {
     return { taker: 0.0038, maker: 0 };
@@ -26,7 +36,7 @@ function getFeeRates(feeTier) {
   return { taker: 0.004, maker: 0 };
 }
 
-export default function FeesTable() {
+export default function FeesTable({ market }) {
   const [feeAccounts] = useFeeDiscountKeys();
 
   const dataSource = (feeAccounts || []).map((account, index) => ({
@@ -83,10 +93,14 @@ export default function FeesTable() {
                   ) : null} */}
                 </Col>
                 <Col span={5} style={{ textAlign: 'left' }}>
-                  {percentFormat.format(getFeeRates(feeTier).taker)}
+                  {percentFormat.format(
+                    getFeeRates(feeTier, market.marketAddress).taker,
+                  )}
                 </Col>
                 <Col span={4} style={{ textAlign: 'left' }}>
-                  {percentFormat.format(getFeeRates(feeTier).maker)}
+                  {percentFormat.format(
+                    getFeeRates(feeTier, market.marketAddress).maker,
+                  )}
                 </Col>
                 <Col span={5} style={{ textAlign: 'left' }}>
                   {balance}
