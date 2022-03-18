@@ -6,8 +6,25 @@ import {
   //  Tag
 } from 'antd';
 import { useFeeDiscountKeys } from '../../utils/markets';
-import { TokenInstructions, getFeeRates } from '@project-serum/serum';
+import { TokenInstructions } from '@project-serum/serum';
 import { percentFormat } from '../../utils/utils';
+
+function getFeeRates(feeTier) {
+  if (feeTier === 1) {
+    return { taker: 0.0039, maker: 0 };
+  } else if (feeTier === 2) {
+    return { taker: 0.0038, maker: 0 };
+  } else if (feeTier === 3) {
+    return { taker: 0.0036, maker: 0 };
+  } else if (feeTier === 4) {
+    return { taker: 0.0034, maker: 0 };
+  } else if (feeTier === 5) {
+    return { taker: 0.0032, maker: 0 };
+  } else if (feeTier === 6) {
+    return { taker: 0.003, maker: 0 };
+  }
+  return { taker: 0.004, maker: 0 };
+}
 
 export default function FeesTable() {
   const [feeAccounts] = useFeeDiscountKeys();
