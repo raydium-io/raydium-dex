@@ -39,7 +39,7 @@ const MENU = [
   },
   {
     'title': 'Liquidity',
-    'link': 'https://raydium.io/liquidity/',
+    'link': 'https://raydium.io/liquidity/add/',
   },
   {
     'title': 'Pools',
