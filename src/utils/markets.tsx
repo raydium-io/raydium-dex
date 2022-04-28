@@ -49,7 +49,7 @@ const _IGNORE_DEPRECATED = false;
 
 const _MARKETS = [
   {
-    name: 'RAY/WUSDT',
+    name: 'RAY/soUSDT',
     deprecated: true,
     address: new PublicKey('C4z32zw9WKaGPhNuU54ohzrV4CE1Uau3cFx6T8RLjxYC'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
@@ -79,7 +79,7 @@ const _MARKETS = [
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
   },
   {
-    name: 'RAY/ETH',
+    name: 'RAY/soETH',
     deprecated: false,
     address: new PublicKey('6jx6aoNFbmorwyncVP5V5ESKfuFc9oUYebob1iF6tgN4'),
     programId: new PublicKey('9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin'),
