@@ -1,27 +1,48 @@
-import { Button, Col, Input, Row, Select, Slider, Switch } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import {
+  Button,
+  Col,
+  Input,
+  Row,
+  Select,
+  Slider,
+  Switch,
+} from 'antd';
+import { SwitchChangeEventHandler } from 'antd/es/switch';
+import tuple from 'immutable-tuple';
+import styled from 'styled-components';
+
+import { PublicKey } from '@solana/web3.js';
+
+import { useSendConnection } from '../utils/connection';
+import { refreshCache } from '../utils/fetch-loop';
 import {
   useFeeDiscountKeys,
   useLocallyStoredFeeDiscountKey,
-  useMarkPrice,
   useMarket,
+  useMarkPrice,
   useSelectedBaseCurrencyAccount,
   useSelectedBaseCurrencyBalances,
   useSelectedOpenOrdersAccount,
   useSelectedQuoteCurrencyAccount,
   useSelectedQuoteCurrencyBalances,
 } from '../utils/markets';
-
-import FloatingElement from './layout/FloatingElement';
-import { SwitchChangeEventHandler } from 'antd/es/switch';
 import { notify } from '../utils/notifications';
-import { refreshCache } from '../utils/fetch-loop';
-import styled from 'styled-components';
-import tuple from 'immutable-tuple';
-import { useSendConnection } from '../utils/connection';
+import {
+  getUnixTs,
+  placeOrder,
+} from '../utils/send';
+import {
+  floorToDecimal,
+  getDecimalCount,
+  roundToDecimal,
+} from '../utils/utils';
 import { useWallet } from '../utils/wallet';
-import {floorToDecimal, getDecimalCount, roundToDecimal,} from '../utils/utils';
-import {getUnixTs, placeOrder} from '../utils/send';
+import FloatingElement from './layout/FloatingElement';
 
 const BuyButton = styled(Button)`
   margin: 20px 0px 0px 0px;
@@ -97,7 +118,7 @@ export default function TradeForm({
   useEffect(() => {
     const warmUpCache = async () => {
       try {
-        if (!wallet || !wallet.publicKey || !market) {
+        if (!wallet || !wallet.publicKey || !market || wallet.publicKey.equals(PublicKey.default)) {
           console.log(`Skipping refreshing accounts`);
           return;
         }
@@ -106,6 +127,7 @@ export default function TradeForm({
         await market?.findOpenOrdersAccountsForOwner(
           sendConnection,
           wallet.publicKey,
+          60 * 1000 * 2
         );
         await market?.findBestFeeDiscountKey(sendConnection, wallet.publicKey);
         const endTime = getUnixTs();

@@ -1,19 +1,28 @@
-import * as BufferLayout from 'buffer-layout';
-
-import { AccountInfo, Connection, PublicKey } from '@solana/web3.js';
-import { useAllMarkets, useCustomMarkets, useTokenAccounts } from './markets';
+import { useMemo } from 'react';
 
 import BN from 'bn.js';
-import { TOKEN_MINTS } from '@project-serum/serum';
-import { TokenAccount } from './types';
-import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
-// @ts-ignore
-import { cloneDeep } from 'lodash-es'
-import { getMultipleSolanaAccounts } from './send';
+import * as BufferLayout from 'buffer-layout';
 import tuple from 'immutable-tuple';
-import { useAsyncData } from './fetch-loop';
+// @ts-ignore
+import { cloneDeep } from 'lodash-es';
+
+import { TOKEN_MINTS } from '@project-serum/serum';
+import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
+import {
+  AccountInfo,
+  Connection,
+  PublicKey,
+} from '@solana/web3.js';
+
 import { useConnection } from './connection';
-import { useMemo } from 'react';
+import { useAsyncData } from './fetch-loop';
+import {
+  useAllMarkets,
+  useCustomMarkets,
+  useTokenAccounts,
+} from './markets';
+import { getMultipleSolanaAccounts } from './send';
+import { TokenAccount } from './types';
 
 export const ACCOUNT_LAYOUT = BufferLayout.struct([
   BufferLayout.blob(32, 'mint'),
@@ -78,13 +87,19 @@ export async function getOwnedTokenAccounts(
   connection: Connection,
   publicKey: PublicKey,
 ): Promise<Array<{ publicKey: PublicKey; accountInfo: AccountInfo<Buffer> }>> {
-  let filters = getOwnedAccountsFilters(publicKey);
-  let resp = await connection.getProgramAccounts(
-    TOKEN_PROGRAM_ID,
-    {
-      filters,
-    },
-  );
+  // let filters = getOwnedAccountsFilters(publicKey);
+  // let resp = await connection.getProgramAccounts(
+  //   TOKEN_PROGRAM_ID,
+  //   {
+  //     filters,
+  //   },
+  // );
+
+  let resp = (await connection.getTokenAccountsByOwner(publicKey, {
+    programId: TOKEN_PROGRAM_ID
+  },
+  'confirmed')).value
+
   return resp
     .map(({ pubkey, account: { data, executable, owner, lamports } }) => ({
       publicKey: new PublicKey(pubkey),
