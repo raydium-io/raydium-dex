@@ -7,7 +7,8 @@ import { ConnectionContextValues, EndpointInfo } from './types';
 
 
 export const endpoints = [
-  { url: 'https://raydium.rpcpool.com', weight: 100 },
+  { url: 'https://raydium.rpcpool.com', weight: 50 },
+  { url: 'https://rpc.ankr.com/solana/069441feac8b4eda17322b1fb89a2c3ef5950e74e6742f7f385de5a205f16b68', weight: 50, ws: 'wss://rpc.ankr.com/solana/ws/069441feac8b4eda17322b1fb89a2c3ef5950e74e6742f7f385de5a205f16b68' },
   // { url: 'https://solana-api.tt-prod.net', weight: 100 }
   // { url: 'https://solana-api.projectserum.com', weight: 100 }
   // { url: 'https://raydium.genesysgo.net', weight: 100 }
@@ -16,28 +17,31 @@ export const endpoints = [
 export function getRandomEndpoint() {
   let pointer = 0
   const random = Math.random() * 100
-  let api = endpoints[0].url
+  let api = endpoints[0]
 
   for (const endpoint of endpoints) {
     if (random > pointer + endpoint.weight) {
       pointer += pointer + endpoint.weight
     } else if (random >= pointer && random < pointer + endpoint.weight) {
-      api = endpoint.url
+      api = endpoint
       break
     } else {
-      api = endpoint.url
+      api = endpoint
       break
     }
   }
 
-  return api
+  return {
+    endpoint: api.url,
+    wspoint: api.ws
+  }
 }
 
 export const ENDPOINTS: EndpointInfo[] = [
   {
     name: 'mainnet-beta',
     // endpoint: 'https://solana-api.projectserum.com',
-    endpoint: getRandomEndpoint(),
+    ...getRandomEndpoint(),
     custom: false,
   },
   { name: 'localnet', endpoint: 'http://127.0.0.1:8899', custom: false },
@@ -59,12 +63,13 @@ export function ConnectionProvider({ children }) {
   >('customConnectionEndpoints', []);
   const availableEndpoints = ENDPOINTS.concat(customEndpoints);
 
-  const connection = useMemo(() => new Connection(endpoint, 'recent'), [
-    endpoint,
-  ]);
-  const sendConnection = useMemo(() => new Connection(endpoint, 'recent'), [
-    endpoint,
-  ]);
+  const _config: any = {
+    commitment: 'recent'
+  }
+  if (ENDPOINTS[0].wspoint) _config.wsEndpoint = ENDPOINTS[0].wspoint
+
+  const connection = useMemo(() => new Connection(endpoint, _config), [_config, endpoint]);
+  const sendConnection = useMemo(() => new Connection(endpoint, _config), [_config, endpoint]);
 
   // The websocket library solana/web3.js uses closes its websocket connection when the subscription list
   // is empty after opening its first time, preventing subsequent subscriptions from receiving responses.

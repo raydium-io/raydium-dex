@@ -120,6 +120,7 @@ export interface EndpointInfo {
   name: string;
   endpoint: string;
   custom: boolean;
+  wspoint?: string;
 }
 
 /**
