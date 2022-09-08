@@ -127,7 +127,6 @@ export default function TradeForm({
         await market?.findOpenOrdersAccountsForOwner(
           sendConnection,
           wallet.publicKey,
-          60 * 1000 * 2
         );
         await market?.findBestFeeDiscountKey(sendConnection, wallet.publicKey);
         const endTime = getUnixTs();
