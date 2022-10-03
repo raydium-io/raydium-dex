@@ -923,17 +923,19 @@ export function useAllOpenOrdersAccounts() {
     ...new Set(marketInfos.map((info) => info.programId.toBase58())),
   ].map((stringProgramId) => new PublicKey(stringProgramId));
 
+  // no use
   const getAllOpenOrdersAccounts = async () => {
-    if (!connected || !wallet) {
-      return [];
-    }
-    return (
-      await Promise.all(
-        programIds.map((programId) =>
-          OpenOrders.findForOwner(connection, wallet.publicKey, programId),
-        ),
-      )
-    ).flat();
+    return [] as OpenOrders[]
+    // if (!connected || !wallet) {
+    //   return [];
+    // }
+    // return (
+    //   await Promise.all(
+    //     programIds.map((programId) =>
+    //       OpenOrders.findForOwner(connection, wallet.publicKey, programId),
+    //     ),
+    //   )
+    // ).flat();
   };
   return useAsyncData(
     getAllOpenOrdersAccounts,
