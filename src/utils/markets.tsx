@@ -1,3 +1,45 @@
+import React, {
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+
+import BN from 'bn.js';
+import tuple from 'immutable-tuple';
+
+import {
+  Market,
+  OpenOrders,
+  Orderbook,
+  TOKEN_MINTS,
+  TokenInstructions,
+} from '@project-serum/serum';
+import { Order } from '@project-serum/serum/lib/market';
+import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
+import {
+  Connection,
+  PublicKey,
+} from '@solana/web3.js';
+
+import {
+  useAccountData,
+  useAccountInfo,
+  useConnection,
+} from './connection';
+import {
+  getCache,
+  refreshCache,
+  setCache,
+  useAsyncData,
+} from './fetch-loop';
+import { notify } from './notifications';
+import RaydiumApi from './raydiumConnector';
+import {
+  getTokenAccountInfo,
+  parseTokenAccountData,
+  TOKENS,
+  useMintInfos,
+} from './tokens';
 import {
   Balances,
   CustomMarketInfo,
@@ -10,38 +52,12 @@ import {
   TokenAccount,
 } from './types';
 import {
-  // MARKETS,
-  Market,
-  OpenOrders,
-  Orderbook,
-  TOKEN_MINTS,
-  TokenInstructions,
-} from '@project-serum/serum';
-import React, { useContext, useEffect, useState } from 'react';
-import { getCache, setCache } from './fetch-loop';
-import {
   divideBnToNumber,
   floorToDecimal,
   getTokenMultiplierFromDecimals,
+  sleep,
   useLocalStorageState,
 } from './utils';
-import {
-  getTokenAccountInfo,
-  parseTokenAccountData,
-  TOKENS,
-  useMintInfos,
-} from './tokens';
-import { refreshCache, useAsyncData } from './fetch-loop';
-import { useAccountData, useAccountInfo, useConnection } from './connection';
-
-import BN from 'bn.js';
-import RaydiumApi from './raydiumConnector';
-import { Order } from '@project-serum/serum/lib/market';
-import { PublicKey, Connection } from '@solana/web3.js';
-import { WRAPPED_SOL_MINT } from '@project-serum/serum/lib/token-instructions';
-import { notify } from './notifications';
-import { sleep } from './utils';
-import tuple from 'immutable-tuple';
 import { useWallet } from './wallet';
 
 // Used in debugging, should be false in production
@@ -162,10 +178,10 @@ export function useUnmigratedOpenOrdersAccounts() {
   const { wallet } = useWallet();
 
   async function getUnmigratedOpenOrdersAccounts(): Promise<OpenOrders[]> {
-    if (!wallet || !connection || !wallet.publicKey) {
+    if (!wallet || !connection || !wallet.publicKey || PublicKey.default.equals(wallet.publicKey)) {
       return [];
     }
-    console.log('refreshing useUnmigratedOpenOrdersAccounts');
+    console.log('refreshing useUnmigratedOpenOrdersAccounts', wallet.publicKey.toString());
     let deprecatedOpenOrdersAccounts: OpenOrders[] = [];
     const deprecatedProgramIds = Array.from(
       new Set(
