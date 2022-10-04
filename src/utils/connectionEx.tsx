@@ -7,6 +7,7 @@ export class ConnectionEx extends Connection {
       data: any;
     };
   };
+  private _innerRpcRequest: (method: any, args: any) => Promise<unknown>;
   constructor(
     endpoint: string,
     commitmentOrConfig?: Commitment | ConnectionConfig,
@@ -16,20 +17,27 @@ export class ConnectionEx extends Connection {
 
     this._cacheData = {};
     // @ts-ignore
+    this._innerRpcRequest = createRpcRequest(this._rpcClient);
+    // @ts-ignore
     this._rpcRequest = async (method, args) => {
       const key = `${method}--${JSON.stringify(args)}`;
+
+      console.log(111, key);
       if (
         this._cacheData[key] &&
         this._cacheData[key].time > new Date().getTime() - 1000 * 60
       ) {
+        console.log('return cache', key);
         return this._cacheData[key].data;
       }
+      console.log('return new data', key);
       // @ts-ignore
-      const data = createRpcRequest(this._rpcClient)(method, args);
+      const data = this._innerRpcRequest(method, args);
       this._cacheData[key] = {
         time: new Date().getTime(),
         data,
       };
+      console.log('return new data over', key);
       return data;
     };
   }
