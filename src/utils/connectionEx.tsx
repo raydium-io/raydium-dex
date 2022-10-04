@@ -25,7 +25,7 @@ export class ConnectionEx extends Connection {
         return this._cacheData[key].data;
       }
       // @ts-ignore
-      const data = await createRpcRequest(this._rpcClient)(method, args);
+      const data = createRpcRequest(this._rpcClient)(method, args);
       this._cacheData[key] = {
         time: new Date().getTime(),
         data,
