@@ -5,6 +5,7 @@ export class ConnectionEx extends Connection {
     [key: string]: {
       time: number;
       data: any;
+      over: boolean;
     };
   };
   private _innerRpcRequest: (method: any, args: any) => Promise<unknown>;
@@ -24,7 +25,10 @@ export class ConnectionEx extends Connection {
 
       if (
         this._cacheData[key] &&
-        this._cacheData[key].time > new Date().getTime() - 1000 * 60
+        ((this._cacheData[key].time > new Date().getTime() - 1000 * 60 &&
+          this._cacheData[key].over) ||
+          (!this._cacheData[key].over &&
+            this._cacheData[key].time > new Date().getTime() - 1000 * 60 * 10))
       ) {
         return this._cacheData[key].data;
       }
@@ -32,7 +36,11 @@ export class ConnectionEx extends Connection {
       const data = this._innerRpcRequest(method, args);
       this._cacheData[key] = {
         time: new Date().getTime(),
-        data,
+        data: data.then((d) => {
+          if (this._cacheData[key]) this._cacheData[key].over = true;
+          return d;
+        }),
+        over: false,
       };
       return data;
     };
