@@ -22,22 +22,18 @@ export class ConnectionEx extends Connection {
     this._rpcRequest = async (method, args) => {
       const key = `${method}--${JSON.stringify(args)}`;
 
-      console.log(111, key);
       if (
         this._cacheData[key] &&
         this._cacheData[key].time > new Date().getTime() - 1000 * 60
       ) {
-        console.log('return cache', key);
         return this._cacheData[key].data;
       }
-      console.log('return new data', key);
       // @ts-ignore
       const data = this._innerRpcRequest(method, args);
       this._cacheData[key] = {
         time: new Date().getTime(),
         data,
       };
-      console.log('return new data over', key);
       return data;
     };
   }

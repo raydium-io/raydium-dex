@@ -1,5 +1,5 @@
 import { useLocalStorageState } from './utils';
-import { Account, AccountInfo, Connection, PublicKey } from '@solana/web3.js';
+import { Account, AccountInfo, PublicKey } from '@solana/web3.js';
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import { setCache, useAsyncData } from './fetch-loop';
 import tuple from 'immutable-tuple';
@@ -78,7 +78,7 @@ export function ConnectionProvider({ children }) {
     [_config, endpoint],
   );
   const sendConnection = useMemo(
-    () => new Connection(endpoint, _config),
+    () => ConnectionEx.getInstance(endpoint, _config),
     [_config, endpoint],
   );
 
