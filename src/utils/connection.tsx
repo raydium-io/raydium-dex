@@ -1,18 +1,36 @@
-import { useLocalStorageState } from './utils';
-import { Account, AccountInfo, PublicKey } from '@solana/web3.js';
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
-import { setCache, useAsyncData } from './fetch-loop';
-import tuple from 'immutable-tuple';
-import { ConnectionContextValues, EndpointInfo } from './types';
-import { ConnectionEx } from './connectionEx';
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 
-export const endpoints = [
-  { url: 'https://raydium.rpcpool.com', weight: 50 },
-  {
-    url: 'https://rpc.ankr.com/solana/069441feac8b4eda17322b1fb89a2c3ef5950e74e6742f7f385de5a205f16b68',
-    weight: 50,
-    ws: 'wss://rpc.ankr.com/solana/ws/069441feac8b4eda17322b1fb89a2c3ef5950e74e6742f7f385de5a205f16b68',
-  },
+import tuple from 'immutable-tuple';
+
+import {
+  Account,
+  AccountInfo,
+  PublicKey,
+} from '@solana/web3.js';
+
+import { ConnectionEx } from './connectionEx';
+import {
+  setCache,
+  useAsyncData,
+} from './fetch-loop';
+import {
+  ConnectionContextValues,
+  EndpointInfo,
+} from './types';
+import { useLocalStorageState } from './utils';
+
+export const endpoints: {url: string, weight: number, ws?: string}[] = [
+  { url: 'https://raydium.rpcpool.com', weight: 100 },
+  // {
+  //   url: 'https://rpc.ankr.com/solana/069441feac8b4eda17322b1fb89a2c3ef5950e74e6742f7f385de5a205f16b68',
+  //   weight: 50,
+  //   ws: 'wss://rpc.ankr.com/solana/ws/069441feac8b4eda17322b1fb89a2c3ef5950e74e6742f7f385de5a205f16b68',
+  // },
   // { url: 'https://solana-api.tt-prod.net', weight: 100 }
   // { url: 'https://solana-api.projectserum.com', weight: 100 }
   // { url: 'https://raydium.genesysgo.net', weight: 100 }
