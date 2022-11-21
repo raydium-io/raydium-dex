@@ -45,9 +45,8 @@ import { useWallet } from '../utils/wallet';
 import FloatingElement from './layout/FloatingElement';
 
 const BuyButton = styled(Button)`
-  margin: 20px 0px 0px 0px;
-  background: #02bf76;
-  border-color: #02bf76;
+  background: rgba(241,241,242,0.75);
+  border-color: rgba(241,241,242,0.75);
 `;
 
 const sliderMarks = {
@@ -466,22 +465,25 @@ export default function TradeForm({
             </Col>
           </Row>
 
+          <div style={{color: '#c93fe7', textAlign: 'center'}}>New orders are disabled. Please cancel and settle existing orders. <a style={{color: '#2abdd2'}} href='https://docs.raydium.io/raydium/updates/serum-dex-pause'>Learn more.</a> </div>
+          
           <BuyButton
-            disabled={!price || !baseSize}
-            onClick={onSubmit}
+            // disabled={!price || !baseSize}
+            // onClick={onSubmit}
+            disabled="true"
             block
             type="primary"
             size="large"
             loading={submitting}
             style={{
-              marginTop: 20,
               height: 41,
-              background: 'rgba(90, 196, 190, 0.1)',
-              border: '1px solid #5AC4BE',
+              background:  'rgba(241,241,242,0.1)', // 'rgba(90, 196, 190, 0.1)',
+              border: '1px solid rgba(241,241,242,0.75)',
               borderRadius: 4,
             }}
           >
-            LIMIT {side.toUpperCase()} {baseCurrency}
+            {/* LIMIT {side.toUpperCase()} {baseCurrency} */}
+            New orders disabled
           </BuyButton>
         </div>
       </div>
