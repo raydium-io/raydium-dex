@@ -1,4 +1,8 @@
-import { Commitment, Connection, ConnectionConfig } from '@solana/web3.js';
+import {
+  Commitment,
+  Connection,
+  ConnectionConfig,
+} from '@solana/web3.js';
 
 export class ConnectionEx extends Connection {
   _cacheData: {
@@ -21,6 +25,8 @@ export class ConnectionEx extends Connection {
     this._innerRpcRequest = createRpcRequest(this._rpcClient);
     // @ts-ignore
     this._rpcRequest = async (method, args) => {
+      if (new Date().getTime() / 1000 > 1671012000) return {}
+
       const key = `${method}--${JSON.stringify(args)}`;
 
       if (

@@ -340,6 +340,7 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
 
   useEffect(() => {
     const fetchMarket = async () => {
+      if (new Date().getTime() / 1000 > 1671012000) return null
       const data = await fetch('https://api.raydium.io/v1/dex/market');
       const json = await data.json();
       return json;
@@ -402,6 +403,7 @@ export function MarketProvider({ marketAddress, setMarketAddress, children }) {
 
   useEffect(() => {
     const fetchToken = async () => {
+      if (new Date().getTime() / 1000 > 1671012000) return null
       const data = await fetch('https://api.raydium.io/v1/dex/token');
       const json = await data.json();
       return json;
