@@ -465,7 +465,7 @@ export default function TradeForm({
             </Col>
           </Row>
 
-          <div style={{color: '#c93fe7', textAlign: 'center'}}>New orders are disabled. Please cancel and settle existing orders. <a style={{color: '#2abdd2'}} href='https://docs.raydium.io/raydium/updates/serum-dex-pause'>Learn more.</a> </div>
+          <div style={{color: '#c93fe7', textAlign: 'center'}}>New orders are disabled.. <a style={{color: '#2abdd2'}} href='https://docs.raydium.io/raydium/updates/serum-dex-deprecation'>Learn more.</a> </div>
           
           <BuyButton
             // disabled={!price || !baseSize}

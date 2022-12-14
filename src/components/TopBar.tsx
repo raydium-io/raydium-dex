@@ -1,15 +1,30 @@
-import { Col, Row, Menu } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.svg';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
+import {
+  Col,
+  Menu,
+  Row,
+} from 'antd';
+import {
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
 import styled from 'styled-components';
-import { ENDPOINTS, useConnectionConfig } from '../utils/connection';
-import CustomClusterEndpointDialog from './CustomClusterEndpointDialog';
-import { EndpointInfo } from '../utils/types';
-import { notify } from '../utils/notifications';
-import WalletConnect from './WalletConnect';
-import { getTradePageUrl } from '../utils/markets';
+
+import logo from '../assets/logo.svg';
+import {
+  ENDPOINTS,
+  useConnectionConfig,
+} from '../utils/connection';
 import { ConnectionEx } from '../utils/connectionEx';
+import { getTradePageUrl } from '../utils/markets';
+import { notify } from '../utils/notifications';
+import { EndpointInfo } from '../utils/types';
+import CustomClusterEndpointDialog from './CustomClusterEndpointDialog';
+import WalletConnect from './WalletConnect';
 
 const Wrapper = styled.div`
   // flex-direction: row;
@@ -193,6 +208,7 @@ export default function TopBar() {
     </Menu>
   );
 
+  const connectWallet = new Date().getTime() / 1000 > 1671012000 ? (<></>) : (<WalletConnect />)
   return (
     <>
       <CustomClusterEndpointDialog
@@ -215,7 +231,7 @@ export default function TopBar() {
             {menuDiv}
           </Col>
           <Col flex="none" style={{ paddingRight: 20 }}>
-            <WalletConnect />
+            {connectWallet}
           </Col>
         </Row>
       </Wrapper>
